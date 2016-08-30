@@ -1,0 +1,28 @@
+{
+  "notes":[
+    {
+      "content": "IOS",
+      "color": "#23b7e5",
+      "date": 1410788931159,
+      "name": "希望金融",
+      "Platform": "BL012",
+      "version": "v3.0.1"
+    },
+    {
+      "content": "Android",
+      "color": "#fad733",
+      "date": 1410788631159,
+      "name": "养鸡助手",
+      "Platform": "BL013",
+      "version": "v2.0.8"
+    },
+    {
+      "content": "IOS",
+      "color": "#7266ba",
+      "date": 1410788731159,
+      "name": "希望金融",
+      "Platform": "BL012",
+      "version": "v2.0.1"
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+
+<div class="wrapper-md" ng-controller="VersionCtrl">
+    <div class="lter b-b wrapper-md">
+        <h1 class="m-n font-thin h3"><span style="color: #23b7e5;">{{appName}}</span>版本列表</h1>
+    </div>
+    <div class="pull-right" style="position: relative; top: -47px;right: 20px;" ng-if="role === '8'">
+        <a href="/#/apps/create_version/{{appKey}}">
+            <button type="button" class="btn btn-sm btn-primary btn-addon" ng-click="addEvent()">
+                <i class="fa fa-plus"></i>新建Native版本
+            </button>
+        </a>
+    </div>
+    <div class="wrapper-md">
+        <tabset class="tab-container" ng-init="steps={percent:10, step1:true, step2:true, step3:true}">
+            <tab heading="Android" active="steps.step1" select="steps.percent=50" ng-click="selectType(0)">
+                <div class="table-responsive">
+                    <table id="myTable" style="width: 100%;">
+                        <thead>
+                        <tr>
+                            <th style="width:13%">版本名称</th>
+                            <th style="width:13%">应用平台</th>
+                            <th style="width:32%">更新日志</th>
+                            <th style="width:10%">创建时间</th>
+                            <th style="width:10%">更新时间</th>
+                            <th style="width:12%">强制更新</th>
+                            <th style="width:10%">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="list in versionList" ng-if="list.platform == 0">
+                            <td><a ng-href="/#/app/bundleList/{{list.appkey}}/{{list.platform}}/{{list.nativeVersion}}" style="color: #23b7e5; font-weight: 600;">{{list.nativeVersion}}</a></td>
+                            <td ng-if="list.platform == 1">IOS</td>
+                            <td ng-if="list.platform == 0">Android</td>
+                            <td>{{list.changeLog}}</td>
+                            <td>{{list.createdAt | date: 'yyyy-MM-dd'}}</td>
+                            <td>{{list.updatedAt | date: 'yyyy-MM-dd'}}</td>
+                            <td>{{list.forceUpdate}}</td>
+                            <td>
+                                <div>
+                                    <button class="btn m-b-xs w-xs btn-primary" style="width: 64px;" ng-click="deleteVersion(list.id, 0)">删除</button>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <pagination previous-text = '上一页' next-text="下一页" total-items="totalItems" ng-model="currentPage" ng-click="pageChanged(currentPage)" class="m-t-none m-b pages"></pagination>
+                </div>
+            </tab>
+            <tab heading="IOS" select="steps.percent=50" ng-click="selectType(1)">
+                <div class="table-responsive">
+                    <table id="myTable" style="width: 100%;">
+                        <thead>
+                        <tr>
+                            <th style="width:13%">版本名称</th>
+                            <th style="width:13%">应用平台</th>
+                            <th style="width:32%">更新日志</th>
+                            <th style="width:10%">创建时间</th>
+                            <th style="width:10%">更新时间</th>
+                            <th style="width:12%">强制更新</th>
+                            <th style="width:10%">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="list in versionList" ng-if="list.platform == 1">
+                            <td><a ng-href="/#/app/bundleList/{{list.appkey}}/{{list.platform}}/{{list.nativeVersion}}" style="color: #23b7e5; font-weight: 600;">{{list.nativeVersion}}</a></td>
+                            <td ng-if="list.platform == 1">IOS</td>
+                            <td ng-if="list.platform == 0">Android</td>
+                            <td>{{list.changeLog}}</td>
+                            <td>{{list.createdAt | date: 'yyyy-MM-dd'}}</td>
+                            <td>{{list.updatedAt | date: 'yyyy-MM-dd'}}</td>
+                            <td>{{list.forceUpdate}}</td>
+                            <td>
+                                <div>
+                                    <button class="btn m-b-xs w-xs btn-primary" style="width: 64px;" ng-click="deleteVersion(list.id, 1)">删除</button>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <pagination previous-text = '上一页' next-text="下一页" total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" class="m-t-none m-b pages"></pagination>
+
+                </div>
+            </tab>
+        </tabset>
+    </div>
+
+</div>
+

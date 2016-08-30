@@ -1,0 +1,97 @@
+<!-- hbox layout -->
+<div class="hbox hbox-auto-xs bg-light " ng-init="
+  app.settings.asideFixed = true;
+  app.settings.asideDock = false;
+  app.settings.container = false;
+  app.hideAside = false;
+  app.hideFooter = true;
+  app = {
+    platform: 0
+  };"
+     ng-controller="NoteCtrl">
+    <div class="bg-light lter b-b wrapper-md shrink">
+        <h1 class="m-n font-thin h3 inline-h1">应用列表</h1>
+        <div class="m-b float-right" ng-if="role === '8'">
+            <a ui-sref="apps.form">
+                <button type="button" class="btn btn-sm btn-primary btn-addon">
+                    <i class="fa fa-plus"></i>新建应用
+                </button>
+            </a>
+        </div>
+    </div>
+    <div class="col" style="display: block;">
+        <div class="vbox">
+            <div class="row-row">
+                <div class="cell">
+                    <div class="app-box">
+                        <div class="row text-center">
+                            <!--&lt;!&ndash;新建app的情况&ndash;&gt;
+                            <form name="form" class="form-validation" ng-if="!appList.length && role === '8'">
+                                <div class="add-app">
+                                    <div class="add-app-header">新建APP</div>
+                                    <div class="app-name">
+                                        <input class="add-app-name"
+                                               type="text"
+                                               placeholder="App Name"
+                                               ng-model="app.name"
+                                               required>
+                                        <label class="platform">
+                                            <input type="radio" name="platform" checked="value" ng-model="app.platform" value="0">Android
+                                        </label>
+                                        <label class="platform">
+                                            <input type="radio" name="platform" ng-model="app.platform" value="1">IOS
+                                        </label>
+                                        <input class="add-platform" type="text" placeholder="Add description" ng-model="app.description" required>
+                                        <input class="add-platform" type="text" placeholder="Add appStoreUrl" ng-model="app.appStoreUrl" required>
+                                    </div>
+                                    <div class="app-create-btn" ng-click="createApp(app)" ng-disabled='form.$invalid'>
+                                        CREATE APP
+                                    </div>
+                                </div>
+                            </form>-->
+                            <!--已有app的情况-->
+                            <form name="formApp" class="form-validation" ng-if="appList.length">
+                                <div class="app-list" ng-repeat="item in appList | filter:query | orderBy: 'utime':true">
+                                    <div class="app-list-header">
+                                        <div class="app-logo">
+                                            <img src="{{item.avator}}" ng-if="item.avator">
+                                            <img src="img/a10.jpg" ng-if="!item.avator">
+                                        </div>
+                                        <div class="app-name-head">
+                                            <p>{{item.name}}</p>
+                                            <span ng-if="item.android" class="fa fa-android font-active"></span>
+                                            <span ng-if="!item.android" class="fa fa-android"></span>
+                                            <span ng-if="item.ios" class="fa fa-apple font-active"></span>
+                                            <span ng-if="!item.ios" class="fa fa-apple"></span>
+                                            <span ng-if="item.pc" class="fa fa-windows font-active"></span>
+                                            <span ng-if="!item.pc" class="fa fa-windows"></span>
+                                        </div>
+                                    </div>
+                                    <div class="app-list-body">
+                                        <a href="/#/app/versionList/{{item.appkey}}/0/{{item.name}}" class="link">
+                                            <!--<div class="app-list-type" ng-if="item.platform == 0">Android</div>
+                                            <div class="app-list-type" ng-if="item.platform == 1">IOS</div>-->
+                                            <div class="app-list-name">{{item.description}}</div>
+                                            <!-- <div class="app-list-platform">{{item.appStoreUrl}}</div> -->
+                                        </a>
+                                        <!-- <div class="app-list-operate">
+                                          <a href="/#/apps/push/{{item.id}}"><span>消息推送</span></a>
+                                        </div> -->
+                                        <div class="app-list-footer">
+                                            <div class="app-operation">操作</div>
+                                            <div class="app-setting"><a href="/#/apps/push/{{item.id}}"><span>推送</span></a>|<a href="/#/app/versionList/{{item.appkey}}/0/{{item.name}}"><span>版本</span></a>|<a href="/#/apps/settings/{{item.id}}"><span>设置</span></a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /column -->
+</div>
+
+<!--
+form.loginName.$invalid && form.loginName.$dirty-->

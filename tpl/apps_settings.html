@@ -1,0 +1,197 @@
+
+<!-- hbox layout -->
+<!-- hbox layout -->
+<div class="hbox hbox-auto-xs bg-light " ng-init="
+  app.settings.asideFixed = true;
+  app.settings.asideDock = false;
+  app.settings.container = false;
+  app.hideAside = false;
+  app.hideFooter = true;"
+     ng-controller="SettingsCtrl">
+    <div class="col w-lg lt">
+        <div class="vbox">
+            <div class="wrapper">
+                <div class="app-box-push">
+                    <a href="/#/apps/note"
+                       class="btn btn-sm btn-danger btn-options pull-right">返回
+                    </a>
+                    <form name="form" class="form-validation">
+                        <div class="app-push-appName">应用名称<span class="has-error">*</span></div>
+                        <div class="">{{setting.name}}</div>
+                        <div class="app-push-appName">应用key<span class="has-error">*</span></div>
+                        <div class="">{{setting.appkey}}</div>
+                        <div class="app-push-appName">应用密钥<span class="has-error">*</span></div>
+                        <div class="">{{setting.appsecret}}</div>
+                        <div class="app-push-appName">应用StoreUrl<span class="has-error">*</span></div>
+                        <div class="">{{setting.appStoreUrl}}</div>
+                        <!--<input class="form-control"
+                               type="text"
+                               placeholder="请输入推送标题"
+                               ng-model="push.title"
+                               required>-->
+                        <div class="app-push-appName">应用描述<span class="has-error">*</span></div>
+                        <textarea class="form-control"
+                                  rows="3"
+                                  placeholder="请输入应用描述"
+                                  ng-model="params.description"
+                                  required>
+                        </textarea>
+                        <div class="app-push-appName">appPushKey</div>
+                        <input class="form-control"
+                               type="text"
+                               placeholder=""
+                               ng-model="setting.appPushKey"
+                               >
+                        <div class="app-push-appName">appPushSecret</div>
+                        <input class="form-control"
+                               type="text"
+                               placeholder=""
+                               ng-model="setting.appPushSecret"
+                               >
+                        <div class="app-push-appName">目标平台</div>
+                        <ul class="app-push-platform">
+                            <li class="active"
+                                ng-if="setting.ios"
+                                ng-click="changePlatform('ios')">
+                                <i class="fa fa-apple"></i>
+                                <p>Ios平台</p>
+                            </li>
+                            <li ng-if="!setting.ios"
+                                ng-click="changePlatform('ios')">
+                                <i class="fa fa-apple"></i>
+                                <p>Ios平台</p>
+                            </li>
+                            <li class="active"
+                                ng-if="setting.android"
+                                ng-click="changePlatform('android')">
+                                <i class="fa fa-android"></i>
+                                <p>Android平台</p>
+                            </li>
+                            <li ng-if="!setting.android"
+                                ng-click="changePlatform('android')">
+                                <i class="fa fa-android"></i>
+                                <p>Android平台</p>
+                            </li>
+                            <li class="active"
+                                ng-if="setting.pc"
+                                ng-click="changePlatform('pc')">
+                                <i class="fa fa-windows"></i>
+                                <p>Web平台</p>
+                            </li>
+                            <li ng-if="!setting.pc"
+                                ng-click="changePlatform('pc')">
+                                <i class="fa fa-windows"></i>
+                                <p>Web平台</p>
+                            </li>
+                        </ul>
+                        <div class="app-push-save-btn">
+                            <button  class="btn btn-lg btn-info btn-block "
+                                     ng-click="saveSettings(setting)"
+                                     ng-disabled="form.$invalid || (!setting.ios && !setting.android && !setting.pc )">立即发送</button>
+                        </div>
+                        <div class="app-push-save-btn">
+                            <button  class="btn btn-lg btn-danger btn-block "
+                                     ng-click="deleteSettings()"
+                                     >立即删除</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- hbox layout -->
+<!--
+<div class="hbox hbox-auto-xs bg-light "
+     ng-controller="SettingsCtrl">
+    <div class="col w-lg lt">
+        <div class="vbox">
+            <div class="wrapper">
+                <div class="app-box-application">
+                    <form name="form" class="form-validation">
+                        <div class="application-title row">
+                            <div class="col-xs-5"></div><div class="col-xs-2">应用信息</div><div class="col-xs-5"></div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-offset-1 col-xs-2">应用名称</label>
+                            <div class="col-xs-8">
+                                {{setting.name}}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-offset-1 col-xs-2">应用key</label>
+                            <div class="col-xs-8">
+                                {{setting.appkey}}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-offset-1 col-xs-2">应用密钥</label>
+                            <div class="col-xs-8">
+                                {{setting.appsecret}}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-offset-1 col-xs-2">应用StoreUrl</label>
+                            <div class="col-xs-8">
+                                {{setting.appStoreUrl}}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-offset-1 col-xs-2 vertical-align">应用描述</label>
+                            <div class="col-xs-8">
+                                &lt;!&ndash;<input class="form-control col-xs-5"
+                                       type=""
+                                       ng-model="params.description"
+                                       required>&ndash;&gt;
+                                <textarea class="form-control col-xs-5" rows="3" ng-model="setting.description" required></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-offset-1 col-xs-2 vertical-align">appPushKey</label>
+                            <div class="col-xs-8">
+                                <input class="form-control col-xs-5"
+                                       type="text"
+                                       ng-model="setting.appPushKey"
+                                       required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-offset-1 col-xs-2 vertical-align">appPushSecret</label>
+                            <div class="col-xs-8">
+                                <input class="form-control col-xs-5"
+                                       type="text"
+                                       ng-model="setting.appPushSecret"
+                                       required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-offset-1 col-xs-2">应用启用</label>
+                            <div class="col-xs-8">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" value="true" ng-checked="setting.android" ng-model="params.android">android
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" value="true" ng-checked="setting.ios" ng-model="params.ios">ios
+                                </label>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" value="true" ng-checked="setting.pc" ng-model="params.pc">window
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+                    <button type="submit"
+                            class="btn btn-info btn-lg btn-block"
+                            style="width: 50%; margin: 10px auto"
+                            ng-click="saveSettings(setting)"
+                            >修改应用</button>
+                    <button type="submit"
+                            class="btn btn-danger btn-lg btn-block"
+                            style="width: 50%; margin: 10px auto"
+                            ng-click="deleteSettings()"
+                            >删除应用</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    &lt;!&ndash; column &ndash;&gt;
+</div>-->

@@ -1,0 +1,135 @@
+<!-- hbox layout -->
+<div class="hbox hbox-auto-xs bg-light " ng-init="
+  app.settings.asideFixed = true;
+  app.settings.asideDock = false;
+  app.settings.container = false;
+  app.hideAside = false;
+  app.hideFooter = true;"
+  ng-controller="PushCtrl">
+    <div class="col w-lg lt">
+        <div class="vbox">
+            <div class="wrapper">
+                <div class="app-box-push">
+                    <a href="/#/apps/note"
+                       class="btn btn-sm btn-danger btn-options pull-right">返回
+                    </a>
+                    <form name="form" class="form-validation">
+                        <div class="app-push-appName">推送标题<span class="has-error">*</span></div>
+                        <input class="form-control" 
+                               type="text" 
+                               placeholder="请输入推送标题" 
+                               ng-model="push.title"
+                               required>
+                        <div class="app-push-appName">推送内容<span class="has-error">*</span></div>
+                        <textarea class="form-control" 
+                                  rows="3" 
+                                  placeholder="请输入推送内容" 
+                                  ng-model="push.msg"
+                                  required>
+                        </textarea>
+                        <div class="app-push-appName">目标平台</div>
+                        <ul class="app-push-platform">
+                            <li class="active" 
+                                ng-if="push.ios" 
+                                ng-click="changePlatform('ios')">
+                                <i class="fa fa-apple"></i>
+                                <p>Ios平台</p>
+                            </li>
+                            <li ng-if="!push.ios" 
+                                ng-click="changePlatform('ios')">
+                                <i class="fa fa-apple"></i>
+                                <p>Ios平台</p>
+                            </li>
+                            <li class="active" 
+                                ng-if="push.android" 
+                                ng-click="changePlatform('android')">
+                                <i class="fa fa-android"></i>
+                                <p>Android平台</p>
+                            </li>
+                            <li ng-if="!push.android" 
+                                ng-click="changePlatform('android')">
+                                <i class="fa fa-android"></i>
+                                <p>Android平台</p>
+                            </li>
+                            <li class="active" 
+                                ng-if="push.pc" 
+                                ng-click="changePlatform('pc')">
+                                <i class="fa fa-windows"></i>
+                                <p>Web平台</p>
+                            </li>
+                            <li ng-if="!push.pc" 
+                                ng-click="changePlatform('pc')">
+                                <i class="fa fa-windows"></i>
+                                <p>Web平台</p>
+                            </li>
+                        </ul>
+                        <div class="app-push-appName">目标人群</div>
+                        <tabset class="tab-container">
+                            <tab heading="广播(所有人)">
+                                将向应用所有的注册用户推送此消息
+                            </tab>
+                            <tab heading="单播">
+                                <input class="form-control" 
+                                       type="text" 
+                                       placeholder="请输入用户手机号" 
+                                       ng-model="push.to">
+                            </tab>
+                        </tabset>
+                        <div class="app-push-appName">自定义内容
+                            <i class="fa fa-pencil pencil-icon" ng-click="define()"></i>
+                        </div>
+                        <textarea class="form-control" 
+                                  rows="3" 
+                                  placeholder="请输入自定义内容" 
+                                  ng-model="push.extra"
+                                  ng-if="showDefine">
+                        </textarea>
+                        <div class="app-push-save-btn">
+                            <button  class="btn btn-lg btn-info btn-block " 
+                                     ng-click="popUp()" 
+                                     ng-disabled="form.$invalid || (!push.ios && !push.android && !push.pc )">立即发送</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title">提示</span>
+                <button type="button" class="close" ng-click="cancel()" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="mod-line row">
+                    <p class="text-center" style="font-size: 20px;">确认要发出去吗?</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info pull-left" ng-click="ok()">发送吧</button>
+                <button type="button" class="btn btn-default pull-right" ng-click="cancel()">先等等再说</button>
+            </div>
+        </div>
+    </script>
+</div>
+<div>
+    <script type="text/ng-template" id="myModalContentSuccess.html">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title">提示</span>
+                <button type="button" class="close" ng-click="cancel()" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="mod-line row">
+                    <p class="text-center" style="font-size: 20px;">推送成功!</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info pull-left" ng-click="ok()">查看历史</button>
+                <button type="button" class="btn btn-default pull-right" ng-click="cancel()">返回首页</button>
+            </div>
+        </div>
+    </script>
+</div>

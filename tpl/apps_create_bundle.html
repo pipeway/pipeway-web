@@ -1,0 +1,236 @@
+<!-- hbox layout -->
+<div class="hbox hbox-auto-xs bg-light " ng-init="
+  app.settings.asideFixed = true;
+  app.settings.asideDock = false;
+  app.settings.container = false;
+  app.hideAside = false;
+  app.hideFooter = true;"
+     ng-controller="CreateVersionCtrl">
+    <div class="col w-lg lt">
+        <div class="vbox">
+            <div class="wrapper">
+                <div class="app-box-push">
+                    <a ng-click="close()"
+                       class="btn btn-sm btn-danger btn-options pull-right">返回
+                    </a>
+                    <form name="form" class="form-validation">
+                        <!--<div class="app-push-appName">选择平台</div>
+                        <ul class="app-push-platform">
+                            <li class="active"
+                                ng-if="apps.platform == '1'"
+                                ng-click="changePlatform('ios')">
+                                <i class="fa fa-apple"></i>
+                                <p>Ios平台</p>
+                            </li>
+                            <li ng-if="apps.platform != '1'"
+                                ng-click="changePlatform('ios')">
+                                <i class="fa fa-apple"></i>
+                                <p>Ios平台</p>
+                            </li>
+                            <li class="active"
+                                ng-if="apps.platform == '0'"
+                                ng-click="changePlatform('android')">
+                                <i class="fa fa-android"></i>
+                                <p>Android平台</p>
+                            </li>
+                            <li ng-if="apps.platform != '0'"
+                                ng-click="changePlatform('android')">
+                                <i class="fa fa-android"></i>
+                                <p>Android平台</p>
+                            </li>
+                        </ul>-->
+                        <!--<div class="app-push-appName">平台类型</div>
+                        <ul class="app-push-platform">
+                            <li class="active"
+                                ng-if="apps.type == '1'"
+                                ng-click="changeType('Bundle')">
+                                <i class="fa fa-codepen"></i>
+                                <p>Bundle</p>
+                            </li>
+                            <li ng-if="apps.type != '1'"
+                                ng-click="changeType('Bundle')">
+                                <i class="fa fa-codepen"></i>
+                                <p>Bundle</p>
+                            </li>
+                            <li class="active"
+                                ng-if="apps.type == '0'"
+                                ng-click="changeType('Native')">
+                                <i class="fa fa-cube"></i>
+                                <p>Native</p>
+                            </li>
+                            <li ng-if="apps.type != '0'"
+                                ng-click="changeType('Native')">
+                                <i class="fa fa-cube"></i>
+                                <p>Native</p>
+                            </li>
+                        </ul>-->
+                        <div class="app-push-appName">上传包<span class="has-error">*</span></div>
+                        <div>
+                            <input type="file"  nv-file-select="" uploader="uploader" multiple/>
+                            <div ng-repeat="item in uploader.queue">
+                                <table>
+                                    <tr>
+                                        <td style="width: 65%;"><strong>{{item.file.name}}</strong></td>
+                                        <td style="width: 8%">{{item.file.size/1024/1024|number:2}}MB</td>
+                                        <td style="width: 12%" ng-show="uploader.isHTML5">
+                                            <div class="progress progress-sm m-b-none m-t-xs">
+                                                <div class="progress-bar bg-info" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+                                            </div>
+                                        </td>
+                                        <td style="width: 15%">
+                                            <button type="button" class="btn btn-default btn-xs lg-info" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                                                Upload
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="app-push-appName">版本号<span class="has-error">*</span></div>
+                        <!--<input class="form-control"
+                               type="text"
+                               placeholder="eg:v1.0.1"
+                               ng-model="apps.nativeVersion"
+                               required>-->
+                        <input class="form-control"
+                               type="text"
+                               placeholder="eg:20160601"
+                               ng-model="apps.bundleVersion"
+                               required>
+                        <div class="app-push-appName">更新日志<span class="has-error">*</span></div>
+                        <input class="form-control"
+                               type="text"
+                               placeholder=""
+                               ng-model="apps.changeLog"
+                               required>
+                        <div class="app-push-appName">强制更新<span class="has-error">*</span></div>
+                        <label class="">
+                            <input type="checkbox"  ng-model="apps.forceUpdate" style="margin-top: 13px;" >是否强制更新
+                        </label>
+
+                        <div class="error" style="color: #f02f2f">{{message}}</div>
+                        <div class="app-push-save-btn">
+                            <button  class="btn btn-lg btn-info btn-block "
+                                     ng-click="createBundleRelease(apps)"
+                                     ng-disabled="form.$invalid">创建版本</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<div class="hbox hbox-auto-xs bg-light "
+     ng-controller="CreateVersionCtrl">
+        <div class="col w-lg lt">
+            <div class="vbox">
+                <div class="wrapper">
+                    <div class="app-box-application">
+                        <form name="form" class="form-validation">
+                            <div class="application-title row">
+                                <div class="col-xs-5"></div><div class="col-xs-2">创建版本</div><div class="col-xs-5"></div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-offset-1 col-xs-2">选择平台</label>
+                                <div class="col-xs-8">
+                                    <label class="checkbox-inline" style="padding-left: 0;">
+                                        <input type="radio" name="platform" value="0" ng-model="apps.platform">android
+                                    </label>
+                                    <label class="checkbox-inline" style="padding-left: 0;">
+                                        <input type="radio" name="platform" value="1" ng-model="apps.platform">ios
+                                    </label>
+                                    <label class="checkbox-inline" style="padding-left: 0;">
+                                        <input type="radio" name="platform" value="2" ng-model="apps.platform">windows
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-offset-1 col-xs-2">平台类型</label>
+                                <div class="col-xs-8">
+                                    <label class="checkbox-inline" style="padding-left: 0;">
+                                        <input type="radio" name="type" checked="apps.type" ng-model="apps.type" value="0">Native
+                                    </label>
+                                    <label class="checkbox-inline" style="padding-left: 0;">
+                                        <input type="radio" name="type" checked="apps.type" ng-model="apps.type" value="1">Bundle
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-offset-1 col-xs-2">上传包</label>
+                                <div class="col-xs-8">
+                                    <input type="file"  nv-file-select="" uploader="uploader" multiple/>
+                                    <div ng-repeat="item in uploader.queue">
+                                        &lt;!&ndash;<strong>{{item.file.name}}</strong>
+                                        <button type="button" class="btn btn-default" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                                            Upload
+                                        </button>&ndash;&gt;
+                                        <table>
+                                            <tr>
+                                                <td style="width: 65%;"><strong>{{item.file.name}}</strong></td>
+                                                <td style="width: 8%">{{item.file.size/1024/1024|number:2}}MB</td>
+                                                <td style="width: 12%" ng-show="uploader.isHTML5">
+                                                    <div class="progress progress-sm m-b-none m-t-xs">
+                                                        <div class="progress-bar bg-info" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+                                                    </div>
+                                                </td>
+                                                <td style="width: 15%">
+                                                    <button type="button" class="btn btn-default btn-xs lg-info" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                                                        Upload
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row vertical-align" ng-if="apps.type == 0">
+                                <label class="col-md-offset-1 col-xs-2">native版本</label>
+                                <div class="col-xs-8">
+                                    <input type="text"
+                                           class="form-control m-b col-xs-5"
+                                           placeholder="eg:v1.0.1"
+                                           ng-model="apps.nativeVersion"
+                                           required >
+                                </div>
+                            </div>
+                            <div class="form-group row vertical-align" ng-if="apps.type == 1">
+                                <label class="col-md-offset-1 col-xs-2">bundle版本</label>
+                                <div class="col-xs-8">
+                                    <input type="text"
+                                           class="form-control m-b col-xs-5"
+                                           placeholder="eg:20160601"
+                                           ng-model="apps.bundleVersion"
+                                           required >
+                                </div>
+                            </div>
+                            <div class="form-group row vertical-align">
+                                <label class="col-md-offset-1 col-xs-2">日志更新</label>
+                                <div class="col-xs-8">
+                                    <input type="text"
+                                           class="form-control m-b col-xs-5"
+                                           placeholder="changeLog"
+                                           ng-model="apps.changeLog"
+                                           required >
+                                </div>
+                            </div>
+                            <div class="form-group row vertical-align">
+                                <label class="col-md-offset-1 col-xs-2">强制更新</label>
+                                <div class="col-xs-8">
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox"  ng-model="apps.forceUpdate" style="margin-top: 13px;" >是否强制更新
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="error" style="color: #f02f2f">{{message}}</div>
+                            <div class="btn btn-info btn-lg btn-block" ng-click="createAppRelease(apps)" ng-disabled='form.$invalid'>创建版本</div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    &lt;!&ndash; column &ndash;&gt;
+</div>-->
+
