@@ -1,0 +1,21 @@
+{
+  "name": "pipeway-web",
+  "version": "1.0.0",
+  "description": "pipeway admin manager",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "gulp dev"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "connect-modrewrite": "^0.8.5",
+    "gulp": "^3.9.0",
+    "gulp-connect": "^2.3.1",
+    "gulp-less": "^3.0.5",
+    "gulp-shell": "^0.5.2",
+    "gulp-watch": "^4.3.5",
+    "proxy-middleware": "^0.15.0"
+  }
+}
