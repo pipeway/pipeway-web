@@ -14,7 +14,7 @@
         <tabset class="tab-container" ng-init="steps={percent:10, step1:true, step2:true, step3:true}">
             <tab heading="Android" active="steps.step1" select="steps.percent=50" ng-click="selectType(0)">
                 <div class="table-responsive">
-                    <table id="myTable" style="width: 100%;">
+                    <table id="myTable" class="table table-striped m-b-none" style="width: 100%;">
                         <thead>
                         <tr>
                             <th style="width:13%">版本名称</th>
@@ -48,7 +48,7 @@
             </tab>
             <tab heading="IOS" select="steps.percent=50" ng-click="selectType(1)">
                 <div class="table-responsive">
-                    <table id="myTable" style="width: 100%;">
+                    <table id="myTable" class="table table-striped m-b-none" id="myTable" style="width: 100%;">
                         <thead>
                         <tr>
                             <th style="width:13%">版本名称</th>
@@ -85,4 +85,3 @@
     </div>
 
 </div>
-

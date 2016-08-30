@@ -66,7 +66,7 @@
                         </ul>-->
                         <div class="app-push-appName">上传包<span class="has-error">*</span></div>
                         <div>
-                            <input type="file"  nv-file-select="" uploader="uploader" multiple/>
+                            <input type="file" ui-jq="filestyle" data-icon="false" data-classButton="btn btn-default" data-classInput="form-control inline v-middle input-s"  nv-file-select="" uploader="uploader" multiple/>
                             <div ng-repeat="item in uploader.queue">
                                 <table>
                                     <tr>
@@ -104,8 +104,10 @@
                                ng-model="apps.changeLog"
                                required>
                         <div class="app-push-appName">强制更新<span class="has-error">*</span></div>
-                        <label class="">
-                            <input type="checkbox"  ng-model="apps.forceUpdate" style="margin-top: 13px;" >是否强制更新
+                        <label class="i-checks i-checks-sm">
+                            <input type="checkbox"  ng-model="apps.forceUpdate" style="margin-top: 13px;" >
+                            <i></i>
+                            是否强制更新
                         </label>
 
                         <div class="error" style="color: #f02f2f">{{message}}</div>
