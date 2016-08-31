@@ -66,6 +66,22 @@ angular.module('app')
                           }]
                   }
               })
+              .state('server.add', {
+                  url: '/add',
+                  templateUrl: 'tpl/server/addServer.html',
+                  resolve: {
+                      deps: ['uiLoad', '$ocLazyLoad',
+                          function( uiLoad, $ocLazyLoad){
+                              return $ocLazyLoad.load('angularFileUpload').then(
+                                  function() {
+                                      return $ocLazyLoad.load(['js/app/server/addServer.js',
+                                          'vendor/libs/moment.min.js'
+                                      ]);
+                                  }
+                              );
+                          }]
+                  }
+              })
               // others
               .state('lockme', {
                   url: '/lockme',
@@ -164,22 +180,6 @@ angular.module('app')
               .state('apps.popup', {
                   url: '/popup',
                   templateUrl: 'tpl/popup.html'
-              })
-              .state('apps.form', {
-                  url: '/form',
-                  templateUrl: 'tpl/app_form.html',
-                  resolve: {
-                      deps: ['uiLoad', '$ocLazyLoad',
-                          function( uiLoad, $ocLazyLoad){
-                              return $ocLazyLoad.load('angularFileUpload').then(
-                                  function() {
-                                      return $ocLazyLoad.load(['js/app/note/app_form.js',
-                                          'vendor/libs/moment.min.js'
-                                      ])
-                                  }
-                              );
-                          }]
-                  }
               })
               .state('apps.create_user', {
                   url: '/create_user',
