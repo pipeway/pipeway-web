@@ -10,7 +10,7 @@ app.controller('SigninFormController', ['$scope', '$http', '$state', '$cookies',
             api.signIn('/pipeway/v1/signin', store).then(function(res) {
                 if (res.success) {
                     $cookies['token'] = res.data.token;
-                    $state.go('apps.note');
+                    $state.go('client.list');
                 } else {
                     $scope.authError = '用户名或密码错误';
                 }
