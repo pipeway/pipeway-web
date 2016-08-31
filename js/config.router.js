@@ -17,16 +17,16 @@ angular.module('app')
       function ($stateProvider,   $urlRouterProvider) {
           
           $urlRouterProvider
-              .otherwise('apps/note');
+              .otherwise('app/dashboard');
           $stateProvider
               .state('app', {
                   abstract: true,
                   url: '/app',
                   templateUrl: 'tpl/app.html'
               })
-              .state('app.dashboard-v1', {
-                  url: '/dashboard-v1',
-                  templateUrl: 'tpl/app_dashboard_v1.html',
+              .state('app.dashboard', {
+                  url: '/dashboard',
+                  templateUrl: 'tpl/dashboard/index.html',
                   resolve: {
                     deps: ['$ocLazyLoad',
                       function( $ocLazyLoad ){
@@ -34,8 +34,38 @@ angular.module('app')
                     }]
                   }
               })
-
-
+              .state('client', {
+                  abstract: true,
+                  url: '/client',
+                  templateUrl: 'tpl/layout.html'
+              })
+              .state('client.list', {
+                  url: '/list',
+                  templateUrl: 'tpl/client/list.html',
+                  resolve: {
+                      deps: ['uiLoad',
+                          function( uiLoad ){
+                              return uiLoad.load( ['js/app/client/list.js',
+                                  'vendor/libs/moment.min.js'] );
+                          }]
+                  }
+              })
+              .state('server', {
+                  abstract: true,
+                  url: '/server',
+                  templateUrl: 'tpl/layout.html'
+              })
+              .state('server.list', {
+                  url: '/server',
+                  templateUrl: 'tpl/server/list.html',
+                  resolve: {
+                      deps: ['uiLoad',
+                          function( uiLoad ){
+                              return uiLoad.load( ['js/app/server/list.js',
+                                  'vendor/libs/moment.min.js'] );
+                          }]
+                  }
+              })
               // others
               .state('lockme', {
                   url: '/lockme',
@@ -118,34 +148,6 @@ angular.module('app')
                       deps: ['uiLoad',
                           function( uiLoad ){
                               return uiLoad.load( ['js/app/user/user.js'] );
-                          }]
-                  }
-              })
-
-              .state('apps', {
-                  abstract: true,
-                  url: '/apps',
-                  templateUrl: 'tpl/layout.html'
-              })
-              .state('apps.note', {
-                  url: '/note',
-                  templateUrl: 'tpl/apps_note.html',
-                  resolve: {
-                      deps: ['uiLoad',
-                        function( uiLoad ){
-                          return uiLoad.load( ['js/app/note/note.js',
-                                               'vendor/libs/moment.min.js'] );
-                      }]
-                  }
-              })
-              .state('apps.settings', {
-                  url: '/settings/:_id',
-                  templateUrl: 'tpl/apps_settings.html',
-                  resolve: {
-                      deps: ['uiLoad',
-                          function( uiLoad ){
-                              return uiLoad.load( ['js/app/note/settings.js',
-                                  'vendor/libs/moment.min.js'] );
                           }]
                   }
               })

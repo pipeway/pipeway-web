@@ -8,8 +8,9 @@ app.controller('NoteCtrl', ['$scope', '$http', '$state', 'isLogin', 'user', '$co
         }
     };
     isLogin();
-    $scope.role = $cookies['role'];
-
+    user.myself().then(function(r) {
+        $scope.role = r.data['role'];
+    });
     $scope.createApp = function (data){
         api.addApp(data).then(function(resp) {
             if(resp.data.success){

@@ -313,7 +313,7 @@
   // }]);
 app.controller('userCtrl', ['$scope', '$http', '$state', function ($scope, $http, $state){
     $scope.getUserInfo = function() {
-      $http.get('/api/v1/user/MYSELF')
+      $http.get('/pipeway/v1/user/MYSELF')
         .then(function (response) {
             console.log(response.data.data.loginName);
             $scope.loginName = response.data.data.loginName;
