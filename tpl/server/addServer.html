@@ -20,81 +20,28 @@
                                placeholder="请输入应用名称"
                                ng-model="params.name"
                                required>
-                        <div class="app-push-appName">应用图标<span class="has-error">*</span></div>
-                        <div>
-                            <input type="file" nv-file-select="" uploader="uploader" multiple/>
-                            <div ng-repeat="item in uploader.queue">
-                                <table>
-                                    <tr>
-                                        <td style="width: 65%;"><strong>{{item.file.name}}</strong></td>
-                                        <td style="width: 8%">{{item.file.size/1024/1024|number:2}}MB</td>
-                                        <td style="width: 12%" ng-show="uploader.isHTML5">
-                                            <div class="progress progress-sm m-b-none m-t-xs">
-                                                <div class="progress-bar bg-info" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
-                                            </div>
-                                        </td>
-                                        <td style="width: 15%">
-                                            <button type="button" class="btn btn-default btn-xs lg-info" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
-                                                Upload
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="app-push-appName">应用描述<span class="has-error">*</span></div>
+                         <div class="app-push-appName">应用代号<span class="has-error">*</span></div>
+                         <input class="form-control"
+                                type="text"
+                                placeholder="请输入应用代号"
+                                ng-model="params.serial"
+                                required>
+                          <div class="app-push-appName">主机组<span class="has-error">*</span></div>
+                          <input class="form-control"
+                                 type="text"
+                                 placeholder="请输入主机组"
+                                 ng-model="params.hostGroup"
+                                 required>
+                        <div class="app-push-appName">应用描述</div>
                         <textarea class="form-control"
                                   rows="3"
                                   placeholder="请输入应用描述"
                                   ng-model="params.description"
                                   required>
                         </textarea>
-                        <div class="app-push-appName">应用地址<span class="has-error">*</span></div>
-                        <input class="form-control"
-                               type="text"
-                               placeholder="请输入应用地址"
-                               ng-model="params.appStoreUrl"
-                               required>
-                        <div class="app-push-appName">目标平台</div>
-                        <ul class="app-push-platform">
-                            <li class="active"
-                                ng-if="params.ios"
-                                ng-click="changePlatform('ios')">
-                                <i class="fa fa-apple"></i>
-                                <p>Ios平台</p>
-                            </li>
-                            <li ng-if="!params.ios"
-                                ng-click="changePlatform('ios')">
-                                <i class="fa fa-apple"></i>
-                                <p>Ios平台</p>
-                            </li>
-                            <li class="active"
-                                ng-if="params.android"
-                                ng-click="changePlatform('android')">
-                                <i class="fa fa-android"></i>
-                                <p>Android平台</p>
-                            </li>
-                            <li ng-if="!params.android"
-                                ng-click="changePlatform('android')">
-                                <i class="fa fa-android"></i>
-                                <p>Android平台</p>
-                            </li>
-                            <li class="active"
-                                ng-if="params.pc"
-                                ng-click="changePlatform('pc')">
-                                <i class="fa fa-windows"></i>
-                                <p>Web平台</p>
-                            </li>
-                            <li ng-if="!params.pc"
-                                ng-click="changePlatform('pc')">
-                                <i class="fa fa-windows"></i>
-                                <p>Web平台</p>
-                            </li>
-                        </ul>
                         <div class="app-push-save-btn">
                             <button  class="btn btn-lg btn-info btn-block "
-                                     ng-click="createApp(params)"
-                                     ng-disabled="form.$invalid || (!params.ios && !params.android && !params.pc )">创建应用</button>
+                                     ng-click="createApp(params)">创建应用</button>
                         </div>
                     </form>
                 </div>
@@ -102,4 +49,3 @@
         </div>
     </div>
 </div>
-

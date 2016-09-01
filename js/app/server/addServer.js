@@ -1,53 +1,57 @@
-app.controller('AddServerCtrl', ['$scope', '$http', '$state', 'isLogin', 'user', '$cookies', 'FileUploader',
-    function ($scope, $http, $state, isLogin, user, $cookies, FileUploader) {
+app.controller('AddServerCtrl', ['$scope', '$http', '$state', 'isLogin', 'user', '$cookies','api','FileUploader',
+    function ($scope, $http, $state, isLogin, user, $cookies, api,FileUploader) {
         var avator = '';
-        var api =   {
-            addApp: function(data){
-                return $http.post('/api/v1/app/add',data);
-            },
-            selectApp: function() {
-                return $http.get('/api/v1/app/list?page=0&pageSize=20');
-            }
-        };
-        isLogin();
-        $scope.params = {
-            ios: false,
-            android: false,
-            pc: false
-        };
-        $scope.role = $cookies['role'];
+        $scope.createApp = function (params){
+          var data = {
+            name: params.name,
+            serial: params.serial,
+            type:1,
+            description: params.description,
+            hostGroup:params.hostGroup
 
-        $scope.createApp = function (data){
-            console.log(data);
-            data.avator = avator;
-            data.ios = $scope.params.ios;
-            data.android = $scope.params.android;
-            data.pc = $scope.params.pc;
-            api.addApp(data).then(function(resp) {
-                console.log(resp,'resp');
-                if(resp.data.success){
-                    $state.go('apps.note');
+          }
+            // console.log(data.name);
+            // console.log(data.serial);
+            // console.log(data.description);
+            var reg1=/^[\u4e00-\u9fa5]{2,}$/gi;
+            var reg2=/^[A-Za-z]+$/;
+            var reg3=/^[A-Za-z]{2,}$/
+            if (!reg1.test(data.name)){
+              alert("应用名称不能为空或格式错误！");
+            }
+            if(!reg2.test(data.serial) || data.serial==null){
+              alert("应用代号不能为空或格式错误！");
+            }
+            if(!reg3.test(data.hostGroup) || data.hostGroup==null){
+              alert("主机组不能为空或格式错误！");
+            }
+            else{
+            api.appCreate(data).then(function (res){
+              console.log(res.success);
+              if(res.success){
+                alert(res.data.msg);
+                $scope.params.name = '';
+                $scope.params.serial = '';
+                $scope.params.description = '';
+                $scope.params.hostGroup = '';
                 }
-            });
-        };
-        $scope.uploader = new FileUploader({
-            url: '/api/v1/upload'
-        });
-
-        $scope.uploader.onCompleteItem = function(fileItem, response) {
-            avator = response.data.path;
-            console.log(avator);
-            console.log(fileItem);
-            return;
-        };
-        $scope.changePlatform = function(type){
-            if(type === 'ios'){
-                $scope.params.ios = !$scope.params.ios;
-            } else if(type === 'android'){
-                $scope.params.android = !$scope.params.android;
-            } else if(type === 'pc'){
-                $scope.params.pc = !$scope.params.pc;
+                else{
+                  alert(res.data.msg);
+                }
+              });
             }
+            // console.log(data);
+            // data.avator = avator;
+            // data.ios = $scope.params.ios;
+            // data.android = $scope.params.android;
+            // data.pc = $scope.params.pc;
+            // api.addApp(data).then(function(resp) {
+            //     console.log(resp,'resp');
+            //     if(resp.data.success){
+            //         $state.go('apps.note');
+            //     }
+            // });
+
         };
 
     }]);
