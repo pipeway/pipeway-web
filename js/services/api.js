@@ -13,6 +13,9 @@ function api($http) {
         },
         appCreate: function(data) {
             return httpPost('/pipeway/v1/app/create', data);
+        },
+        getServerList: function(data){
+            return $http.get('/pipeway/v1/app/list/:' + data.type + '?page=' + data.page + '&pageSize=' + data.pageSize);
         }
     };
 
