@@ -1,0 +1,71 @@
+<!-- hbox layout -->
+<div class="hbox hbox-auto-xs bg-light " ng-init="
+  app.settings.asideFixed = true;
+  app.settings.asideDock = false;
+  app.settings.container = false;
+  app.hideAside = false;
+  app.hideFooter = true;"
+     ng-controller="createApiCtrl">
+    <div class="col w-lg lt">
+        <div class="vbox">
+            <div class="wrapper">
+                <div class="app-box-push">
+                    <a href="#/server/server/apiList/{{appKey}}"
+                       class="btn btn-sm btn-danger btn-options pull-right">返回
+                    </a>
+                    <form name="form" class="form-validation">
+                        <div class="app-push-appName">接口名称<span class="has-error">*</span></div>
+                        <input class="form-control"
+                               type="text"
+                               placeholder="请输入接口名称"
+                               ng-model="params.name"
+                               required>
+                         <div class="app-push-appName">接口地址<span class="has-error">*</span></div>
+                         <input class="form-control"
+                                type="text"
+                                placeholder="请输入接口地址"
+                                ng-model="params.requestUrl"
+                                required>
+                          <div class="app-push-appName">接口鉴权<span class="has-error">*</span></div>
+                          <input class="form-control"
+                                 type="text"
+                                 placeholder="请输入接口鉴权"
+                                 ng-model="params.auth"
+                                 required>
+                        
+                        <div class="app-push-appName">接口访问过期时间</div>
+                         <input class="form-control"
+                                type="text"
+                                placeholder="请输入接口地址"
+                                ng-model="params.rateLimitTtl">
+                        <div class="app-push-appName">接口限制次数</div>
+                         <input class="form-control"
+                                type="text"
+                                placeholder="请输入接口地址"
+                                ng-model="params.rateLimitNum">
+                        <div class="app-push-appName">接口缓存的key值</div>
+                         <input class="form-control"
+                                type="text"
+                                placeholder="请输入接口地址"
+                                ng-model="params.cacheKey">
+                        <div class="app-push-appName">接口缓存时间</div>
+                         <input class="form-control"
+                                type="text"
+                                placeholder="请输入接口地址"
+                                ng-model="params.cacheTtl">
+                        <div class="app-push-appName">接口描述</div>
+                        <textarea class="form-control"
+                                  rows="3"
+                                  placeholder="请输入应用描述"
+                                  ng-model="params.description">
+                        </textarea>
+                        <div class="app-push-save-btn">
+                            <button  class="btn btn-lg btn-info btn-block "
+                                     ng-click="createApi(params)">创建应用</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

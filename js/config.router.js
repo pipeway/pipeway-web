@@ -87,6 +87,54 @@ angular.module('app')
                           }]
                   }
               })
+              .state('server.appList', {
+                  url: '/server/appList/:appkey',
+                  templateUrl: 'tpl/server/appList.html',
+                  resolve: {
+                      deps: ['uiLoad', '$ocLazyLoad',
+                          function( uiLoad, $ocLazyLoad){
+                              return $ocLazyLoad.load('angularFileUpload').then(
+                                  function() {
+                                      return $ocLazyLoad.load(['js/app/server/appList.js',
+                                          'vendor/libs/moment.min.js'
+                                      ]);
+                                  }
+                              );
+                          }]
+                  }
+              })
+              .state('server.createApi', {
+                  url: '/server/createApi/:appKey',
+                  templateUrl: 'tpl/server/createApi.html',
+                  resolve: {
+                      deps: ['uiLoad', '$ocLazyLoad',
+                          function( uiLoad, $ocLazyLoad){
+                              return $ocLazyLoad.load('angularFileUpload').then(
+                                  function() {
+                                      return $ocLazyLoad.load(['js/app/server/createApi.js',
+                                          'vendor/libs/moment.min.js'
+                                      ]);
+                                  }
+                              );
+                          }]
+                  }
+              })
+              .state('client.add', {
+                  url: '/add',
+                  templateUrl: 'tpl/server/addServer.html',
+                  resolve: {
+                      deps: ['uiLoad', '$ocLazyLoad',
+                          function( uiLoad, $ocLazyLoad){
+                              return $ocLazyLoad.load('angularFileUpload').then(
+                                  function() {
+                                      return $ocLazyLoad.load(['js/app/server/addServer.js',
+                                          'vendor/libs/moment.min.js'
+                                      ]);
+                                  }
+                              );
+                          }]
+                  }
+              })
               // others
               .state('lockme', {
                   url: '/lockme',
