@@ -21,11 +21,12 @@
                                ng-model="params.name"
                                required>
                         <div class="app-push-appName">协议名称<span class="has-error">*</span></div>
-                        <input class="form-control"
-                                type="text"
-                                placeholder="请输入协议名称"
-                                ng-model="params.protocal"
-                                required>
+                        <select name="account" class="form-control m-b" ng-model="params.protocal">
+                          <option value="0">http</option>
+                          <option value="1">https</option>
+                          <option value="2">socket</option>
+                          <option value="3">udp</option>
+                        </select>
                         <div class="app-push-appName">主机地址<span class="has-error">*</span></div>
                         <input class="form-control"
                                 type="text"
@@ -46,11 +47,30 @@
                         </textarea>
                         <div class="app-push-save-btn">
                             <button  class="btn btn-lg btn-info btn-block "
-                                     ng-click="createHost(params)">创建HOST</button>
+                                     ng-click="createHost(params)">创建主机</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+</div>
+<div>
+    <script type="text/ng-template" id="myModalContentSuccess.html">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title">提示</span>
+                <button type="button" class="close" ng-click="cancel()" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="mod-line row">
+                    <p class="text-center" style="font-size: 20px;">创建主机成功!</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info pull-left" ng-click="ok()">创建接口</button>
+                <button type="button" class="btn btn-default pull-right" ng-click="cancel()">回到主机列表</button>
+            </div>
+        </div>
+    </script>
 </div>

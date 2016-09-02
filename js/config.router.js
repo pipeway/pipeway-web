@@ -135,6 +135,38 @@ angular.module('app')
                           }]
                   }
               })
+              .state('server.hostDetail', {
+                  url: '/server/hostDetail/:id',
+                  templateUrl: 'tpl/server/hostDetail.html',
+                  resolve: {
+                      deps: ['uiLoad', '$ocLazyLoad',
+                          function( uiLoad, $ocLazyLoad){
+                              return $ocLazyLoad.load('angularFileUpload').then(
+                                  function() {
+                                      return $ocLazyLoad.load(['js/app/server/hostDetail.js',
+                                          'vendor/libs/moment.min.js'
+                                      ]);
+                                  }
+                              );
+                          }]
+                  }
+              })
+              .state('server.apiDetail', {
+                  url: '/server/apiDetail/:id',
+                  templateUrl: 'tpl/server/apiDetail.html',
+                  resolve: {
+                      deps: ['uiLoad', '$ocLazyLoad',
+                          function( uiLoad, $ocLazyLoad){
+                              return $ocLazyLoad.load('angularFileUpload').then(
+                                  function() {
+                                      return $ocLazyLoad.load(['js/app/server/apiDetail.js',
+                                          'vendor/libs/moment.min.js'
+                                      ]);
+                                  }
+                              );
+                          }]
+                  }
+              })
               .state('client.add', {
                   url: '/add',
                   templateUrl: 'tpl/server/addServer.html',

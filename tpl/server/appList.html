@@ -1,7 +1,7 @@
 
 <div class="wrapper-md" ng-controller="apiListCtrl">
     <div class="lter b-b wrapper-md">
-        <h1 class="m-n font-thin h3">版本列表</h1>
+        <h1 class="m-n font-thin h3">主机和接口列表</h1>
     </div>
     <!-- <div class="pull-right" style="position: relative; top: -47px;right: 20px;">
         <a href="/#/server/server/createApi/{{appKey}}">
@@ -16,7 +16,7 @@
                 <div class="pull-right" style="position: relative; top: -47px;right: 20px;">
                     <a href="/#/server/server/createHost/{{appKey}}">
                         <button type="button" class="btn btn-sm btn-primary btn-addon" ng-click="addEvent()">
-                            <i class="fa fa-plus"></i>新建Host
+                            <i class="fa fa-plus"></i>新建主机
                         </button>
                     </a>
                 </div>
@@ -33,8 +33,11 @@
                         </thead>
                         <tbody>
                         <tr ng-repeat="list in hostList">
-                            <td><a href="">{{list.name}}</a></td>
-                            <td>{{list.protocal}}</td>
+                            <td><a href="/#/server/server/hostDetail/{{list.id}}">{{list.name}}</a></td>
+                            <td ng-if="list.protocal == 0">http</td>
+                            <td ng-if="list.protocal == 1">https</td>
+                            <td ng-if="list.protocal == 2">socket</td>
+                            <td ng-if="list.protocal == 3">udp</td>
                             <td>{{list.host}}</td>
                             <td>{{list.port}}</td>
                             <td>{{list.description}}</td>
@@ -45,11 +48,11 @@
 
                 </div>
             </tab>
-            <tab heading="API列表" select="steps.percent=50">
+            <tab heading="接口列表" select="steps.percent=50">
                 <div class="pull-right" style="position: relative; top: -47px;right: 20px;">
                     <a href="/#/server/server/createApi/{{appKey}}">
                         <button type="button" class="btn btn-sm btn-primary btn-addon" ng-click="addEvent()">
-                            <i class="fa fa-plus"></i>新建API
+                            <i class="fa fa-plus"></i>新建接口
                         </button>
                     </a>
                 </div>
@@ -60,16 +63,17 @@
                             <th style="width:15%">接口名称</th>
                             <th style="width:20%">接口地址</th>
                             <th style="width:10%">接口鉴权</th>
-                            <th style="width:25%">接口描述</th>
+                            <th style="width:20%">接口描述</th>
                             <th style="width:15%">创建时间</th>
                             <th style="width:15%">更新时间</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr ng-repeat="list in apiList">
-                            <td><a href="">{{list.name}}</a></td>
+                            <td><a href="/#/server/server/apiDetail/{{list.id}}">{{list.name}}</a></td>
                             <td>{{list.requestUrl}}</td>
-                            <td>{{list.auth}}</td>
+                            <td ng-if="list.auth == 0">不需要鉴权</td>
+                            <td ng-if="list.auth == 1">需要鉴权</td>
                             <td>{{list.description}}</td>
                             <td>{{list.createdAt | date: 'yyyy-MM-dd'}}</td>
                             <td>{{list.updatedAt | date: 'yyyy-MM-dd'}}</td>
