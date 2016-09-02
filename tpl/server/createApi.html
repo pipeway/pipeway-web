@@ -10,7 +10,7 @@
         <div class="vbox">
             <div class="wrapper">
                 <div class="app-box-push">
-                    <a href="#/server/server/apiList/{{appKey}}"
+                    <a href="#/server/server/appList/{{appKey}}"
                        class="btn btn-sm btn-danger btn-options pull-right">返回
                     </a>
                     <form name="form" class="form-validation">
@@ -25,6 +25,12 @@
                                 type="text"
                                 placeholder="请输入接口地址"
                                 ng-model="params.requestUrl"
+                                required>
+                                <div class="app-push-appName">请求类型<span class="has-error">*</span></div>
+                         <input class="form-control"
+                                type="text"
+                                placeholder="请输入请求类型"
+                                ng-model="params.method"
                                 required>
                           <div class="app-push-appName">接口鉴权<span class="has-error">*</span></div>
                           <input class="form-control"
@@ -61,7 +67,7 @@
                         </textarea>
                         <div class="app-push-save-btn">
                             <button  class="btn btn-lg btn-info btn-block "
-                                     ng-click="createApi(params)">创建应用</button>
+                                     ng-click="createApi(params)">创建API</button>
                         </div>
                     </form>
                 </div>

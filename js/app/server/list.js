@@ -1,7 +1,7 @@
 app.controller('ServerListCtrl', ['$scope', '$http', '$state', 'isLogin', 'user', '$cookies', 'api',
     function ($scope, $http, $state, isLogin, user, $cookies, api) {
     var data = {
-        type: 0,
+        type: 1,
         page: 1,
         pageSize: 10
     }

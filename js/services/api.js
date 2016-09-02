@@ -19,7 +19,16 @@ function api($http) {
         },
         createApi: function(data){
             return httpPost('/pipeway/v1/api/create', data);
-        }
+        },
+        getApiList: function(data){
+            return $http.get('/pipeway/v1/api/list/:' + data.appKey + '?page=' + data.page + '&pageSize=' + data.pageSize);
+        },
+        createHost: function(data){
+            return httpPost('/pipeway/v1/host/create', data);
+        },
+        getHostList: function(data){
+            return $http.get('/pipeway/v1/host/list/:' + data.appKey + '?page=' + data.page + '&pageSize=' + data.pageSize);
+        },
     };
 
     function httpGet(url) {

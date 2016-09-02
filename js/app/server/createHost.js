@@ -1,4 +1,4 @@
-app.controller('createApiCtrl', ['$scope', '$http', '$state', '$location', 'isLogin', 'user', '$cookies', 'api',
+app.controller('createHostCtrl', ['$scope', '$http', '$state', '$location', 'isLogin', 'user', '$cookies', 'api',
     function ($scope, $http, $state, $location, isLogin, user, $cookies, api) {
         var url = $location.url();
         var path = url.split('/');
@@ -8,13 +8,13 @@ app.controller('createApiCtrl', ['$scope', '$http', '$state', '$location', 'isLo
         $scope.params = {
             parentAppkey: appKey
         }
-        $scope.createApi = function (params){
+        $scope.createHost = function (params){
           console.log(params);
-            api.createApi(params).then(function (res){
+            api.createHost(params).then(function (res){
               console.log(res);
               if (res.success) {
                 console.log('成功');
-                $location.path('/server/server/appList/'+appKey);
+                // $location.path('/server/server/appList/'+appKey);
               }
             })
         };

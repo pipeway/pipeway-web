@@ -1,0 +1,56 @@
+<!-- hbox layout -->
+<div class="hbox hbox-auto-xs bg-light " ng-init="
+  app.settings.asideFixed = true;
+  app.settings.asideDock = false;
+  app.settings.container = false;
+  app.hideAside = false;
+  app.hideFooter = true;"
+     ng-controller="createHostCtrl">
+    <div class="col w-lg lt">
+        <div class="vbox">
+            <div class="wrapper">
+                <div class="app-box-push">
+                    <a href="#/server/server/appList/{{appKey}}"
+                       class="btn btn-sm btn-danger btn-options pull-right">返回
+                    </a>
+                    <form name="form" class="form-validation">
+                        <div class="app-push-appName">主机名称<span class="has-error">*</span></div>
+                        <input class="form-control"
+                               type="text"
+                               placeholder="请输入主机名称"
+                               ng-model="params.name"
+                               required>
+                        <div class="app-push-appName">协议名称<span class="has-error">*</span></div>
+                        <input class="form-control"
+                                type="text"
+                                placeholder="请输入协议名称"
+                                ng-model="params.protocal"
+                                required>
+                        <div class="app-push-appName">主机地址<span class="has-error">*</span></div>
+                        <input class="form-control"
+                                type="text"
+                                placeholder="请输入主机地址"
+                                ng-model="params.host"
+                                required>
+                        <div class="app-push-appName">端口号<span class="has-error">*</span></div>
+                        <input class="form-control"
+                                 type="text"
+                                 placeholder="请输入端口号"
+                                 ng-model="params.port"
+                                 required>
+                        <div class="app-push-appName">主机描述</div>
+                        <textarea class="form-control"
+                                  rows="3"
+                                  placeholder="请输入主机描述"
+                                  ng-model="params.description">
+                        </textarea>
+                        <div class="app-push-save-btn">
+                            <button  class="btn btn-lg btn-info btn-block "
+                                     ng-click="createHost(params)">创建HOST</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

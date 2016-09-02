@@ -119,6 +119,22 @@ angular.module('app')
                           }]
                   }
               })
+              .state('server.createHost', {
+                  url: '/server/createHost/:appKey',
+                  templateUrl: 'tpl/server/createHost.html',
+                  resolve: {
+                      deps: ['uiLoad', '$ocLazyLoad',
+                          function( uiLoad, $ocLazyLoad){
+                              return $ocLazyLoad.load('angularFileUpload').then(
+                                  function() {
+                                      return $ocLazyLoad.load(['js/app/server/createHost.js',
+                                          'vendor/libs/moment.min.js'
+                                      ]);
+                                  }
+                              );
+                          }]
+                  }
+              })
               .state('client.add', {
                   url: '/add',
                   templateUrl: 'tpl/server/addServer.html',
