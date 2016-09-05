@@ -15,31 +15,31 @@ function api($http) {
             return httpPost('/pipeway/v1/app/create', data);
         },
         getServerList: function(data){
-            return $http.get('/pipeway/v1/app/list/' + data.type + '?page=' + data.page + '&pageSize=' + data.pageSize);
+            return httpGet('/pipeway/v1/app/list/' + data.type + '?page=' + data.page + '&pageSize=' + data.pageSize);
         },
         createApi: function(data){
             return httpPost('/pipeway/v1/api/create', data);
         },
         getApiList: function(data){
-            return $http.get('/pipeway/v1/api/list/' + data.appKey + '?page=' + data.page + '&pageSize=' + data.pageSize);
+            return httpGet('/pipeway/v1/api/list/' + data.appKey + '?page=' + data.page + '&pageSize=' + data.pageSize);
         },
         apiDetail: function(data){
-            return $http.get('/pipeway/v1/api/' + data.id);
+            return httpGet('/pipeway/v1/api/' + data.id);
         },
         createHost: function(data){
             return httpPost('/pipeway/v1/host/create', data);
         },
         getHostList: function(data){
-            return $http.get('/pipeway/v1/host/list/' + data.appKey + '?page=' + data.page + '&pageSize=' + data.pageSize);
+            return httpGet('/pipeway/v1/host/list/' + data.appKey + '?page=' + data.page + '&pageSize=' + data.pageSize);
         },
         hostDetail: function(data){
-            return $http.get('/pipeway/v1/host/' + data.id);
+            return httpGet('/pipeway/v1/host/' + data.id);
         }
     };
 
     function httpGet(url) {
         return $http.get(url).then(function(r) {
-            return r.data;
+            return r;
         });
     }
     function httpPost(url, data) {

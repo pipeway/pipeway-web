@@ -6,7 +6,7 @@
   app.hideAside = false;
   app.hideFooter = true;"
   ng-controller="apiDetailCtrl">
-    <div class="col w-lg lt">
+    <!-- <div class="col w-lg lt">
         <div class="vbox">
             <div class="wrapper">
                 <div class="app-box-push">
@@ -37,6 +37,78 @@
                         </div>
                         <div class="app-push-appName">接口缓存时间:
                             <span>{{apiDetail.cacheTtl}}</span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <div class="col w-lg lt host-detail">
+        <div class="vbox">
+            <div class="wrapper">
+                <div class="app-box-push">
+                    <a href="#/server/appList/{{apiDetail.parentAppkey}}"
+                       class="btn btn-sm btn-danger btn-options pull-right">返回
+                    </a>
+                    <form name="formValidate" class="form-horizontal form-validation">
+                        <div class="panel panel-default">
+                            <div class="panel-body">                    
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">接口名称:</label>
+                                    <div class="col-sm-8">
+                                         <span class="form-control">{{apiDetail.name}}</span>
+                                    </div>
+                                </div>
+                                <div class="line line-dashed b-b line-lg pull-in"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">接口地址:</label>
+                                    <div class="col-sm-8">
+                                         <span class="form-control">{{apiDetail.requestUrl}}</span>
+                                    </div>
+                                </div>
+                                <div class="line line-dashed b-b line-lg pull-in"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">接口鉴权:</label>
+                                    <div class="col-sm-8">
+                                         <span class="form-control">{{apiDetail.auth}}</span>
+                                    </div>
+                                </div>
+                                <div class="line line-dashed b-b line-lg pull-in"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">接口描述:</label>
+                                    <div class="col-sm-8">
+                                         <span class="form-control">{{apiDetail.description}}</span>
+                                    </div>
+                                </div>
+                                <div class="line line-dashed b-b line-lg pull-in"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">接口访问过期时间:</label>
+                                    <div class="col-sm-8">
+                                      <span class="form-control">{{apiDetail.rateLimitTtl}}</span>
+                                    </div>
+                                </div>
+                                <div class="line line-dashed b-b line-lg pull-in"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">接口限制次数:</label>
+                                    <div class="col-sm-8">
+                                      <span class="form-control">{{apiDetail.rateLimitNum}}</span>
+                                    </div>
+                                </div>
+                                <div class="line line-dashed b-b line-lg pull-in"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">接口缓存的key值:</label>
+                                    <div class="col-sm-8">
+                                      <span class="form-control">{{apiDetail.cacheKey}}</span>
+                                    </div>
+                                </div>
+                                <div class="line line-dashed b-b line-lg pull-in"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">接口缓存时间:</label>
+                                    <div class="col-sm-8">
+                                      <span class="form-control">{{apiDetail.cacheTtl}}</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>

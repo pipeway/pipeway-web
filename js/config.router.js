@@ -61,7 +61,7 @@ angular.module('app')
                   templateUrl: 'tpl/layout.html'
               })
               .state('server.list', {
-                  url: '/server',
+                  url: '/list',
                   templateUrl: 'tpl/server/list.html',
                   resolve: {
                       deps: ['uiLoad',
@@ -89,7 +89,7 @@ angular.module('app')
               })
 
               .state('server.appList', {
-                  url: '/server/appList/:appkey',
+                  url: '/appList/:appkey',
                   templateUrl: 'tpl/server/appList.html',
                   resolve: {
                       deps: ['uiLoad', '$ocLazyLoad',
@@ -105,7 +105,7 @@ angular.module('app')
                   }
               })
               .state('server.createApi', {
-                  url: '/server/createApi/:appKey',
+                  url: '/createApi/:appKey',
                   templateUrl: 'tpl/server/createApi.html',
                   resolve: {
                       deps: ['uiLoad', '$ocLazyLoad',
@@ -121,7 +121,7 @@ angular.module('app')
                   }
               })
               .state('server.createHost', {
-                  url: '/server/createHost/:appKey',
+                  url: '/createHost/:appKey',
                   templateUrl: 'tpl/server/createHost.html',
                   resolve: {
                       deps: ['uiLoad', '$ocLazyLoad',

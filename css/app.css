@@ -847,7 +847,7 @@ body {
 }
 p{
   font-size: 16px;
-  color:#ffffff;
+  /*color:#ffffff;*/
   line-height: 34px;
 }
 .mytext1{
@@ -5524,4 +5524,17 @@ span.font-active {
 .table-responsive .pages {
     float: right;
     padding-top: 20px;
+}
+.host-detail .panel {
+  border: 0;
+}
+.host-detail .panel .panel-body {
+  padding: 30px 15px 15px;
+}
+.host-detail .form-control {
+  border: 0;
+}
+.new-create {
+  right: -15px;
+  top: -52px;
 }

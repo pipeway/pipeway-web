@@ -3,7 +3,8 @@ app.controller('createHostCtrl', ['$scope', '$http', '$state', '$location', '$mo
         var url = $location.url();
         var path = url.split('/');
         console.log(url);
-        var appKey = path[4];
+        var appKey = path[3];
+        console.log(appKey);
         $scope.appKey = appKey;
         $scope.params = {
             parentAppkey: appKey
@@ -32,9 +33,9 @@ app.controller('createHostCtrl', ['$scope', '$http', '$state', '$location', '$mo
             });
             modalInstance.result.then(function (selectedItem) {
                 $scope.selected = selectedItem;
-                $location.path('/server/server/createApi/' + $scope.appKey);
+                $location.path('/server/createApi/' + $scope.appKey);
             }, function () {
-                $location.path('/server/server/appList/'+appKey);
+                $location.path('/server/appList/'+appKey);
             });
         }
 }]);

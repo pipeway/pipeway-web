@@ -13,8 +13,8 @@
     <div class="wrapper-md">
         <tabset class="tab-container" ng-init="steps={percent:10, step1:true, step2:true, step3:true}">
             <tab heading="主机列表" active="steps.step1" select="steps.percent=50">
-                <div class="pull-right" style="position: relative; top: -47px;right: 20px;">
-                    <a href="/#/server/server/createHost/{{appKey}}">
+                <div class="pull-right" style="position: relative; top: -52px;right: -15px;">
+                    <a href="/#/server/createHost/{{appKey}}">
                         <button type="button" class="btn btn-sm btn-primary btn-addon" ng-click="addEvent()">
                             <i class="fa fa-plus"></i>新建主机
                         </button>
@@ -49,8 +49,8 @@
                 </div>
             </tab>
             <tab heading="接口列表" select="steps.percent=50">
-                <div class="pull-right" style="position: relative; top: -47px;right: 20px;">
-                    <a href="/#/server/server/createApi/{{appKey}}">
+                <div class="pull-right" style="position: relative; top: -52px;right: -15px;">
+                    <a href="/#/server/createApi/{{appKey}}">
                         <button type="button" class="btn btn-sm btn-primary btn-addon" ng-click="addEvent()">
                             <i class="fa fa-plus"></i>新建接口
                         </button>
@@ -60,23 +60,21 @@
                     <table id="myTable" class="table table-striped m-b-none" style="width: 100%;">
                         <thead>
                         <tr>
-                            <th style="width:15%">接口名称</th>
+                            <th style="width:20%">接口名称</th>
                             <th style="width:20%">接口地址</th>
-                            <th style="width:10%">接口鉴权</th>
+                            <th style="width:20%">请求类型</th>
+                            <th style="width:20%">接口鉴权</th>
                             <th style="width:20%">接口描述</th>
-                            <th style="width:15%">创建时间</th>
-                            <th style="width:15%">更新时间</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr ng-repeat="list in apiList">
                             <td><a href="/#/server/server/apiDetail/{{list.id}}">{{list.name}}</a></td>
                             <td>{{list.requestUrl}}</td>
+                            <td>{{list.method}}</td>
                             <td ng-if="list.auth == 0">不需要鉴权</td>
                             <td ng-if="list.auth == 1">需要鉴权</td>
                             <td>{{list.description}}</td>
-                            <td>{{list.createdAt | date: 'yyyy-MM-dd'}}</td>
-                            <td>{{list.updatedAt | date: 'yyyy-MM-dd'}}</td>
                         </tr>
                         </tbody>
                     </table>
