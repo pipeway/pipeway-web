@@ -1,7 +1,12 @@
 app.controller('AddServerCtrl', ['$scope', '$http', '$state', '$modal', '$location','isLogin', 'user', '$cookies','api','FileUploader',
     function ($scope, $http, $state, $modal, $location, isLogin, user, $cookies, api,FileUploader) {
         var avator = '';
+
+        $scope.popupshide = function(){
+          $scope.popupshow = false;
+        }
         $scope.createApp = function (params){
+<<<<<<< HEAD
             var data = {
                 name: params.name,
                 serial: params.serial,
@@ -28,10 +33,44 @@ app.controller('AddServerCtrl', ['$scope', '$http', '$state', '$modal', '$locati
                 api.appCreate(data).then(function (res){
                     console.log(res);
                     if(res.success){
+=======
+          var reg1=/^[\u4e00-\u9fa5]{2,}$/gi;
+          var reg2=/^[A-Za-z]+$/;
+          var reg3=/^[A-Za-z]{2,}$/
+          var data = {
+            name: params.name,
+            serial: params.serial,
+            type:1,
+            description: params.description,
+            hostGroup:params.hostGroup
+          }
+            if (!reg1.test(data.name||data.name==null)){
+                $scope.messages="应用名称为空或格式错误！";
+                $scope.popupshow = true;
+              }
+            else{
+                if(!reg2.test(data.serial) || data.serial==null){
+                  $scope.messages="应用代号为空或格式错误！";
+                  $scope.popupshow = true;
+                }
+                else{
+                    if(!reg3.test(data.hostGroup) || data.hostGroup==null){
+                      $scope.messages="主机组为空或格式错误！";
+                      $scope.popupshow = true;
+                    }
+                    else{
+                    api.appCreate(data).then(function (res){
+                      console.log(res.success);
+                      console.log(data);
+                      if(res.success){
+                        $scope.messages=res.data.msg+'!';
+                        $scope.popupshow = true;
+>>>>>>> 6d3975f705f7c952f2de8b022d7a3386cf7c3cd5
                         $scope.params.name = '';
                         $scope.params.serial = '';
                         $scope.params.description = '';
                         $scope.params.hostGroup = '';
+<<<<<<< HEAD
                         // $state.go('server.list');
                         $scope.items = res;
                         getAppKey();
@@ -53,6 +92,17 @@ app.controller('AddServerCtrl', ['$scope', '$http', '$state', '$modal', '$locati
             //         $state.go('apps.note');
             //     }
             // });
+=======
+                        }
+                        else{
+                          $scope.messages=res.data.msg+'!';
+                          $scope.popupshow = true;
+                        }
+                      });
+                    }
+                }
+              }
+>>>>>>> 6d3975f705f7c952f2de8b022d7a3386cf7c3cd5
         };
         //获取appKey
         function getAppKey(){

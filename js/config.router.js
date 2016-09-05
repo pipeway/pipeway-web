@@ -5,17 +5,17 @@
  */
 angular.module('app')
   .run(
-    [          '$rootScope', '$state', '$stateParams', 
+    [          '$rootScope', '$state', '$stateParams',
       function ($rootScope,   $state,   $stateParams) {
           $rootScope.$state = $state;
-          $rootScope.$stateParams = $stateParams;        
+          $rootScope.$stateParams = $stateParams;
       }
     ]
   )
   .config(
     [          '$stateProvider', '$urlRouterProvider',
       function ($stateProvider,   $urlRouterProvider) {
-          
+
           $urlRouterProvider
               .otherwise('client/list');
           $stateProvider
@@ -87,6 +87,7 @@ angular.module('app')
                           }]
                   }
               })
+
               .state('server.appList', {
                   url: '/server/appList/:appkey',
                   templateUrl: 'tpl/server/appList.html',
@@ -169,13 +170,13 @@ angular.module('app')
               })
               .state('client.add', {
                   url: '/add',
-                  templateUrl: 'tpl/server/addServer.html',
+                  templateUrl: 'tpl/client/addClient.html',
                   resolve: {
                       deps: ['uiLoad', '$ocLazyLoad',
                           function( uiLoad, $ocLazyLoad){
                               return $ocLazyLoad.load('angularFileUpload').then(
                                   function() {
-                                      return $ocLazyLoad.load(['js/app/server/addServer.js',
+                                      return $ocLazyLoad.load(['js/app/client/addClient.js',
                                           'vendor/libs/moment.min.js'
                                       ]);
                                   }
