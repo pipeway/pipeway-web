@@ -61,7 +61,7 @@ angular.module('app')
                   templateUrl: 'tpl/layout.html'
               })
               .state('server.list', {
-                  url: '/server',
+                  url: '/list',
                   templateUrl: 'tpl/server/list.html',
                   resolve: {
                       deps: ['uiLoad',
@@ -89,7 +89,7 @@ angular.module('app')
               })
 
               .state('server.appList', {
-                  url: '/server/appList/:appkey',
+                  url: '/appList/:appkey',
                   templateUrl: 'tpl/server/appList.html',
                   resolve: {
                       deps: ['uiLoad', '$ocLazyLoad',
@@ -105,7 +105,7 @@ angular.module('app')
                   }
               })
               .state('server.createApi', {
-                  url: '/server/createApi/:appKey',
+                  url: '/createApi/:appKey',
                   templateUrl: 'tpl/server/createApi.html',
                   resolve: {
                       deps: ['uiLoad', '$ocLazyLoad',
@@ -113,6 +113,54 @@ angular.module('app')
                               return $ocLazyLoad.load('angularFileUpload').then(
                                   function() {
                                       return $ocLazyLoad.load(['js/app/server/createApi.js',
+                                          'vendor/libs/moment.min.js'
+                                      ]);
+                                  }
+                              );
+                          }]
+                  }
+              })
+              .state('server.createHost', {
+                  url: '/createHost/:appKey',
+                  templateUrl: 'tpl/server/createHost.html',
+                  resolve: {
+                      deps: ['uiLoad', '$ocLazyLoad',
+                          function( uiLoad, $ocLazyLoad){
+                              return $ocLazyLoad.load('angularFileUpload').then(
+                                  function() {
+                                      return $ocLazyLoad.load(['js/app/server/createHost.js',
+                                          'vendor/libs/moment.min.js'
+                                      ]);
+                                  }
+                              );
+                          }]
+                  }
+              })
+              .state('server.hostDetail', {
+                  url: '/server/hostDetail/:id',
+                  templateUrl: 'tpl/server/hostDetail.html',
+                  resolve: {
+                      deps: ['uiLoad', '$ocLazyLoad',
+                          function( uiLoad, $ocLazyLoad){
+                              return $ocLazyLoad.load('angularFileUpload').then(
+                                  function() {
+                                      return $ocLazyLoad.load(['js/app/server/hostDetail.js',
+                                          'vendor/libs/moment.min.js'
+                                      ]);
+                                  }
+                              );
+                          }]
+                  }
+              })
+              .state('server.apiDetail', {
+                  url: '/server/apiDetail/:id',
+                  templateUrl: 'tpl/server/apiDetail.html',
+                  resolve: {
+                      deps: ['uiLoad', '$ocLazyLoad',
+                          function( uiLoad, $ocLazyLoad){
+                              return $ocLazyLoad.load('angularFileUpload').then(
+                                  function() {
+                                      return $ocLazyLoad.load(['js/app/server/apiDetail.js',
                                           'vendor/libs/moment.min.js'
                                       ]);
                                   }

@@ -1,5 +1,5 @@
-app.controller('AddServerCtrl', ['$scope', '$http', '$state', 'isLogin', 'user', '$cookies','api','FileUploader',
-    function ($scope, $http, $state, isLogin, user, $cookies, api,FileUploader) {
+app.controller('AddServerCtrl', ['$scope', '$http', '$state', '$modal', '$location','isLogin', 'user', '$cookies','api','FileUploader',
+    function ($scope, $http, $state, $modal, $location, isLogin, user, $cookies, api,FileUploader) {
         var avator = '';
 
         $scope.popupshide = function(){
@@ -51,5 +51,32 @@ app.controller('AddServerCtrl', ['$scope', '$http', '$state', 'isLogin', 'user',
                 }
               }
         };
-
+        //获取appKey
+        function getAppKey(){
+            api.getServerList({
+                type: 1,
+                page: 1,
+                pageSize: 10
+            }).then(function(res){
+                $scope.appKey = res.data.data.results[0].appKey;
+            })
+        }
+        function addSuccess(size) {
+            var modalInstance = $modal.open({
+                templateUrl: 'myModalContentSuccess.html',
+                controller: 'ModalInstanceCtrl',
+                size: size,
+                resolve: {
+                    items: function () {
+                        return $scope.items;
+                    }
+                }
+            });
+            modalInstance.result.then(function (selectedItem) {
+                $scope.selected = selectedItem;
+                $location.path('/server/server/createHost/' + $scope.appKey);
+            }, function () {
+                $state.go('server.list');
+            });
+        }
     }]);

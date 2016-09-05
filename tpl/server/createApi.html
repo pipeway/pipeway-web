@@ -10,7 +10,7 @@
         <div class="vbox">
             <div class="wrapper">
                 <div class="app-box-push">
-                    <a href="#/server/server/apiList/{{appKey}}"
+                    <a href="#/server/appList/{{appKey}}"
                        class="btn btn-sm btn-danger btn-options pull-right">返回
                     </a>
                     <form name="form" class="form-validation">
@@ -26,30 +26,35 @@
                                 placeholder="请输入接口地址"
                                 ng-model="params.requestUrl"
                                 required>
-                          <div class="app-push-appName">接口鉴权<span class="has-error">*</span></div>
-                          <input class="form-control"
-                                 type="text"
-                                 placeholder="请输入接口鉴权"
-                                 ng-model="params.auth"
-                                 required>
-                        
+                        <div class="app-push-appName">请求类型<span class="has-error">*</span></div>
+                        <select name="account" class="form-control m-b" ng-model="params.method">
+                          <option value="0">GET</option>
+                          <option value="1">POST</option>
+                          <option value="2">PUT</option>
+                          <option value="3">DELETE</option>
+                        </select>
+                        <div class="app-push-appName">接口鉴权<span class="has-error">*</span></div>
+                        <select name="account" class="form-control m-b" ng-model="params.auth">
+                          <option value="0">不需要鉴权</option>
+                          <option value="1">需要鉴权</option>
+                        </select>
                         <div class="app-push-appName">接口访问过期时间</div>
-                         <input class="form-control"
+                        <input class="form-control"
                                 type="text"
                                 placeholder="请输入接口地址"
                                 ng-model="params.rateLimitTtl">
                         <div class="app-push-appName">接口限制次数</div>
-                         <input class="form-control"
+                        <input class="form-control"
                                 type="text"
                                 placeholder="请输入接口地址"
                                 ng-model="params.rateLimitNum">
                         <div class="app-push-appName">接口缓存的key值</div>
-                         <input class="form-control"
+                        <input class="form-control"
                                 type="text"
                                 placeholder="请输入接口地址"
                                 ng-model="params.cacheKey">
                         <div class="app-push-appName">接口缓存时间</div>
-                         <input class="form-control"
+                        <input class="form-control"
                                 type="text"
                                 placeholder="请输入接口地址"
                                 ng-model="params.cacheTtl">
@@ -61,11 +66,30 @@
                         </textarea>
                         <div class="app-push-save-btn">
                             <button  class="btn btn-lg btn-info btn-block "
-                                     ng-click="createApi(params)">创建应用</button>
+                                     ng-click="createApi(params)">创建API</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+</div>
+<div>
+    <script type="text/ng-template" id="myModalContentSuccess.html">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title">提示</span>
+                <button type="button" class="close" ng-click="cancel()" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="mod-line row">
+                    <p class="text-center" style="font-size: 20px;">创建接口成功!</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info pull-left" ng-click="ok()">继续新建接口</button>
+                <button type="button" class="btn btn-default pull-right" ng-click="cancel()">回到接口列表</button>
+            </div>
+        </div>
+    </script>
 </div>
