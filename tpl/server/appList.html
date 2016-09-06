@@ -33,7 +33,7 @@
                         </thead>
                         <tbody>
                         <tr ng-repeat="list in hostList">
-                            <td><a href="/#/server/server/hostDetail/{{list.id}}">{{list.name}}</a></td>
+                            <td><a href="/#/server/server/hostDetail/{{list.id}}" style="color: #428bca;">{{list.name}}</a></td>
                             <td ng-if="list.protocal == 0">http</td>
                             <td ng-if="list.protocal == 1">https</td>
                             <td ng-if="list.protocal == 2">socket</td>
@@ -45,10 +45,9 @@
                         </tbody>
                     </table>
                     <pagination previous-text = '上一页' next-text="下一页" total-items="totalItemsHost" ng-model="currentPageHost" ng-change="pageChangedHost(currentPageHost)" class="m-t-none m-b pages"></pagination>
-
                 </div>
             </tab>
-            <tab heading="接口列表" select="steps.percent=50">
+            <tab heading="接口列表" select="steps.percent=50" ng-if="hostList.length">
                 <div class="pull-right" style="position: relative; top: -52px;right: -15px;">
                     <a href="/#/server/createApi/{{appKey}}">
                         <button type="button" class="btn btn-sm btn-primary btn-addon" ng-click="addEvent()">
@@ -69,7 +68,7 @@
                         </thead>
                         <tbody>
                         <tr ng-repeat="list in apiList">
-                            <td><a href="/#/server/server/apiDetail/{{list.id}}">{{list.name}}</a></td>
+                            <td><a href="/#/server/server/apiDetail/{{list.id}}" style="color: #428bca;">{{list.name}}</a></td>
                             <td>{{list.requestUrl}}</td>
                             <td>{{list.method}}</td>
                             <td ng-if="list.auth == 0">不需要鉴权</td>

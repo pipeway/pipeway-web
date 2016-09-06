@@ -1,21 +1,17 @@
-app.controller('createApiCtrl', ['$scope', '$http', '$state', '$location', '$modal', 'isLogin', 'user', '$cookies', 'api',
-    function ($scope, $http, $state, $location, $modal, isLogin, user, $cookies, api) {
-        var url = $location.url();
-        var path = url.split('/');
-        console.log(url);
-        var appKey = path[3];
+app.controller('createApiCtrl', ['$scope', '$http', '$state', '$location', '$modal', 'isLogin', 'user', '$cookies', 'api', 'appKey',
+    function ($scope, $http, $state, $location, $modal, isLogin, user, $cookies, api, appKey) {
+        var appKey = appKey;
         $scope.appKey = appKey;
         $scope.params = {
             parentAppkey: appKey
         }
         $scope.createApi = function (params){
-          console.log(params);
             api.createApi(params).then(function (res){
-                 console.log(res);
                  $scope.items = res;
+                 console.log(res);
                  if (res.success) {
-                     addSuccess()
-                     $location.path('/server/appList/'+appKey);
+                    $scope.params = {};
+                    addSuccess();
                  }
             })
         };
@@ -34,7 +30,7 @@ app.controller('createApiCtrl', ['$scope', '$http', '$state', '$location', '$mod
                 $scope.selected = selectedItem;
                 $location.path('/server/createApi/' + $scope.appKey);
             }, function () {
-                $location.path('/server/appList/'+appKey);
+                $location.path('/server/appList/' + appKey);
             });
         }
 }]);

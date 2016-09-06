@@ -1,22 +1,15 @@
-app.controller('createHostCtrl', ['$scope', '$http', '$state', '$location', '$modal', 'isLogin', 'user', '$cookies', 'api',
-    function ($scope, $http, $state, $location, $modal, isLogin, user, $cookies, api) {
-        var url = $location.url();
-        var path = url.split('/');
-        console.log(url);
-        var appKey = path[3];
-        console.log(appKey);
+app.controller('createHostCtrl', ['$scope', '$http', '$state', '$location', '$modal', 'isLogin', 'user', '$cookies', 'api', 'appKey',
+    function ($scope, $http, $state, $location, $modal, isLogin, user, $cookies, api, appKey) {
+        var appKey = appKey;
         $scope.appKey = appKey;
         $scope.params = {
             parentAppkey: appKey
         }
         $scope.createHost = function (params){
-          console.log(params);
             api.createHost(params).then(function (res){
-              console.log(res);
               $scope.items = res;
               if (res.success) {
-                  addSuccess()
-                  // $location.path('/server/server/appList/'+appKey);
+                addSuccess()
               }
             })
         };
@@ -35,7 +28,7 @@ app.controller('createHostCtrl', ['$scope', '$http', '$state', '$location', '$mo
                 $scope.selected = selectedItem;
                 $location.path('/server/createApi/' + $scope.appKey);
             }, function () {
-                $location.path('/server/appList/'+appKey);
+                $location.path('/server/appList/' + appKey);
             });
         }
 }]);
