@@ -5,12 +5,12 @@ app.controller('apiListCtrl', ['$scope', '$http', '$state', '$location', 'isLogi
         var appKey = path[3];
         $scope.appKey = appKey;
         console.log($scope.appKey);
-        
+
         //获取主机列表
         var dataHost = {
             appKey: appKey,
             page: 1,
-            pageSize: 1
+            pageSize: 6
         }
         $scope.currentPageHost = 0;
         $scope.totalItemsHost = 1;
@@ -33,7 +33,7 @@ app.controller('apiListCtrl', ['$scope', '$http', '$state', '$location', 'isLogi
         var dataApi = {
             appKey: appKey,
             page: 1,
-            pageSize: 1
+            pageSize: 6
         }
         $scope.currentPageApi = 0;
         $scope.totalItemsApi = 1;
@@ -44,7 +44,7 @@ app.controller('apiListCtrl', ['$scope', '$http', '$state', '$location', 'isLogi
                 $scope.apiList = res.data.data.results;
                 $scope.totalItemsApi = res.data.data.totalSize;
                 console.log($scope.totalItemsApi);
-                
+
             })
         }
         getApiList(dataApi);

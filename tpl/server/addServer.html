@@ -10,15 +10,26 @@
         <div class="vbox">
           <div class="popuptext" ng-if="popupshow">
             <div class="popup" >
-              <div class="mytext2">提示</div>
+                <div class="mytext2">提示</div>
+                <div class="mytext1">
+                  {{messages}}
+                </div>
+                <div class="client-mybtn" ng-click="popupshide()">
+                   <p>我知道</p>
+                </div>
+            </div>
+          </div>
+          <div class="popuptext" ng-if="popupshow2">
+            <div class="popup" >
+                <div class="mytext2">提示</div>
                 <div class="mytext1">
                   {{messages}}
                 </div>
                 <div class="server-mybtn">
                   <a href="/#/server/list"> <p>返回列表</p> </a>
                 </div>
-                <div class="server-mybtn">
-                  <a href="#"> <p>新建主机</p> </a>
+                <div class="server-mybtn" ng-click="getAppKey()">
+                 <p>新建主机</p>
                 </div>
             </div>
           </div>
@@ -31,17 +42,17 @@
                         <div class="app-push-appName">应用名称<span class="has-error">*</span></div>
                         <input class="form-control"
                                type="text"
-                               placeholder="请输入应用名称"
+                               placeholder="请输入应用名称(必须为2位以上的汉字)"
                                ng-model="params.name">
                          <div class="app-push-appName">应用代号<span class="has-error">*</span></div>
                          <input class="form-control"
                                 type="text"
-                                placeholder="请输入应用代号"
+                                placeholder="请输入应用代号(必须为2位以上的字母)"
                                 ng-model="params.serial">
                           <div class="app-push-appName">主机组<span class="has-error">*</span></div>
                           <input class="form-control"
                                  type="text"
-                                 placeholder="请输入主机组"
+                                 placeholder="请输入主机组(必须为2位以上的字母)"
                                  ng-model="params.hostGroup">
                         <div class="app-push-appName">应用描述</div>
                         <textarea class="form-control"
@@ -72,8 +83,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-info pull-left" ng-click="ok()">继续新建主机</button>
-                <button type="button" class="btn btn-default pull-right" ng-click="cancel()">回到应用列表</button>
+                <button type="button" class="btn btn-info pull-left" ng-click="ok()">新建主机</button>
+                <button type="button" class="btn btn-default pull-right" ng-click="cancel()">返回应用列表</button>
             </div>
         </div>
     </script>
