@@ -1,5 +1,5 @@
-app.controller('apiListCtrl', ['$scope', '$http', '$state', '$location', 'isLogin', 'user', '$cookies', 'api', 'appKey',
-    function ($scope, $http, $state, $location, isLogin, user, $cookies, api, appKey) {
+app.controller('apiListCtrl', ['$scope', '$http', '$state', '$location', 'isLogin', 'user', '$cookies', 'api',
+    function ($scope, $http, $state, $location, isLogin, user, $cookies, api) {
         var url = $location.url();
         var path = url.split('/');
         var appKey = path[3];

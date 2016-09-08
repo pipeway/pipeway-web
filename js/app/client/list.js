@@ -3,7 +3,7 @@ app.controller('ClientListCtrl', ['$scope', '$http', '$state', 'isLogin', 'user'
       var data = {
          type:0,
          page:1,
-         pagesize:8
+         pagesize:10
       }
       $scope.currentPage = 0;
       $scope.totalItems = 1;

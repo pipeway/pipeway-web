@@ -5160,7 +5160,7 @@ a.text-#000000:hover {
 
 /*自定义样式*/
 .app-box {
-    width: 1080px;
+    max-width: 1100px;
     text-align: center;
     margin: 42px auto 0 auto;
 }
