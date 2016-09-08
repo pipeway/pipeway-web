@@ -1,10 +1,10 @@
 <!-- hbox layout -->
 <div class="hbox hbox-auto-xs bg-light " ng-init="
-  app.settings.asideFixed = true;
-  app.settings.asideDock = false;
-  app.settings.container = false;
-  app.hideAside = false;
-  app.hideFooter = true;"
+      app.settings.asideFixed = true;
+      app.settings.asideDock = false;
+      app.settings.container = false;
+      app.hideAside = false;
+      app.hideFooter = true;"
      ng-controller="createApiCtrl">
     <div class="col w-lg lt">
         <div class="vbox">
@@ -14,59 +14,144 @@
                        class="btn btn-sm btn-danger btn-options pull-right">返回
                     </a>
                     <form name="form" class="form-validation">
-                        <div class="app-push-appName">接口名称<span class="has-error">*</span></div>
+                        <div class="app-push-appName">接口名称
+                            <span class="has-error">*</span>
+                        </div>
                         <input class="form-control"
                                type="text"
                                placeholder="请输入接口名称"
                                ng-model="params.name"
                                required>
-                         <div class="app-push-appName">接口地址<span class="has-error">*</span></div>
-                         <input class="form-control"
+                        <div class="app-push-appName">接口地址
+                            <span class="has-error">*</span>
+                        </div>
+                        <input class="form-control"
                                 type="text"
                                 placeholder="请输入接口地址"
                                 ng-model="params.requestUrl"
                                 required>
-                        <div class="app-push-appName">请求类型<span class="has-error">*</span></div>
-                        <select name="account" class="form-control m-b" ng-model="params.method">
-                          <option value="0">GET</option>
-                          <option value="1">POST</option>
-                          <option value="2">PUT</option>
-                          <option value="3">DELETE</option>
+                        <div class="app-push-appName">请求类型
+                            <span class="has-error">*</span>
+                        </div>
+                        <select name="account" class="form-control" ng-model="params.method">
+                            <option value="0">GET</option>
+                            <option value="1">POST</option>
+                            <option value="2">PUT</option>
+                            <option value="3">DELETE</option>
                         </select>
-                        <div class="app-push-appName">接口鉴权<span class="has-error">*</span></div>
-                        <select name="account" class="form-control m-b" ng-model="params.auth">
-                          <option value="0">不需要鉴权</option>
-                          <option value="1">需要鉴权</option>
-                        </select>
-                        <div class="app-push-appName">接口访问过期时间</div>
-                        <input class="form-control"
-                                type="text"
-                                placeholder="请输入接口地址"
-                                ng-model="params.rateLimitTtl">
-                        <div class="app-push-appName">接口限制次数</div>
-                        <input class="form-control"
-                                type="text"
-                                placeholder="请输入接口地址"
-                                ng-model="params.rateLimitNum">
-                        <div class="app-push-appName">接口缓存的key值</div>
-                        <input class="form-control"
-                                type="text"
-                                placeholder="请输入接口地址"
-                                ng-model="params.cacheKey">
-                        <div class="app-push-appName">接口缓存时间</div>
-                        <input class="form-control"
-                                type="text"
-                                placeholder="请输入接口地址"
-                                ng-model="params.cacheTtl">
-                        <div class="app-push-appName">接口描述</div>
-                        <textarea class="form-control"
-                                  rows="3"
-                                  placeholder="请输入应用描述"
-                                  ng-model="params.description">
-                        </textarea>
+                        <div class="error">
+                            <span ng-if="methodValidateMessage">*请求类型不能为空，请选择请求类型</span>
+                        </div>
+                        <!-- <div class="app-push-appName">接口鉴权
+                            <span class="has-error">*</span>
+                        </div>
+                        <select name="account" class="form-control" ng-model="params.auth">
+                            <option value="">请选择鉴权</option>
+                            <option value="0">不需要鉴权</option>
+                            <option value="1">需要鉴权</option>
+                        </select> 
+                        <div class="error">
+                            <span ng-if="authValidateMessage">*接口鉴权不能为空，请选择接口鉴权</span>
+                        </div>-->
+                        <div class="form-group">
+                          <label class="col-sm-5">是否需要鉴权</label>
+                          <div class="col-sm-7">
+                            <label class="i-switch m-t-xs m-r">
+                              <input type="checkbox" checked ng-click="openAuth()">
+                              <i></i>
+                            </label>
+                          </div>
+                        </div> 
+                        <div class="form-group">
+                          <label class="col-sm-5">是否开启接口访问过期时间</label>
+                          <div class="col-sm-7">
+                            <label class="i-switch m-t-xs m-r">
+                              <input type="checkbox" ng-click="openExpire()">
+                              <i></i>
+                            </label>
+                          </div>
+                        </div> 
+                        <div ng-if="expireBtn">
+                            <div class="app-push-appName">接口访问过期时间
+                                <span class="has-error">*</span>
+                            </div>
+                            <input class="form-control"
+                                    type="text"
+                                    placeholder="请输入接口访问过期时间"
+                                    ng-model="params.rateLimitTtl"
+                                    required>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-sm-5">是否开启接口限制次数</label>
+                          <div class="col-sm-7">
+                            <label class="i-switch m-t-xs m-r">
+                              <input type="checkbox" ng-click="openTimes()">
+                              <i></i>
+                            </label>
+                          </div>
+                        </div> 
+                        <div ng-if="timesBtn">
+                            <div class="app-push-appName">接口限制次数
+                                <span class="has-error">*</span>
+                            </div>
+                            <input class="form-control"
+                                    type="text"
+                                    placeholder="请输入接口限制次数"
+                                    ng-model="params.rateLimitNum"
+                                    required>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-sm-5">是否开启接口缓存</label>
+                          <div class="col-sm-7">
+                            <label class="i-switch m-t-xs m-r">
+                              <input type="checkbox" ng-click="openCache()">
+                              <i></i>
+                            </label>
+                          </div>
+                        </div> 
+                        <div ng-if="cacheBtn">
+                            <div class="app-push-appName">接口缓存的key值
+                                <span class="has-error">*</span>
+                            </div>
+                            <input class="form-control"
+                                    type="text"
+                                    placeholder="请输入接口缓存的key值"
+                                    ng-model="params.cacheKey"
+                                    required>
+                            <div class="app-push-appName">接口缓存时间
+                                <span class="has-error">*</span>
+                            </div>
+                            <input class="form-control"
+                                    type="text"
+                                    placeholder="请输入接口缓存时间"
+                                    ng-model="params.cacheTtl"
+                                    required>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-sm-5">是否添加接口描述</label>
+                          <div class="col-sm-7">
+                            <label class="i-switch m-t-xs m-r">
+                              <input type="checkbox" ng-click="openDescribe()">
+                              <i></i>
+                            </label>
+                          </div>
+                        </div> 
+                        <div ng-if="describeBtn">
+                            <div class="app-push-appName">接口描述
+                                <span class="has-error">*</span>
+                            </div>
+                            <textarea class="form-control"
+                                      rows="3"
+                                      placeholder="请输入接口描述"
+                                      ng-model="params.description" 
+                                      required>
+                            </textarea>
+                        </div>
+                        
                         <div class="app-push-save-btn">
-                            <button  class="btn btn-lg btn-info btn-block "
-                                     ng-click="createApi(params)">创建API</button>
+                            <button class="btn btn-lg btn-info btn-block"
+                                    ng-disabled="form.$invalid"
+                                    ng-click="createApi(params)">创建API</button>
                         </div>
                     </form>
                 </div>

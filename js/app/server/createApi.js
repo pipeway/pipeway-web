@@ -3,18 +3,63 @@ app.controller('createApiCtrl', ['$scope', '$http', '$state', '$location', '$mod
         var appKey = appKey;
         $scope.appKey = appKey;
         $scope.params = {
-            parentAppkey: appKey
+            parentAppkey: appKey,
+            auth: '1',
+            method: '0'
+        }
+        $scope.expireBtn = false;
+        $scope.timesBtn = false;
+        $scope.cacheBtn = false;
+        $scope.describeBtn = false;
+        $scope.openExpire = function(){
+            $scope.expireBtn = !$scope.expireBtn;
+        }
+        $scope.openTimes = function(){
+            $scope.timesBtn = !$scope.timesBtn;
+        }
+        $scope.openCache = function(){
+            $scope.cacheBtn = !$scope.cacheBtn;
+        }
+        $scope.openDescribe = function(){
+            $scope.describeBtn = !$scope.describeBtn;
+        }
+        $scope.openAuth = function(){
+            if ($scope.params.auth === '1'){
+                $scope.params.auth = '0';
+            } else {
+                $scope.params.auth = '1';
+            }
+            
         }
         $scope.createApi = function (params){
+            console.log(params);
+            validateForm(params);
+            if ($scope.methodValidateMessage || $scope.authValidateMessage) {
+                return;
+            }
             api.createApi(params).then(function (res){
                  $scope.items = res;
                  console.log(res);
                  if (res.success) {
-                    $scope.params = {};
+                    $scope.params = {
+                        parentAppkey: appKey
+                    };
                     addSuccess();
                  }
             })
         };
+        function validateForm(data){
+            if(!data.method){
+                $scope.methodValidateMessage = true;
+            } else {
+                $scope.methodValidateMessage = false;
+            }
+            if(!data.auth){
+                $scope.authValidateMessage = true;
+            } else {
+                $scope.authValidateMessage = false;
+            }
+        }
         function addSuccess(size) {
             var modalInstance = $modal.open({
                 templateUrl: 'myModalContentSuccess.html',
