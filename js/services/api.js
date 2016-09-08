@@ -25,6 +25,9 @@ function api($http) {
         getApiList: function(data){
             return httpGet('/pipeway/v1/api/list/' + data.appKey + '?page=' + data.page + '&pageSize=' + data.pageSize);
         },
+        getAppDetail:function(data){
+             return httpGet('/pipeway/v1/app/' + data.appKey);
+        },
         apiDetail: function(data){
             return httpGet('/pipeway/v1/api/' + data.id);
         },
