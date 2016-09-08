@@ -36,7 +36,6 @@ app.controller('apiListCtrl', ['$scope', '$http', '$state', '$location', 'isLogi
                 console.log(res);
                 $scope.apiList = res.data.data.results;
                 $scope.totalItemsApi = res.data.data.totalSize;
-
             })
         }
         getApiList(dataApi);
