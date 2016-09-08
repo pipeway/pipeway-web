@@ -1,25 +1,47 @@
-app.controller('createHostCtrl', ['$scope', '$http', '$state', '$location', '$modal', 'isLogin', 'user', '$cookies', 'api',
-    function ($scope, $http, $state, $location, $modal, isLogin, user, $cookies, api) {
-        var url = $location.url();
-        var path = url.split('/');
-        console.log(url);
-        var appKey = path[3];
-        console.log(appKey);
+app.controller('createHostCtrl', ['$scope', '$http', '$state', '$location', '$modal', 'isLogin', 'user', '$cookies', 'api', 'appKey',
+    function ($scope, $http, $state, $location, $modal, isLogin, user, $cookies, api, appKey) {
+        var appKey = appKey;
         $scope.appKey = appKey;
         $scope.params = {
-            parentAppkey: appKey
+            parentAppkey: appKey,
+            protocal: '0'
+        }
+        $scope.describeBtn = false;
+        $scope.openDescribe = function(){
+            $scope.describeBtn = !$scope.describeBtn;
         }
         $scope.createHost = function (params){
-          console.log(params);
+            validateForm(params);
+            if($scope.hostValidateMessage || $scope.portValidateMessage || $scope.protocalValidateMessage){
+                return;
+            }
             api.createHost(params).then(function (res){
-              console.log(res);
-              $scope.items = res;
-              if (res.success) {
-                  addSuccess()
-                  // $location.path('/server/server/appList/'+appKey);
-              }
+                $scope.items = res;
+                console.log(res);
+                if (res.success) {
+                    addSuccess()
+                }
             })
         };
+        function validateForm(data){
+            var regHost = /^((2[0-4]\d|25[0-5]|[01]?\d\d?)\.){3}(2[0-4]\d|25[0-5]|[01]?\d\d?)$/;
+            var regPort = /^\d{1,5}$/;
+            if(!regHost.test(data.host)){
+                $scope.hostValidateMessage = true;
+            } else {
+                $scope.hostValidateMessage = false;
+            }
+            if(!regPort.test(data.port)){
+                $scope.portValidateMessage = true;
+            } else {
+                $scope.portValidateMessage = false;
+            }
+            if(!data.protocal){
+                $scope.protocalValidateMessage = true;
+            } else {
+                $scope.protocalValidateMessage = false;
+            }
+        }
         function addSuccess(size) {
             var modalInstance = $modal.open({
                 templateUrl: 'myModalContentSuccess.html',
@@ -35,7 +57,7 @@ app.controller('createHostCtrl', ['$scope', '$http', '$state', '$location', '$mo
                 $scope.selected = selectedItem;
                 $location.path('/server/createApi/' + $scope.appKey);
             }, function () {
-                $location.path('/server/appList/'+appKey);
+                $location.path('/server/appList/' + appKey);
             });
         }
 }]);

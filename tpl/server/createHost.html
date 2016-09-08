@@ -21,33 +21,59 @@
                                ng-model="params.name"
                                required>
                         <div class="app-push-appName">协议名称<span class="has-error">*</span></div>
-                        <select name="account" class="form-control m-b" ng-model="params.protocal">
+                        <select name="account" class="form-control" ng-model="params.protocal">
                           <option value="0">http</option>
                           <option value="1">https</option>
                           <option value="2">socket</option>
                           <option value="3">udp</option>
                         </select>
+                        <div class="error">
+                            <span ng-if="protocalValidateMessage">*协议名称不能为空，请选择协议名称</span>
+                        </div>
                         <div class="app-push-appName">主机地址<span class="has-error">*</span></div>
                         <input class="form-control"
                                 type="text"
                                 placeholder="请输入主机地址"
                                 ng-model="params.host"
                                 required>
+                        <div class="error">
+                            <span ng-if="hostValidateMessage">*您输入的主机地址格式有误，请您重新输入</span>
+                        </div>
                         <div class="app-push-appName">端口号<span class="has-error">*</span></div>
                         <input class="form-control"
                                  type="text"
                                  placeholder="请输入端口号"
                                  ng-model="params.port"
+                                 ng-max="65535"
                                  required>
-                        <div class="app-push-appName">主机描述</div>
-                        <textarea class="form-control"
-                                  rows="3"
-                                  placeholder="请输入主机描述"
-                                  ng-model="params.description">
-                        </textarea>
+                        <div class="error">
+                            <span ng-if="portValidateMessage">*您输入的端口号有误，请您重新输入</span>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-sm-5">是否添加主机描述</label>
+                          <div class="col-sm-7">
+                            <label class="i-switch m-t-xs m-r">
+                              <input type="checkbox" ng-click="openDescribe()">
+                              <i></i>
+                            </label>
+                          </div>
+                        </div> 
+                        <div ng-if="describeBtn">
+                            <div class="app-push-appName">主机描述
+                              <span class="has-error">*</span>
+                            </div>
+                            <textarea class="form-control"
+                                      rows="3"
+                                      placeholder="请输入主机描述"
+                                      ng-model="params.description"
+                                      required>
+                            </textarea>
+                        </div>
+                        
                         <div class="app-push-save-btn">
-                            <button  class="btn btn-lg btn-info btn-block "
-                                     ng-click="createHost(params)">创建主机</button>
+                            <button class="btn btn-lg btn-info btn-block"
+                                    ng-disabled="form.$invalid"
+                                    ng-click="createHost(params)">创建主机</button>
                         </div>
                     </form>
                 </div>

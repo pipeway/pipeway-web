@@ -5160,7 +5160,7 @@ a.text-#000000:hover {
 
 /*自定义样式*/
 .app-box {
-    max-width:1100px;
+    max-width: 1100px;
     text-align: center;
     margin: 42px auto 0 auto;
 }
@@ -5240,6 +5240,9 @@ label.platform input[type="radio"] {
 }
 .app-list .panel {
   margin-bottom: 0;
+}
+.app-list .panel h2{
+  font-size: 20px;
 }
 .app-list .panel .list-group .list-group-item {
   height: 50px;
@@ -5434,11 +5437,35 @@ span.font-active {
     padding: 15px;
     margin: 0 auto;
 }
+.app-box-push .form-group {
+    height: 34px;
+    line-height: 34px;
+    margin: 15px 0 0 0;
+}
+.app-box-push .form-group label{
+    font-size: 16px;
+    padding: 0;
+    text-align: left;    
+}
+.app-box-push .form-group .col-sm-7 {
+    text-align: left;
+    height: 34px;
+    line-height: 34px;
+}
+.app-box-push .form-group .col-sm-7 .m-t-xs {
+  margin-top: 8px;
+}
+.app-box-push .form-group .col-sm-8 {
+    text-align: left;
+}
+.app-box-push .form-group .col-sm-9 {
+    text-align: left;
+}
 .app-push-appName {
     font-size: 16px;
     color: #636566;
     text-align: left;
-    padding: 20px 0 5px 0;
+    padding: 15px 0 5px 0;
 }
 .tab-container {
   height: 80px;
@@ -5535,6 +5562,7 @@ span.font-active {
     float: right;
     padding-top: 20px;
 }
+
 .host-detail .panel {
   border: 0;
 }
@@ -5547,4 +5575,17 @@ span.font-active {
 .new-create {
   right: -15px;
   top: -52px;
+}
+.error {
+  text-align: left;
+  height: 20px;
+  line-height: 20px;
+}
+.error span{
+  color: #ff3333;
+}
+.pagination-wrapper {
+  text-align: right;
+  width: 100%;
+  padding-top: 20px;
 }
