@@ -33,9 +33,10 @@ angular.module('app')
                   url: '/',
                   templateUrl: 'tpl/dashboard/index.html',
                   resolve: {
-                      deps: ['$ocLazyLoad',
-                          function( $ocLazyLoad ){
-                              return $ocLazyLoad.load(['js/controllers/chart.js']);
+                      deps: ['uiLoad',
+                          function( uiLoad ){
+                              return uiLoad.load( ['js/app/dashboard/index.js',
+                                  'vendor/libs/moment.min.js', 'vendor/libs/lodash.min.js'] );
                           }]
                   }
               })

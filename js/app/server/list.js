@@ -9,9 +9,8 @@ app.controller('ServerListCtrl', ['$scope', '$http', '$state', 'isLogin', 'user'
     $scope.totalItems = 1;
     function getServerList(data){
         api.getServerList(data).then(function(res){
-            console.log(res.data.data);
-            $scope.appList = res.data.data.results;
-            $scope.totalItems = res.data.data.totalSize;
+            $scope.appList = res.data.results;
+            $scope.totalItems = res.data.totalSize;
         })
     }
     getServerList(data);

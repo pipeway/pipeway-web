@@ -14,13 +14,13 @@ app.controller('createApiCtrl', ['$scope', '$http', '$state', '$location', '$mod
         $scope.openExpire = function(){
             $scope.expireBtn = !$scope.expireBtn;
         }
-        $scope.openTimes = function(){
+        $scope.openTimes = function() {
             $scope.timesBtn = !$scope.timesBtn;
         }
-        $scope.openCache = function(){
+        $scope.openCache = function() {
             $scope.cacheBtn = !$scope.cacheBtn;
         }
-        $scope.openDescribe = function(){
+        $scope.openDescribe = function() {
             $scope.describeBtn = !$scope.describeBtn;
         }
         $scope.openAuth = function(){

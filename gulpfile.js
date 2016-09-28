@@ -4,7 +4,7 @@ var modRewrite = require('connect-modrewrite');
 var watch = require('gulp-watch');
 var less = require('gulp-less');
 var shell = require('gulp-shell');
-var host = "http://10.99.97.141:8888";
+var host = "http://localhost:8888";
 
 
 gulp.task('connect', function () {

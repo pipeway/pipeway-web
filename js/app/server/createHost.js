@@ -24,13 +24,14 @@ app.controller('createHostCtrl', ['$scope', '$http', '$state', '$location', '$mo
             })
         };
         function validateForm(data){
-            var regHost = /^((2[0-4]\d|25[0-5]|[01]?\d\d?)\.){3}(2[0-4]\d|25[0-5]|[01]?\d\d?)$/;
+            // var regHost = /^((2[0-4]\d|25[0-5]|[01]?\d\d?)\.){3}(2[0-4]\d|25[0-5]|[01]?\d\d?)$/;
+            // var regHost = /\*/;
             var regPort = /^\d{1,5}$/;
-            if(!regHost.test(data.host)){
-                $scope.hostValidateMessage = true;
-            } else {
-                $scope.hostValidateMessage = false;
-            }
+            // if(!regHost.test(data.host)){
+            //     $scope.hostValidateMessage = true;
+            // } else {
+            //     $scope.hostValidateMessage = false;
+            // }
             if(!regPort.test(data.port)){
                 $scope.portValidateMessage = true;
             } else {

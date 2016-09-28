@@ -14,8 +14,8 @@ app.controller('apiListCtrl', ['$scope', '$http', '$state', '$location', 'isLogi
         $scope.totalItemsHost = 1;
         function getHostList(data){
             api.getHostList(data).then(function(res){
-                $scope.hostList = res.data.data.results;
-                $scope.totalItemsHost = res.data.data.totalSize;
+                $scope.hostList = res.data.results;
+                $scope.totalItemsHost = res.data.totalSize;
             })
         }
         getHostList(dataHost);
@@ -33,9 +33,8 @@ app.controller('apiListCtrl', ['$scope', '$http', '$state', '$location', 'isLogi
         $scope.totalItemsApi = 1;
         function getApiList(data){
             api.getApiList(data).then(function(res){
-                console.log(res);
-                $scope.apiList = res.data.data.results;
-                $scope.totalItemsApi = res.data.data.totalSize;
+                $scope.apiList = res.data.results;
+                $scope.totalItemsApi = res.data.totalSize;
             })
         }
         getApiList(dataApi);

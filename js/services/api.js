@@ -39,12 +39,15 @@ function api($http) {
         },
         hostDetail: function(data){
             return httpGet('/pipeway/v1/host/' + data.id);
+        },
+        accessLogs: function(data){
+            return httpGet('/pipeway/v1/analysis/app/count');
         }
     };
 
     function httpGet(url) {
         return $http.get(url).then(function(r) {
-            return r;
+            return r.data;
         });
     }
     function httpPost(url, data) {
