@@ -10,6 +10,9 @@ function api($http) {
     return {
         signIn: function(url, data) {
             return httpPost(url, data);
+        },
+        appCreate: function(data) {
+            return httpPost('/pipeway/v1/app/create', data);
         }
     };
 
