@@ -5218,15 +5218,23 @@ label.platform input[type="radio"] {
     color: #FFFFFF;
 }
 .app-list {
-    width: 250px;
-    height: 280px;
-    border: 1px solid #cccccc;
+    width: 200px;
+    /*height: 273px;*/
+    /*border: 1px solid #cccccc;*/
     margin: 0 auto;
-    text-align: center;
+    text-align: left;
     float: left;
     margin-right: 20px;
     background-color: #FFFFFF;
     margin-bottom: 20px;
+}
+.app-list .panel {
+  margin-bottom: 0;
+}
+.app-list .panel .list-group .list-group-item {
+  height: 50px;
+  padding: 15px;
+  /*line-height: 42px;*/
 }
 .app-list-header {
     height: 80px;
@@ -5248,6 +5256,8 @@ label.platform input[type="radio"] {
     left: 80px;
     top: 10px;
     text-align: left;
+    height: 55px;
+    line-height: 55px;
 }
 .app-list-header .app-name-head span {
     margin-right: 8px;
@@ -5256,7 +5266,7 @@ label.platform input[type="radio"] {
 span.font-active {
     color: #23b7e5;
 }
-.app-list-header .app-name-head p {
+.app-list-header .app-name-head a {
     font-size: 18px;
     font-weight: bold;
     color: #23b7e5;
@@ -5293,7 +5303,7 @@ span.font-active {
 }
 .app-list-body .link {
     display: block;
-    height: 150px;
+    height: 75px;
 }
 .app-list-type {
     color: #23b7e5;
