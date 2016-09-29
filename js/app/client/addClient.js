@@ -1,4 +1,4 @@
-app.controller('AddServerCtrl', ['$scope', '$http', '$state', 'isLogin', 'user', '$cookies','api','FileUploader',
+app.controller('AddClientCtrl', ['$scope', '$http', '$state', 'isLogin', 'user', '$cookies','api','FileUploader',
     function ($scope, $http, $state, isLogin, user, $cookies, api,FileUploader) {
         var avator = '';
 
@@ -12,7 +12,7 @@ app.controller('AddServerCtrl', ['$scope', '$http', '$state', 'isLogin', 'user',
           var data = {
             name: params.name,
             serial: params.serial,
-            type:1,
+            type:0,
             description: params.description,
             hostGroup:params.hostGroup
           }
