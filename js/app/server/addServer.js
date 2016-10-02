@@ -1,10 +1,6 @@
 app.controller('AddServerCtrl', ['$scope', '$http', '$state', '$modal', '$location','isLogin', 'user', '$cookies','api','FileUploader',
     function ($scope, $http, $state, $modal, $location, isLogin, user, $cookies, api,FileUploader) {
         var avator = '';
-
-        $scope.popupshide = function(){
-          $scope.popupshow = false;
-        }
         $scope.createApp = function (params){
           var reg1=/^[\u4e00-\u9fa5]{2,}$/gi;
           var reg2=/^[A-Za-z]+$/;
