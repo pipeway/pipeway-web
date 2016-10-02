@@ -837,9 +837,19 @@ body {
   border-radius: 4px;
   background-color:#FDFDFD;
 }
-.mybtn{
-  cursor: pointer;
+.server-mybtn{
+   float: left;
+   margin-left: 52px;
+   margin-top: 14px;
+   cursor: pointer;
+   width: 125px;
+   height: 34px;
+   border-radius: 4px;
+   background: #23b7e5;
+}
+.client-mybtn{
    margin: 14px auto;
+   cursor: pointer;
    width: 125px;
    height: 34px;
    border-radius: 4px;

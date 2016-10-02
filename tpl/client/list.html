@@ -26,7 +26,7 @@
                     <div class="app-box">
                         <div class="row text-center">
                             <!--已有app的情况-->
-                            <form name="formApp" class="form-validation" ng-if="appList.length">
+                            <form name="formApp" class="form-validation">
                                 <div class="app-list" ng-repeat="item in appList">
 
                                   <div class="panel b-a">
@@ -45,15 +45,16 @@
                                           <i class="icon-check text-success m-r-xs"></i> 应用描述：{{item.description}}
                                         </li>
                                       </ul>
-                                      <div class="panel-footer text-center">
+                                      <!-- <div class="panel-footer text-center">
                                         <a href='#/server/server/appList/{{item.appKey}}' class="btn btn-info font-bold m">应用详情</a>
-                                      </div>
+                                      </div> -->
                                   </div>
 
                                 </div>
                             </form>
                         </div>
                     </div>
+                      <pagination total-items="totalItems" ng-model="currentPage" ng-click="pageChanged(currentPage)" class="m-t-none m-b pages" previous-text = '上一页' next-text="下一页"></pagination>
                 </div>
             </div>
         </div>
