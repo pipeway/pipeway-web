@@ -1,10 +1,11 @@
 app.controller('AddServerCtrl', ['$scope', '$http', '$state', '$modal', '$location','isLogin', 'user', '$cookies','api','FileUploader',
     function ($scope, $http, $state, $modal, $location, isLogin, user, $cookies, api,FileUploader) {
-        var avator = '';
+        $scope.popupshide=function(){
+          $scope.popupshow=false;
+        }
         $scope.createApp = function (params){
           var reg1=/^[\u4e00-\u9fa5]{2,}$/gi;
-          var reg2=/^[A-Za-z]+$/;
-          var reg3=/^[A-Za-z]{2,}$/
+          var reg2=/^[A-Za-z]{2,}$/;
           var data = {
             name: params.name,
             serial: params.serial,
@@ -22,7 +23,7 @@ app.controller('AddServerCtrl', ['$scope', '$http', '$state', '$modal', '$locati
                   $scope.popupshow = true;
                 }
                 else{
-                    if(!reg3.test(data.hostGroup) || data.hostGroup==null){
+                    if(!reg2.test(data.hostGroup) || data.hostGroup==null){
                       $scope.messages="主机组为空或格式错误！";
                       $scope.popupshow = true;
                     }
@@ -30,9 +31,9 @@ app.controller('AddServerCtrl', ['$scope', '$http', '$state', '$modal', '$locati
                     api.appCreate(data).then(function (res){
                       console.log(res.success);
                       console.log(data);
+                      $scope.items = res;
                       if(res.success){
-                        $scope.messages=res.data.msg+'!';
-                        $scope.popupshow = true;
+                        addSuccess();
                         $scope.params.name = '';
                         $scope.params.serial = '';
                         $scope.params.description = '';
@@ -42,6 +43,7 @@ app.controller('AddServerCtrl', ['$scope', '$http', '$state', '$modal', '$locati
                           $scope.messages=res.data.msg+'!';
                           $scope.popupshow = true;
                         }
+                        getAppKey();
                       });
                     }
                 }
@@ -55,6 +57,8 @@ app.controller('AddServerCtrl', ['$scope', '$http', '$state', '$modal', '$locati
                 pageSize: 10
             }).then(function(res){
                 $scope.appKey = res.data.data.results[0].appKey;
+                console.log(res);
+                console.log($scope.appKey);
             })
         }
         function addSuccess(size) {
@@ -70,7 +74,7 @@ app.controller('AddServerCtrl', ['$scope', '$http', '$state', '$modal', '$locati
             });
             modalInstance.result.then(function (selectedItem) {
                 $scope.selected = selectedItem;
-                $location.path('/server/server/createHost/' + $scope.appKey);
+                $location.path('/server/createHost/' + $scope.appKey);
             }, function () {
                 $state.go('server.list');
             });
