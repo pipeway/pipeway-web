@@ -1,0 +1,61 @@
+<!-- hbox layout -->
+<div class="hbox hbox-auto-xs bg-light " ng-init="
+  app.settings.asideFixed = true;
+  app.settings.asideDock = false;
+  app.settings.container = false;
+  app.hideAside = false;
+  app.hideFooter = true;"
+  ng-controller="appDetailCtrl">
+  <div class="col w-lg lt host-detail">
+      <div class="vbox">
+          <div class="wrapper">
+              <div class="app-box-push">
+                  <a href="#/client/list"
+                     class="btn btn-sm btn-danger btn-options pull-right">返回
+                  </a>
+                  <form name="formValidate" class="form-horizontal form-validation">
+                    <div class="panel panel-default">
+                      <div class="panel-body">
+                        <div class="form-group">
+                          <label class="col-sm-3 control-label">应用名称:</label>
+                          <div class="col-sm-9">
+                            <span class="form-control">{{appDetail.name}}</span>
+                          </div>
+                        </div>
+                        <div class="line line-dashed b-b line-lg pull-in"></div>
+                        <div class="form-group">
+                          <label class="col-sm-3 control-label">应用代号:</label>
+                          <div class="col-sm-9">
+                            <span class="form-control">{{appDetail.serial}}</span>
+                          </div>
+                        </div>
+                        <div class="line line-dashed b-b line-lg pull-in"></div>
+                        <div class="form-group">
+                          <label class="col-sm-3 control-label">主机组:</label>
+                          <div class="col-sm-9">
+                            <span class="form-control">{{appDetail.hostGroup}}</span>
+                          </div>
+                        </div>
+                        <div class="line line-dashed b-b line-lg pull-in"></div>
+                        <div class="form-group">
+                          <label class="col-sm-3 control-label">应用描述:</label>
+                          <div class="col-sm-9">
+                            <span class="form-control">{{appDetail.description}}</span>
+                          </div>
+                        </div>
+                        <div class="line line-dashed b-b line-lg pull-in"></div>
+                        <div class="form-group">
+                          <label class="col-sm-3 control-label">appKey:</label>
+                          <div class="col-sm-9">
+                            <span class="form-control">{{appKey}}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+    <!-- /column -->
+</div>

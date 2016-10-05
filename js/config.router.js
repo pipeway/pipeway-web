@@ -55,6 +55,22 @@ angular.module('app')
                           }]
                   }
               })
+              .state('client.appDetail', {
+                  url: '/appDetail/:appkey',
+                  templateUrl: 'tpl/client/appDetail.html',
+                  resolve: {
+                      deps: ['uiLoad', '$ocLazyLoad',
+                          function( uiLoad, $ocLazyLoad){
+                              return $ocLazyLoad.load('angularFileUpload').then(
+                                  function() {
+                                      return $ocLazyLoad.load(['js/app/client/appDetail.js',
+                                          'vendor/libs/moment.min.js'
+                                      ]);
+                                  }
+                              );
+                          }]
+                  }
+              })
               .state('server', {
                   abstract: true,
                   url: '/server',
