@@ -14,6 +14,7 @@ app.controller('apiListCtrl', ['$scope', '$http', '$state', '$location', 'isLogi
         $scope.totalItemsHost = 1;
         function getHostList(data){
             api.getHostList(data).then(function(res){
+                console.log(res.data.results);
                 $scope.hostList = res.data.results;
                 $scope.totalItemsHost = res.data.totalSize;
             })

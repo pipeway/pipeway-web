@@ -10,7 +10,7 @@ app.controller('hostDetailCtrl', ['$scope', '$http', '$state', '$location', 'isL
           console.log(params);
             api.hostDetail(params).then(function (res){
               console.log(res);
-              if (res.data.success) {
+              if (res.success) {
                 $scope.hostDetail = res.data;
                 // $location.path('/server/server/appList/'+appKey);
               }

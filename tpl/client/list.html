@@ -54,7 +54,7 @@
                             </form>
                         </div>
                     </div>
-                      <pagination total-items="totalItems" ng-model="currentPage" ng-click="pageChanged(currentPage)" class="m-t-none m-b pages" previous-text = '上一页' next-text="下一页"></pagination>
+                      <pagination  ng-if="pages" total-items="totalItems" ng-model="currentPage" ng-click="pageChanged(currentPage)" class="m-t-none m-b pages" previous-text = '上一页' next-text="下一页"></pagination>
                 </div>
             </div>
         </div>
