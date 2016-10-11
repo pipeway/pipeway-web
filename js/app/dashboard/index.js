@@ -6,13 +6,14 @@ app.controller('DashboardCtrl', ['$scope', '$http', '$state', 'isLogin', 'user',
             var myChart = echarts.init(document.getElementById('main'));
             option = {
                 title: {
-                    text: '应用访问统计图'
+                    text: '应用访问统计图',
                 },
                 tooltip : {
                     trigger: 'axis'
                 },
                 legend: {
-                    data: legend
+                    data: legend,
+                    top:'40px'
                 },
                 toolbox: {
                     feature: {
@@ -20,9 +21,10 @@ app.controller('DashboardCtrl', ['$scope', '$http', '$state', 'isLogin', 'user',
                     }
                 },
                 grid: {
+                    top:'120px',
                     left: '3%',
                     right: '4%',
-                    bottom: '3%',
+                    bottom: '0%',
                     containLabel: true
                 },
                 xAxis : [
