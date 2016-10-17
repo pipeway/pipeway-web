@@ -51,8 +51,8 @@ app.controller('createApiCtrl', ['$scope', '$http', '$state', '$location', '$mod
             })
         };
         function validateForm(data){
-            data.captchaRequired ? 1 : 0;
-            data.buildIn ? 1 : 0;
+            data.captchaRequired = data.captchaRequired ? 1 : 0;
+            data.buildIn = data.buildIn ? 1 : 0;
             if(!data.method){
                 $scope.methodValidateMessage = true;
             } else {
