@@ -9,7 +9,6 @@ app.controller('apiDetailCtrl', ['$scope', '$http', '$state', '$location', 'isLo
         function apiDetail(params){
           console.log(params);
             api.apiDetail(params).then(function (res){
-              console.log(res);
               if (res.success) {
                 $scope.apiDetail = res.data;
                 // $location.path('/server/server/appList/'+appKey);

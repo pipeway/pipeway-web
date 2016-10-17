@@ -4,7 +4,7 @@ var modRewrite = require('connect-modrewrite');
 var watch = require('gulp-watch');
 var less = require('gulp-less');
 var shell = require('gulp-shell');
-var host = "http://10.99.97.142:3000";
+var host = "http://localhost:3000";
 
 
 gulp.task('connect', function () {
@@ -23,7 +23,7 @@ gulp.task('connect', function () {
 				})(),
 				modRewrite([
 					'!\\.html|\\.js|\\.css|\\.swf|\\.jp(e?)g|\\.png|\\.gif|\\.eot|\\.woff|\\.ttf|\\.svg$ /index.html'
-				])
+				]);
 			];
 		}
 	});
