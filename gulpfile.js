@@ -23,7 +23,7 @@ gulp.task('connect', function () {
 				})(),
 				modRewrite([
 					'!\\.html|\\.js|\\.css|\\.swf|\\.jp(e?)g|\\.png|\\.gif|\\.eot|\\.woff|\\.ttf|\\.svg$ /index.html'
-				]);
+				])
 			];
 		}
 	});
