@@ -1,4 +1,4 @@
-app.controller('AddServerCtrl', ['$scope', '$http', '$state', '$modal', '$location','isLogin', 'user', '$cookies','api','FileUploader',
+app.controller('CreateServerCtrl', ['$scope', '$http', '$state', '$modal', '$location','isLogin', 'user', '$cookies','api','FileUploader',
     function ($scope, $http, $state, $modal, $location, isLogin, user, $cookies, api,FileUploader) {
       $scope.params = {
           type:'1'

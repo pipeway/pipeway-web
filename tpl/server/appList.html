@@ -12,8 +12,8 @@
         <h1 class="m-n font-thin h3 inline-h1">主机和接口列表</h1>
     </div>
     <div class="wrapper-md">
-        <tabset class="tab-container" ng-init="steps={percent:10, step1:true, step2:true, step3:true}">
-            <tab heading="主机列表" active="steps.step1" select="steps.percent=50">
+        <tabset class="tab-container" ng-init="steps={percent:10, step1:true, step2:false, step3:true}">
+            <tab heading="主机列表" active="actived1" select="steps.percent=50">
                 <div class="pull-right" style="position: relative; top: -52px;right: -15px;">
                     <a href="/#/server/createHost/{{appKey}}">
                         <button type="button" class="btn btn-sm btn-primary btn-addon" ng-click="addEvent()">
@@ -34,14 +34,14 @@
                         </thead>
                         <tbody>
                         <tr ng-repeat="list in hostList">
-                            <td><a href="/#/server/server/hostDetail/{{list.id}}" style="color: #428bca;">{{list.name}}</a></td>
+                            <td><div class="tablex"><a href="/#/server/server/hostDetail/{{list.id}}" style="color: #428bca;">{{list.name}}</a></div></td>
                             <td ng-if="list.protocal == 0">http</td>
                             <td ng-if="list.protocal == 1">https</td>
                             <td ng-if="list.protocal == 2">socket</td>
                             <td ng-if="list.protocal == 3">udp</td>
-                            <td>{{list.host}}</td>
-                            <td>{{list.port}}</td>
-                            <td>{{list.description}}</td>
+                            <td><div class="tablex">{{list.host}}</div></td>
+                            <td><div class="tablex">{{list.port}}</div></td>
+                            <td><div class="tablex">{{list.description}}</div></td>
                         </tr>
                         </tbody>
                     </table>
@@ -50,7 +50,7 @@
                     </div>
                 </div>
             </tab>
-            <tab heading="接口列表" select="steps.percent=50" ng-if="hostList.length">
+            <tab heading="接口列表"  active="actived2" select="steps.percent=50" ng-if="hostList.length">
                 <div class="pull-right" style="position: relative; top: -52px;right: -15px;">
                     <a href="/#/server/createApi/{{appKey}}">
                         <button type="button" class="btn btn-sm btn-primary btn-addon" ng-click="addEvent()">
@@ -71,8 +71,8 @@
                         </thead>
                         <tbody>
                         <tr ng-repeat="list in apiList">
-                            <td><a href="/#/server/server/apiDetail/{{list.id}}" style="color: #428bca;">{{list.name}}</a></td>
-                            <td>{{list.requestUrl}}</td>
+                            <td> <div class="tablex"><a href="/#/server/server/apiDetail/{{list.id}}" style="color: #428bca;">{{list.name}}</a></div></td>
+                            <td><div class="tablex">{{list.requestUrl}}</div></td>
                             <td>{{list.method}}</td>
                             <!-- <td ng-if="list.method == 0">GET</td>
                             <td ng-if="list.method == 1">POST</td>
@@ -80,7 +80,7 @@
                             <td ng-if="list.method == 3">DELETE</td> -->
                             <td ng-if="list.auth == 0">不需要鉴权</td>
                             <td ng-if="list.auth == 1">需要鉴权</td>
-                            <td>{{list.description}}</td>
+                            <td><div class="tablex">{{list.description}}</div></td>
                         </tr>
                         </tbody>
                     </table>
@@ -92,4 +92,3 @@
         </tabset>
     </div>
 </div>
-

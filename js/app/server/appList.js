@@ -8,8 +8,9 @@ app.controller('apiListCtrl', ['$scope', '$http', '$state', '$location', 'isLogi
         var dataHost = {
             appKey: appKey,
             page: 1,
-            pageSize: 10
+            pageSize: 5
         }
+
         $scope.currentPageHost = 0;
         $scope.totalItemsHost = 1;
         function getHostList(data){
@@ -19,6 +20,14 @@ app.controller('apiListCtrl', ['$scope', '$http', '$state', '$location', 'isLogi
                 $scope.totalItemsHost = res.data.totalSize;
             })
         }
+        $scope.changeActive = function(){
+          $scope.actived1 = !$scope.actived1;
+          $scope.actived2 = !$scope.actived1;
+          console.log($scope.actived1);
+          console.log($scope.actived2);
+
+        }
+
         getHostList(dataHost);
         $scope.pageChangedHost = function(index) {
             dataHost.page = index;

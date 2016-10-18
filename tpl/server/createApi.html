@@ -42,6 +42,17 @@
                         <div class="error">
                             <span ng-if="methodValidateMessage">*请求类型不能为空，请选择请求类型</span>
                         </div>
+                        <!-- <div class="app-push-appName">接口鉴权
+                            <span class="has-error">*</span>
+                        </div>
+                        <select name="account" class="form-control" ng-model="params.auth">
+                            <option value="">请选择鉴权</option>
+                            <option value="0">不需要鉴权</option>
+                            <option value="1">需要鉴权</option>
+                        </select>
+                        <div class="error">
+                            <span ng-if="authValidateMessage">*接口鉴权不能为空，请选择接口鉴权</span>
+                        </div>-->
                         <div class="form-group">
                           <label class="col-sm-5">是否需要鉴权</label>
                           <div class="col-sm-7">
@@ -78,7 +89,7 @@
                               <i></i>
                             </label>
                           </div>
-                        </div> 
+                        </div>
                         <div ng-if="expireBtn">
                             <div class="app-push-appName">接口访问过期时间
                                 <span class="has-error">*</span>
@@ -97,7 +108,7 @@
                               <i></i>
                             </label>
                           </div>
-                        </div> 
+                        </div>
                         <div ng-if="timesBtn">
                             <div class="app-push-appName">接口限制次数
                                 <span class="has-error">*</span>
@@ -116,7 +127,7 @@
                               <i></i>
                             </label>
                           </div>
-                        </div> 
+                        </div>
                         <div ng-if="cacheBtn">
                             <div class="app-push-appName">接口缓存的key值
                                 <span class="has-error">*</span>
@@ -143,7 +154,7 @@
                               <i></i>
                             </label>
                           </div>
-                        </div> 
+                        </div>
                         <div ng-if="describeBtn">
                             <div class="app-push-appName">接口描述
                                 <span class="has-error">*</span>
@@ -151,11 +162,11 @@
                             <textarea class="form-control"
                                       rows="3"
                                       placeholder="请输入接口描述"
-                                      ng-model="params.description" 
+                                      ng-model="params.description"
                                       required>
                             </textarea>
                         </div>
-                        
+
                         <div class="app-push-save-btn">
                             <button class="btn btn-lg btn-info btn-block"
                                     ng-disabled="form.$invalid"

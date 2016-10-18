@@ -5558,6 +5558,12 @@ span.font-active {
 #myTable tbody tr td {
     height: 40px;
     line-height: 40px;
+}
+.tablex{
+  width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 
 }
 #myTable tbody tr td a {
