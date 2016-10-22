@@ -1,54 +1,57 @@
 <!-- hbox layout -->
 <div class="hbox hbox-auto-xs bg-light " ng-init="
-  app.settings.asideFixed = true;
-  app.settings.asideDock = false;
-  app.settings.container = false;
-  app.hideAside = false;
-  app.hideFooter = true;"
-     ng-controller="AddClientCtrl">
+    app.settings.asideFixed = true;
+    app.settings.asideDock = false;
+    app.settings.container = false;
+    app.hideAside = false;
+    app.hideFooter = true;"
+    ng-controller="AddClientCtrl">
     <div class="col w-lg lt">
         <div class="vbox">
-          <div class="popuptext" ng-if="popupshow">
-            <div class="popup" >
-              <div class="mytext2">提示</div>
-                <div class="mytext1">
-                  {{messages}}
-                </div>
-                <div class="client-mybtn" ng-click="popupshide()">
-                    <p>我知道了</p>
+            <div class="popuptext" ng-if="popupshow">
+                <div class="popup" >
+                    <div class="mytext2">提示</div>
+                        <div class="mytext1">
+                            {{messages}}
+                        </div>
+                        <div class="client-mybtn" ng-click="popupshide()">
+                        <p>我知道了</p>
+                    </div>
                 </div>
             </div>
-          </div>
             <div class="wrapper">
                 <div class="app-box-push">
                     <a href="/#/client/list"
-                       class="btn btn-sm btn-danger btn-options pull-right">返回
+                        class="btn btn-sm btn-danger btn-options pull-right">返回
                     </a>
                     <form name="form" class="form-validation">
                         <div class="app-push-appName">应用名称<span class="has-error">*</span></div>
                         <input class="form-control"
-                               type="text"
-                               placeholder="请输入应用名称(必须为2位以上的汉字)"
-                               ng-model="params.name">
-                         <div class="app-push-appName">应用代号<span class="has-error">*</span></div>
-                         <input class="form-control"
-                                type="text"
-                                placeholder="请输入应用代号(必须为2位以上的字母)"
-                                ng-model="params.serial">
-                          <div class="app-push-appName">主机组<span class="has-error">*</span></div>
-                          <input class="form-control"
-                                 type="text"
-                                 placeholder="请输入主机组(必须为两位以上的字母)"
-                                 ng-model="params.hostGroup">
+                            type="text"
+                            placeholder="请输入应用名称(必须为2位以上的汉字)"
+                            ng-model="params.name">
+                        <div class="app-push-appName">应用代号<span class="has-error">*</span></div>
+                        <input class="form-control"
+                            type="text"
+                            placeholder="请输入应用代号"
+                            ng-model="params.serial">
+                        <div class="app-push-appName">APP内网地址<span class="has-error">*</span></div>
+                            <input class="form-control"
+                            type="text"
+                            placeholder="请输入APP内网地址"
+                            ng-model="params.hostGroup">
                         <div class="app-push-appName">应用描述</div>
-                        <textarea class="form-control"
-                                  rows="3"
-                                  placeholder="请输入应用描述"
-                                  ng-model="params.description">
-                        </textarea>
+                            <textarea class="form-control"
+                                rows="3"
+                                placeholder="请输入应用描述"
+                                ng-model="params.description">
+                            </textarea>
                         <div class="app-push-save-btn">
-                            <button  class="btn btn-lg btn-info btn-block "
-                                     ng-click="createApp(params)">创建应用</button>
+                            <button
+                                class="btn btn-lg btn-info btn-block "
+                                ng-click="createApp(params)">
+                                    创建应用
+                            </button>
                         </div>
                     </form>
                 </div>

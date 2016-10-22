@@ -2,7 +2,6 @@ app.controller('hostDetailCtrl', ['$scope', '$http', '$state', '$location', 'isL
     function ($scope, $http, $state, $location, isLogin, user, $cookies, api) {
         var url = $location.url();
         var path = url.split('/');
-        console.log(path);
         var id = path[4];
         var params = {
             id: id
@@ -12,7 +11,7 @@ app.controller('hostDetailCtrl', ['$scope', '$http', '$state', '$location', 'isL
             api.hostDetail(params).then(function (res){
               console.log(res);
               if (res.data.success) {
-                $scope.hostDetail = res.data.data;
+                $scope.hostDetail = res.data;
                 // $location.path('/server/server/appList/'+appKey);
               }
             })

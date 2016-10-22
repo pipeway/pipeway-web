@@ -4,8 +4,8 @@ app.controller('AddServerCtrl', ['$scope', '$http', '$state', '$modal', '$locati
           $scope.popupshow=false;
         }
         $scope.createApp = function (params){
-          var reg1=/^[\u4e00-\u9fa5]{2,}$/gi;
-          var reg2=/^[A-Za-z]{2,}$/;
+          var reg1=/^[\w]{2,}$/gi;
+          var reg2=/^[\w]{2,}$/;
           var data = {
             name: params.name,
             serial: params.serial,
@@ -59,7 +59,7 @@ app.controller('AddServerCtrl', ['$scope', '$http', '$state', '$modal', '$locati
                 $scope.appKey = res.data.data.results[0].appKey;
                 console.log(res);
                 console.log($scope.appKey);
-            })
+            });
         }
         function addSuccess(size) {
             var modalInstance = $modal.open({
