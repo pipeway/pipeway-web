@@ -14,51 +14,87 @@
     <div class="wrapper-md">
         <tabset class="tab-container" ng-init="steps={percent:10, step1:true, step2:false, step3:true}">
             <tab heading="主机列表" active="actived1" select="steps.percent=50">
-                <div class="pull-right" style="position: relative; top: -52px;right: -15px;">
+                <div class="pull-right" style="position: relative; top: -28px; right: -15px;">
                     <a href="/#/server/createHost/{{appKey}}">
                         <button type="button" class="btn btn-sm btn-primary btn-addon" ng-click="addEvent()">
                             <i class="fa fa-plus"></i>新建主机
                         </button>
                     </a>
                 </div>
-                <div>
+                <div ng-if="pagination1">
+                  <div class="" style="width: 100%;height: 582px;margin-top:-32px;">
                     <table id="myTable" class="table table-striped m-b-none" style="width: 100%;">
-                        <thead>
-                        <tr>
-                            <th style="width:20%">主机名称</th>
-                            <th style="width:20%">协议名称</th>
-                            <th style="width:20%">主机地址</th>
-                            <th style="width:20%">端口号</th>
-                            <th style="width:20%">主机描述</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr ng-repeat="list in hostList">
-                            <td><div class="tablex"><a href="/#/server/server/hostDetail/{{list.id}}" style="color: #428bca;">{{list.name}}</a></div></td>
-                            <td ng-if="list.protocal == 0">http</td>
-                            <td ng-if="list.protocal == 1">https</td>
-                            <td ng-if="list.protocal == 2">socket</td>
-                            <td ng-if="list.protocal == 3">udp</td>
-                            <td><div class="tablex">{{list.host}}</div></td>
-                            <td><div class="tablex">{{list.port}}</div></td>
-                            <td><div class="tablex">{{list.description}}</div></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <div class="pagination-wrapper">
+                          <thead>
+                          <tr>
+                              <th style="width:20%">主机名称</th>
+                              <th style="width:20%">协议名称</th>
+                              <th style="width:20%">主机地址</th>
+                              <th style="width:20%">端口号</th>
+                              <th style="width:20%">主机描述</th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                          <tr ng-repeat="list in hostList">
+                              <td><div class="tablex"><a href="/#/server/server/hostDetail/{{list.id}}" style="color: #428bca;">{{list.name}}</a></div></td>
+                              <td ng-if="list.protocal == 0">http</td>
+                              <td ng-if="list.protocal == 1">https</td>
+                              <td ng-if="list.protocal == 2">socket</td>
+                              <td ng-if="list.protocal == 3">udp</td>
+                              <td><div class="tablex">{{list.host}}</div></td>
+                              <td><div class="tablex">{{list.port}}</div></td>
+                              <td><div class="tablex">{{list.description}}</div></td>
+                          </tr>
+                          </tbody>
+                      </table>
+                    </div>
+                    <div class="pagination-wrapper" ng-if="pagination1">
+                        <pagination previous-text = '上一页' next-text="下一页" total-items="totalItemsHost" ng-model="currentPageHost" ng-change="pageChangedHost(currentPageHost)" class="m-t-none m-b pages"></pagination>
+                    </div>
+                </div>
+                <div style="margin-top:-32px;" ng-if="!pagination1">
+                    <table id="myTable" class="table table-striped m-b-none" style="width: 100%;">
+                          <thead>
+                          <tr>
+                              <th style="width:20%">主机名称</th>
+                              <th style="width:20%">协议名称</th>
+                              <th style="width:20%">主机地址</th>
+                              <th style="width:20%">端口号</th>
+                              <th style="width:20%">主机描述</th>
+                          </tr>
+                          </thead>
+                          <tbody  ng-if="hostList.length">
+                          <tr ng-repeat="list in hostList">
+                              <td><div class="tablex"><a href="/#/server/server/hostDetail/{{list.id}}" style="color: #428bca;">{{list.name}}</a></div></td>
+                              <td ng-if="list.protocal == 0">http</td>
+                              <td ng-if="list.protocal == 1">https</td>
+                              <td ng-if="list.protocal == 2">socket</td>
+                              <td ng-if="list.protocal == 3">udp</td>
+                              <td><div class="tablex">{{list.host}}</div></td>
+                              <td><div class="tablex">{{list.port}}</div></td>
+                              <td><div class="tablex">{{list.description}}</div></td>
+                          </tr>
+                          </tbody>
+                          <tbody  ng-if="!hostList.length">
+                          <tr>
+                              <td colspan="5" style="text-align:center;color:#665ca7;font-size:15px;">暂无数据！</td>
+                          </tr>
+                          </tbody>
+                      </table>
+                    <div class="pagination-wrapper" ng-if="pagination1">
                         <pagination previous-text = '上一页' next-text="下一页" total-items="totalItemsHost" ng-model="currentPageHost" ng-change="pageChangedHost(currentPageHost)" class="m-t-none m-b pages"></pagination>
                     </div>
                 </div>
             </tab>
             <tab heading="接口列表"  active="actived2" select="steps.percent=50" ng-if="hostList.length">
-                <div class="pull-right" style="position: relative; top: -52px;right: -15px;">
+                <div class="pull-right" style="position: relative; top: -28px;right: -15px;">
                     <a href="/#/server/createApi/{{appKey}}">
                         <button type="button" class="btn btn-sm btn-primary btn-addon" ng-click="addEvent()">
                             <i class="fa fa-plus"></i>新建接口
                         </button>
                     </a>
                 </div>
-                <div>
+                <div ng-if="pagination2">
+                  <div class="" style="width: 100%; height: 582px; margin-top:-32px;">
                     <table id="myTable" class="table table-striped m-b-none" style="width: 100%;">
                         <thead>
                         <tr>
@@ -73,21 +109,57 @@
                         <tr ng-repeat="list in apiList">
                             <td> <div class="tablex"><a href="/#/server/server/apiDetail/{{list.id}}" style="color: #428bca;">{{list.name}}</a></div></td>
                             <td><div class="tablex">{{list.requestUrl}}</div></td>
-                            <td>{{list.method}}</td>
-                            <!-- <td ng-if="list.method == 0">GET</td>
+                            <!-- <td>{{list.method}}</td> -->
+                            <td ng-if="list.method == 0">GET</td>
                             <td ng-if="list.method == 1">POST</td>
                             <td ng-if="list.method == 2">PUT</td>
-                            <td ng-if="list.method == 3">DELETE</td> -->
+                            <td ng-if="list.method == 3">DELETE</td>
                             <td ng-if="list.auth == 0">不需要鉴权</td>
                             <td ng-if="list.auth == 1">需要鉴权</td>
                             <td><div class="tablex">{{list.description}}</div></td>
                         </tr>
                         </tbody>
                     </table>
-                    <div class="pagination-wrapper">
+                  </div>
+                    <div class="pagination-wrapper" ng-if="pagination2">
                         <pagination previous-text = '上一页' next-text="下一页" total-items="totalItemsApi" ng-model="currentPageApi" ng-click="pageChangedApi(currentPageApi)" class="m-t-none m-b pages"></pagination>
                     </div>
                 </div>
+              <div style="margin-top:-32px;" ng-if="!pagination2">
+                  <table id="myTable" class="table table-striped m-b-none" style="width: 100%;">
+                      <thead>
+                      <tr>
+                          <th style="width:20%">接口名称</th>
+                          <th style="width:20%">接口地址</th>
+                          <th style="width:20%">请求类型</th>
+                          <th style="width:20%">接口鉴权</th>
+                          <th style="width:20%">接口描述</th>
+                      </tr>
+                      </thead>
+                      <tbody ng-if="apiList.length">
+                      <tr ng-repeat="list in apiList">
+                          <td> <div class="tablex"><a href="/#/server/server/apiDetail/{{list.id}}" style="color: #428bca;">{{list.name}}</a></div></td>
+                          <td><div class="tablex">{{list.requestUrl}}</div></td>
+                          <!-- <td>{{list.method}}</td> -->
+                          <td ng-if="list.method == 0">GET</td>
+                          <td ng-if="list.method == 1">POST</td>
+                          <td ng-if="list.method == 2">PUT</td>
+                          <td ng-if="list.method == 3">DELETE</td>
+                          <td ng-if="list.auth == 0">不需要鉴权</td>
+                          <td ng-if="list.auth == 1">需要鉴权</td>
+                          <td><div class="tablex">{{list.description}}</div></td>
+                      </tr>
+                      </tbody>
+                      <tbody  ng-if="!apiList.length">
+                      <tr>
+                          <td colspan="5" style="text-align:center;color:#665ca7;font-size:15px;">暂无数据！</td>
+                      </tr>
+                      </tbody>
+                  </table>
+                  <div class="pagination-wrapper" ng-if="pagination2">
+                      <pagination previous-text = '上一页' next-text="下一页" total-items="totalItemsApi" ng-model="currentPageApi" ng-click="pageChangedApi(currentPageApi)" class="m-t-none m-b pages"></pagination>
+                  </div>
+              </div>
             </tab>
         </tabset>
     </div>

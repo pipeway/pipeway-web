@@ -1,6 +1,8 @@
-app.controller('createApiCtrl', ['$scope', '$http', '$state', '$location', '$modal', 'isLogin', 'user', '$cookies', 'api', 'appKey',
-    function ($scope, $http, $state, $location, $modal, isLogin, user, $cookies, api, appKey) {
-        var appKey = appKey;
+app.controller('createApiCtrl', ['$scope', '$http', '$state', '$location', '$modal', 'isLogin', 'user', '$cookies', 'api',
+    function ($scope, $http, $state, $location, $modal, isLogin, user, $cookies, api) {
+        var url = $location.url();
+        var path = url.split('/');
+        var appKey = path[3];
         $scope.appKey = appKey;
         $scope.params = {
             parentAppkey: appKey,
@@ -77,7 +79,7 @@ app.controller('createApiCtrl', ['$scope', '$http', '$state', '$location', '$mod
             });
             modalInstance.result.then(function (selectedItem) {
                 $scope.selected = selectedItem;
-                $location.path('/server/createApi/' + $scope.appKey);
+                window.location.reload();
             }, function () {
                 $location.path('/server/appList/' + appKey);
             });
