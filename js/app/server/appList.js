@@ -76,13 +76,4 @@ app.controller('apiListCtrl', ['$scope', '$http', '$state', '$location', 'isLogi
             hash = "";
           }
         })();
-        $scope.getActive = function(x){
-          console.log(x);
-          if(x == 'host'){
-            
-          }
-          else{
-
-          }
-        }
     }]);
