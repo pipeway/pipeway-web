@@ -7,8 +7,13 @@ app.controller('ServerListCtrl', ['$scope', '$http', '$state', 'isLogin', 'user'
     }
     $scope.currentPage = 0;
     $scope.totalItems = 1;
+    $scope.pages = true;
     function getServerList(data){
         api.getServerList(data).then(function(res){
+          console.log(res.data);
+          if(res.data.totalSize < 11){
+            $scope.pages = false;
+          }
             $scope.appList = res.data.results;
             $scope.totalItems = res.data.totalSize;
         })

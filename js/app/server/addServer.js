@@ -1,54 +1,47 @@
 app.controller('AddServerCtrl', ['$scope', '$http', '$state', '$modal', '$location','isLogin', 'user', '$cookies','api','FileUploader',
     function ($scope, $http, $state, $modal, $location, isLogin, user, $cookies, api,FileUploader) {
-        $scope.popupshide=function(){
-          $scope.popupshow=false;
+      $scope.params = {
+          type:'1'
+      }
+        $scope.describeBtn = false;
+        $scope.openDescribe = function(){
+          $scope.describeBtn = !$scope.describeBtn;
         }
+
         $scope.createApp = function (params){
-          var reg1=/^[\w]{2,}$/gi;
-          var reg2=/^[\w]{2,}$/;
-          var data = {
-            name: params.name,
-            serial: params.serial,
-            type:1,
-            description: params.description,
-            hostGroup:params.hostGroup
-          }
-            if (!reg1.test(data.name||data.name==null)){
-                $scope.messages="应用名称为空或格式错误！";
-                $scope.popupshow = true;
+         validateForm(params);
+         if($scope.nameValidateMessage || $scope.serialValidateMessage || $scope.hostGroupValidateMessage){
+           return;
+         }
+          api.appCreate(params).then(function (res){
+            console.log(res.success);
+            console.log(params);
+            $scope.items = res;
+            if(res.success){
+              addSuccess();
               }
-            else{
-                if(!reg2.test(data.serial) || data.serial==null){
-                  $scope.messages="应用代号为空或格式错误！";
-                  $scope.popupshow = true;
-                }
-                else{
-                    if(!reg2.test(data.hostGroup) || data.hostGroup==null){
-                      $scope.messages="主机组为空或格式错误！";
-                      $scope.popupshow = true;
-                    }
-                    else{
-                    api.appCreate(data).then(function (res){
-                      console.log(res.success);
-                      console.log(data);
-                      $scope.items = res;
-                      if(res.success){
-                        addSuccess();
-                        $scope.params.name = '';
-                        $scope.params.serial = '';
-                        $scope.params.description = '';
-                        $scope.params.hostGroup = '';
-                        }
-                        else{
-                          $scope.messages=res.data.msg+'!';
-                          $scope.popupshow = true;
-                        }
-                        getAppKey();
-                      });
-                    }
-                }
-              }
+              getAppKey();
+            });
         };
+        function validateForm(data){
+          // var reg1=/^[\u4e00-\u9fa5]{2,}$/gi;
+          // var reg2=/^[\w]{2,}$/;
+          // if (!reg1.test(data.name)) {
+          //     $scope.nameValidateMessage = true;
+          //   }else{
+          //     $scope.nameValidateMessage = false;
+          //   }
+          // if(!reg2.test(data.serial)){
+          //   $scope.serialValidateMessage = true;
+          // }else{
+          //   $scope.serialValidateMessage = false;
+          // }
+          // if(!reg2.test(data.hostGroup)){
+          //   $scope.hostGroupValidateMessage = true;
+          // }else{
+          //   $scope.hostGroupValidateMessage = false;
+          // }
+        }
         //获取appKey
         function getAppKey(){
             api.getServerList({
@@ -56,7 +49,7 @@ app.controller('AddServerCtrl', ['$scope', '$http', '$state', '$modal', '$locati
                 page: 1,
                 pageSize: 10
             }).then(function(res){
-                $scope.appKey = res.data.data.results[0].appKey;
+                $scope.appKey = res.data.results[0].appKey;
                 console.log(res);
                 console.log($scope.appKey);
             });

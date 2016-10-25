@@ -3,13 +3,19 @@ app.controller('ClientListCtrl', ['$scope', '$http', '$state', 'isLogin', 'user'
       var data = {
          type:0,
          page:1,
-         pagesize:10
+         pagesize:8
+
       }
       $scope.currentPage = 0;
       $scope.totalItems = 1;
+      $scope.pages = true
   function getserverList(data){
     api.getServerList(data).then(function(res){
-        console.log(res.data.data);
+        console.log(res.data);
+        if(res.data.totalSize < 11){
+          $scope.pages = false;
+        }
+
         $scope.appList=res.data.results;
         $scope.totalItems=res.data.totalSize;
   })
