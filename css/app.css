@@ -481,7 +481,7 @@ a.list-group-item.hover {
 
 .table > tbody > tr > td,
 .table > tfoot > tr > td {
-  padding: 8px 15px;
+  padding: 5px 15px;
   border-top: 1px solid #eaeff0;
 }
 
@@ -5242,11 +5242,19 @@ label.platform input[type="radio"] {
   margin-bottom: 0;
 }
 .app-list .panel h2{
+  padding-top: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   font-size: 20px;
 }
 .app-list .panel .list-group .list-group-item {
   height: 50px;
   padding: 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
   /*line-height: 42px;*/
 }
 .app-list-header {
@@ -5445,7 +5453,7 @@ span.font-active {
 .app-box-push .form-group label{
     font-size: 16px;
     padding: 0;
-    text-align: left;    
+    text-align: left;
 }
 .app-box-push .form-group .col-sm-7 {
     text-align: left;
@@ -5550,6 +5558,12 @@ span.font-active {
 #myTable tbody tr td {
     height: 40px;
     line-height: 40px;
+}
+.tablex{
+  width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 
 }
 #myTable tbody tr td a {

@@ -1,11 +1,15 @@
-app.controller('createApiCtrl', ['$scope', '$http', '$state', '$location', '$modal', 'isLogin', 'user', '$cookies', 'api', 'appKey',
-    function ($scope, $http, $state, $location, $modal, isLogin, user, $cookies, api, appKey) {
-        var appKey = appKey;
+app.controller('createApiCtrl', ['$scope', '$http', '$state', '$location', '$modal', 'isLogin', 'user', '$cookies', 'api',
+    function ($scope, $http, $state, $location, $modal, isLogin, user, $cookies, api) {
+        var url = $location.url();
+        var path = url.split('/');
+        var appKey = path[3];
         $scope.appKey = appKey;
         $scope.params = {
             parentAppkey: appKey,
             auth: '1',
-            method: '0'
+            method: '0',
+            buildIn: false,
+            captchaRequired: false
         }
         $scope.expireBtn = false;
         $scope.timesBtn = false;
@@ -29,7 +33,7 @@ app.controller('createApiCtrl', ['$scope', '$http', '$state', '$location', '$mod
             } else {
                 $scope.params.auth = '1';
             }
-            
+
         }
         $scope.createApi = function (params){
             console.log(params);
@@ -49,6 +53,8 @@ app.controller('createApiCtrl', ['$scope', '$http', '$state', '$location', '$mod
             })
         };
         function validateForm(data){
+           data.captchaRequired = data.captchaRequired ? 1 : 0;
+            data.buildIn = data.buildIn ? 1 : 0;
             if(!data.method){
                 $scope.methodValidateMessage = true;
             } else {
@@ -73,7 +79,7 @@ app.controller('createApiCtrl', ['$scope', '$http', '$state', '$location', '$mod
             });
             modalInstance.result.then(function (selectedItem) {
                 $scope.selected = selectedItem;
-                $location.path('/server/createApi/' + $scope.appKey);
+                window.location.reload();
             }, function () {
                 $location.path('/server/appList/' + appKey);
             });

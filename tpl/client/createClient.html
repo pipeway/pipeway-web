@@ -1,0 +1,94 @@
+<!-- hbox layout -->
+<div class="hbox hbox-auto-xs bg-light " ng-init="
+    app.settings.asideFixed = true;
+    app.settings.asideDock = false;
+    app.settings.container = false;
+    app.hideAside = false;
+    app.hideFooter = true;"
+    ng-controller="CreateClientCtrl">
+    <div class="col w-lg lt">
+        <div class="vbox">
+            <div class="wrapper">
+                <div class="app-box-push">
+                    <a href="/#/client/list"
+                        class="btn btn-sm btn-danger btn-options pull-right">返回
+                    </a>
+                    <form name="form" class="form-validation">
+                        <div class="app-push-appName">应用名称<span class="has-error">*</span></div>
+                        <input class="form-control"
+                            type="text"
+                            placeholder="请输入应用名称"
+                            ng-model="params.name"
+                            required>
+                            <div class="error">
+                              <span ng-if="nameValidateMessage">*您输入的应用名称有误，请您重新输入</span>
+                            </div>
+                        <div class="app-push-appName">应用代号<span class="has-error">*</span></div>
+                        <input class="form-control"
+                            type="text"
+                            placeholder="请输入应用代号"
+                            ng-model="params.serial"
+                            required>
+                            <div class="error">
+                              <span ng-if="serialValidateMessage">*您输入的应用代号有误，请您重新输入</span>
+                            </div>
+                        <div class="app-push-appName">APP内网地址<span class="has-error">*</span></div>
+                            <input class="form-control"
+                            type="text"
+                            placeholder="请输入APP内网地址"
+                            ng-model="params.hostGroup"
+                            required>
+                            <div class="error">
+                              <span ng-if="serialValidateMessage">*您输入的APP内网地址有误，请您重新输入</span>
+                            </div>
+                            <div class="form-group">
+                              <label class="col-sm-5">是否添加应用描述</label>
+                              <div class="col-sm-7">
+                                <label class="i-switch m-t-xs m-r">
+                                  <input type="checkbox" ng-click="openDescribe()">
+                                  <i></i>
+                                </label>
+                              </div>
+                            </div>
+                        <div ng-if="describeBtn">
+                        <div class="app-push-appName">应用描述<span class="has-error">*</span></div>
+                            <textarea class="form-control"
+                                rows="3"
+                                placeholder="请输入应用描述"
+                                ng-model="params.description"
+                                required>
+                            </textarea>
+                        </div>
+                        <div class="app-push-save-btn">
+                            <button
+                                class="btn btn-lg btn-info btn-block "
+                                ng-click="createApp(params)"
+                                ng-disabled="form.$invalid">
+                                    创建应用
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <script type="text/ng-template" id="myModalContentSuccess.html">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title">提示</span>
+                <button type="button" class="close" ng-click="cancel()" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="mod-line row">
+                    <p class="text-center" style="font-size: 20px;">创建应用成功!</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info pull-left" ng-click="ok()">继续新建</button>
+                <button type="button" class="btn btn-default pull-right" ng-click="cancel()">返回应用列表</button>
+            </div>
+        </div>
+    </script>
+</div>
