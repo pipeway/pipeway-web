@@ -4,7 +4,8 @@ app.controller('AddServerCtrl', ['$scope', '$http', '$state', '$modal', '$locati
           $scope.popupshow=false;
         }
         $scope.createApp = function (params){
-          var reg1=/^[\w]{2,}$/gi;
+          console.log(params);
+          var reg1=/^[\W]{2,}$/;
           var reg2=/^[\w]{2,}$/;
           var data = {
             name: params.name,
@@ -13,12 +14,12 @@ app.controller('AddServerCtrl', ['$scope', '$http', '$state', '$modal', '$locati
             description: params.description,
             hostGroup:params.hostGroup
           }
-            if (!reg1.test(data.name||data.name==null)){
+            if (!reg1.test(data.name) || data.name == null){
                 $scope.messages="应用名称为空或格式错误！";
                 $scope.popupshow = true;
               }
             else{
-                if(!reg2.test(data.serial) || data.serial==null){
+                if(!reg2.test(data.serial) || data.serial == null){
                   $scope.messages="应用代号为空或格式错误！";
                   $scope.popupshow = true;
                 }
