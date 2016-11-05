@@ -14,43 +14,28 @@
                      class="btn btn-sm btn-danger btn-options pull-right">返回
                   </a>
                   <form name="formValidate" class="form-horizontal form-validation">
-                    <div class="panel panel-default">
-                      <div class="panel-body">
-                        <div class="form-group">
-                          <label class="col-sm-3 control-label">应用名称:</label>
-                          <div class="col-sm-9">
-                            <span class="form-control">{{appDetail.name}}</span>
-                          </div>
+                    <div class="padders">
+                      <div class="list-group ">
+                        <div class="list-group-item list-text b-l-info b-l-8x bg-light clearfix ">
+                            <div class="col-sm-3 text-right">应用名称:</div>
+                            <div class="col-sm-9 text-left">{{appDetail.name}}</div>
                         </div>
-                        <div class="line line-dashed b-b line-lg pull-in"></div>
-                        <div class="form-group">
-                          <label class="col-sm-3 control-label">应用代号:</label>
-                          <div class="col-sm-9">
-                            <span class="form-control">{{appDetail.serial}}</span>
-                          </div>
+                        <div class="list-group-item list-text b-l-warning b-l-8x clearfix">
+                            <div class="col-sm-3 text-right">应用代号:</div>
+                            <div class="col-sm-9 text-left">{{appDetail.serial}}</div>
                         </div>
-                        <div class="line line-dashed b-b line-lg pull-in"></div>
-                        <div class="form-group">
-                          <label class="col-sm-3 control-label">主机组:</label>
-                          <div class="col-sm-9">
-                            <span class="form-control">{{appDetail.hostGroup}}</span>
-                          </div>
+                        <div class="list-group-item list-text b-l-primary b-l-8x bg-light clearfix">
+                            <div class="col-sm-3 text-right">主机组:</div>
+                            <div class="col-sm-9 text-left">{{appDetail.hostGroup}}</div>
                         </div>
-                        <div class="line line-dashed b-b line-lg pull-in"></div>
-                        <div class="form-group">
-                          <label class="col-sm-3 control-label">应用描述:</label>
-                          <div class="col-sm-9">
-                            <span class="form-control">{{appDetail.description}}</span>
-                          </div>
+                        <div class="list-group-item list-text b-l-danger b-l-8x clearfix">
+                            <div class="col-sm-3 text-right">appKey:</div>
+                            <div class="col-sm-9 text-left">{{appKey}}</div>
                         </div>
-                        <div class="line line-dashed b-b line-lg pull-in"></div>
-                        <div class="form-group">
-                          <label class="col-sm-3 control-label">appKey:</label>
-                          <div class="col-sm-9">
-                            <span class="form-control">{{appKey}}</span>
-                          </div>
+                        <div class="list-group-item list-text b-l-success b-l-8x bg-light clearfix">
+                            <span class="col-sm-3 text-right">应用描述:</span>
+                            <small class="col-sm-9  text-left">{{appDetail.description}}</small>
                         </div>
-                      </div>
                     </div>
                   </form>
               </div>

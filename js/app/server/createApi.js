@@ -1,14 +1,17 @@
-app.controller('createApiCtrl', ['$scope', '$http', '$state', '$location', '$modal', 'isLogin', 'user', '$cookies', 'api',
-    function ($scope, $http, $state, $location, $modal, isLogin, user, $cookies, api) {
+app.controller('createApiCtrl', ['$scope', '$http', '$state', '$location', '$modal', 'isLogin', 'user', '$cookies', 'api', '$cookieStore',
+    function ($scope, $http, $state, $location, $modal, isLogin, user, $cookies, api, $cookieStore) {
         var url = $location.url();
         var path = url.split('/');
+        // var pathx = path[3].split('#');
+        // console.log(pathx);
+        // var appKey = pathx[0];
         var appKey = path[3];
         $scope.appKey = appKey;
         $scope.params = {
             parentAppkey: appKey,
             auth: '1',
             method: '0',
-            buildIn: false,
+            // buildIn: false,
             captchaRequired: false
         }
         $scope.expireBtn = false;
@@ -35,13 +38,14 @@ app.controller('createApiCtrl', ['$scope', '$http', '$state', '$location', '$mod
             }
 
         }
-        $scope.createApi = function (params){
+        $scope.createApi = function(params){
             console.log(params);
             validateForm(params);
             if ($scope.methodValidateMessage || $scope.authValidateMessage) {
                 return;
             }
-            api.createApi(params).then(function (res){
+            api.createApi(params).then(function(res){
+                alert(0);
                  $scope.items = res;
                  console.log(res);
                  if (res.success) {
@@ -54,17 +58,17 @@ app.controller('createApiCtrl', ['$scope', '$http', '$state', '$location', '$mod
         };
         function validateForm(data){
            data.captchaRequired = data.captchaRequired ? 1 : 0;
-            data.buildIn = data.buildIn ? 1 : 0;
+            // data.buildIn = data.buildIn ? 1 : 0;
             if(!data.method){
                 $scope.methodValidateMessage = true;
             } else {
                 $scope.methodValidateMessage = false;
             }
-            if(!data.auth){
-                $scope.authValidateMessage = true;
-            } else {
-                $scope.authValidateMessage = false;
-            }
+            // if(!data.auth){
+            //     $scope.authValidateMessage = true;
+            // } else {
+            //     $scope.authValidateMessage = false;
+            // }
         }
         function addSuccess(size) {
             var modalInstance = $modal.open({
@@ -84,4 +88,11 @@ app.controller('createApiCtrl', ['$scope', '$http', '$state', '$location', '$mod
                 $location.path('/server/appList/' + appKey);
             });
         }
+        (function getCookie(){
+          var hostIsviewed2 = 'hostIsviewed2';
+          if($cookieStore.get('hostIsviewed1')){
+              $cookieStore.remove('hostIsviewed1');
+              $cookieStore.put('hostIsviewed2',hostIsviewed2);
+          }
+        })();
 }]);

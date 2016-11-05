@@ -1,5 +1,5 @@
-app.controller('apiListCtrl', ['$scope', '$http', '$state', '$location', 'isLogin', 'user', '$cookies', 'api',
-    function ($scope, $http, $state, $location, isLogin, user, $cookies, api) {
+app.controller('apiListCtrl', ['$scope', '$http', '$state', '$location', 'isLogin', 'user', '$cookies','$cookieStore', 'api',
+    function ($scope, $http, $state, $location, isLogin, user, $cookies,$cookieStore, api) {
         var url = $location.url();
         console.log(url);
         var path = url.split('/');
@@ -32,12 +32,7 @@ app.controller('apiListCtrl', ['$scope', '$http', '$state', '$location', 'isLogi
                 $scope.totalItemsHost = res.data.totalSize;
             })
         }
-        // $scope.changeActive = function(){
-        //   $scope.actived1 = !$scope.actived1;
-        //   $scope.actived2 = !$scope.actived1;
-        //   console.log($scope.actived1);
-        //   console.log($scope.actived2);
-        // }
+
         getHostList(dataHost);
         $scope.pageChangedHost = function(index) {
             dataHost.page = index;
@@ -51,8 +46,10 @@ app.controller('apiListCtrl', ['$scope', '$http', '$state', '$location', 'isLogi
         }
         $scope.currentPageApi = 0;
         $scope.totalItemsApi = 1;
+        // debugger;
         function getApiList(data){
             api.getApiList(data).then(function(res){
+              console.log(res);
               if(res.data.totalSize < 11){
                 $scope.pagination2 = false;
               }
@@ -68,12 +65,37 @@ app.controller('apiListCtrl', ['$scope', '$http', '$state', '$location', 'isLogi
             dataApi.page = index;
             getApiList(dataApi);
         };
-        (function getHash(){
-          var hash = $location.hash();
-          if(hash){
+        // (function getHash(){
+        //   var hash = $location.hash();
+        //   if(hash){
+        //     $scope.actived1 = false;
+        //     $scope.actived2 = true;
+        //     hash = "";
+        //   }
+        // })();
+        $scope.changeActive = function(x){
+          var hostisviewed1 = 'hostisviewed1';
+          var hostisviewed2 = 'hostisviewed2';
+        	var now = (new Date() - 0) + 60*24*30*60*1000;
+          var exp = new Date(now);
+          if(x == 'actived1'){
+                $cookieStore.put('hostIsviewed1',hostisviewed1,{expires: exp});
+                $cookieStore.remove('hostIsviewed2');
+              }
+          else{
+              $cookieStore.put('hostIsviewed2',hostisviewed2,{expires: exp});
+              $cookieStore.remove('hostIsviewed1');
+          }
+        };
+
+        (function getCookies(){
+          if($cookieStore.get('hostIsviewed1')){
+            $scope.actived1 = true;
+            $scope.actived2 = false;
+          }
+          if($cookieStore.get('hostIsviewed2')){
             $scope.actived1 = false;
             $scope.actived2 = true;
-            hash = "";
           }
         })();
     }]);

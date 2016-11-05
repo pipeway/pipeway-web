@@ -38,7 +38,8 @@
                                         </div>
                                     </div> -->
                                     <div class="panel b-a">
-                                        <div class="panel-heading text-center bg-info no-border">
+                                        <div class="  strip1 bg-info text-center"></div>
+                                        <div class="panel-heading text-center no-border">
                                           <h2 class="m-t-none">{{item.name}}
                                           </h2>
                                         </div>
@@ -55,6 +56,10 @@
                                         </ul>
                                         <div class="panel-footer text-center">
                                           <a href='#/server/appList/{{item.appKey}}' class="btn btn-info font-bold m">应用详情</a>
+                                        </div>
+                                        <div  class="panel-footer text-right setup">
+                                          <span class="glyphicon glyphicon-cog"></span>
+                                          <a href='#/server/serverSetting/{{item.appKey}}'>设置</a>
                                         </div>
                                     </div>
                                     <!-- <div class="app-list-body">
@@ -90,7 +95,7 @@
                            <!-- <pagination total-items="totalItems" ng-model="currentPage" ng-click="pageChanged(currentPage)" class="m-t-none m-b pages" previous-text = '上一页' next-text="下一页"></pagination> -->
                         </div>
                     </div>
-                    <pagination ng-if="pages" total-items="totalItems" ng-model="currentPage" ng-click="pageChanged(currentPage)" class="m-t-none m-b pages" previous-text = '上一页' next-text="下一页"></pagination>
+                    <pagination ng-if="pages" total-items="totalItems" ng-model="currentPage" ng-click="pageChanged(currentPage)" class="m-t-none m-b pages pagination2" previous-text = '上一页' next-text="下一页"></pagination>
                 </div>
             </div>
         </div>

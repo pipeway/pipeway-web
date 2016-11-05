@@ -13,7 +13,7 @@
     </div>
     <div class="wrapper-md">
         <tabset class="tab-container" ng-init="steps={percent:10, step1:true, step2:false, step3:true}">
-            <tab heading="主机列表" active="actived1" select="steps.percent=50">
+            <tab heading="主机列表" active="actived1" select="steps.percent=50" ng-click="changeActive('actived1')">
                 <div class="pull-right" style="position: relative; top: -28px; right: -15px;">
                     <a href="/#/server/createHost/{{appKey}}">
                         <button type="button" class="btn btn-sm btn-primary btn-addon" ng-click="addEvent()">
@@ -85,7 +85,7 @@
                     </div>
                 </div>
             </tab>
-            <tab heading="接口列表"  active="actived2" select="steps.percent=50" ng-if="hostList.length">
+            <tab heading="接口列表"  active="actived2" select="steps.percent=50" ng-if="hostList.length" ng-click="changeActive('actived2')">
                 <div class="pull-right" style="position: relative; top: -28px;right: -15px;">
                     <a href="/#/server/createApi/{{appKey}}">
                         <button type="button" class="btn btn-sm btn-primary btn-addon" ng-click="addEvent()">
