@@ -2,6 +2,9 @@ app.controller('createApiCtrl', ['$scope', '$http', '$state', '$location', '$mod
     function ($scope, $http, $state, $location, $modal, isLogin, user, $cookies, api) {
         var url = $location.url();
         var path = url.split('/');
+        // var pathx = path[3].split('#');
+        // console.log(pathx);
+        // var appKey = pathx[0];
         var appKey = path[3];
         $scope.appKey = appKey;
         $scope.params = {
