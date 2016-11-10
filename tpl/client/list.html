@@ -30,23 +30,28 @@
                                 <div class="app-list" ng-repeat="item in appList">
 
                                   <div class="panel b-a">
-                                      <div class="panel-heading text-center bg-info no-border">
+                                      <div class="  strip2 bg-primary1 text-center"></div>
+                                      <div class="panel-heading text-center  no-border">
                                         <h2 class="m-t-none">{{item.name}}
                                         </h2>
                                       </div>
                                       <ul class="list-group">
                                         <li class="list-group-item">
-                                          <i class="icon-check text-success m-r-xs"></i> 应用代号：{{item.serial}}
+                                          <i class="icon-check text-info m-r-xs"></i> 应用代号：{{item.serial}}
                                         </li>
                                         <li class="list-group-item">
-                                          <i class="icon-check text-success m-r-xs"></i> 主机组：{{item.hostGroup}}
+                                          <i class="icon-check text-info m-r-xs"></i> 主机组：{{item.hostGroup}}
                                         </li>
                                         <li class="list-group-item">
-                                          <i class="icon-check text-success m-r-xs"></i> 应用描述：{{item.description}}
+                                          <i class="icon-check text-info m-r-xs"></i> 应用描述：{{item.description}}
                                         </li>
                                       </ul>
                                       <div class="panel-footer text-center">
-                                        <a href='#/client/appDetail/{{item.appKey}}' class="btn btn-info font-bold m">应用详情</a>
+                                        <a href='#/client/appDetail/{{item.appKey}}' class="btn btn-primary1 font-bold m">应用详情</a>
+                                      </div>
+                                      <div  class="panel-footer text-right setup">
+                                        <span class="glyphicon glyphicon-cog"></span>
+                                        <a href='#/client/clientSetting/{{item.appKey}}'>设置</a>
                                       </div>
                                   </div>
 
@@ -54,7 +59,7 @@
                             </form>
                         </div>
                     </div>
-                      <pagination  ng-if="pages" total-items="totalItems" ng-model="currentPage" ng-click="pageChanged(currentPage)" class="m-t-none m-b pages" previous-text = '上一页' next-text="下一页"></pagination>
+                      <pagination  ng-if="pages" total-items="totalItems" ng-model="currentPage" ng-click="pageChanged(currentPage)" class="m-t-none m-b pages pagination1" previous-text = '上一页' next-text="下一页"></pagination>
                 </div>
             </div>
         </div>

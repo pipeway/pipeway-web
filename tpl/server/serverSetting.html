@@ -1,0 +1,147 @@
+<!-- hbox layout -->
+<div class="hbox hbox-auto-xs bg-light " ng-init="
+  app.settings.asideFixed = true;
+  app.settings.asideDock = false;
+  app.settings.container = false;
+  app.hideAside = false;
+  app.hideFooter = true;"
+  ng-controller="ServerSettingCtrl">
+    <div class="col w-lg lt">
+        <div class="vbox">
+            <div class="wrapper">
+                <div class="app-box-push clearfix" style="padding-left:22px;">
+                    <a href="/#/server/list"
+                       class="btn btn-sm btn-danger btn-options pull-right">返回
+                    </a>
+                    <form name="form" class="form-validation" style="padding-left:20px;border-left:2px #cfdadd solid;">
+                      <div class="app-push-appName " style="position:relative; width:200px;">
+                        <span class="label text-base bg-info pos-rlt m-r"  style="font-size:15px;">
+                          <i class="arrow left arrow-info"></i>
+                          应用名称&nbsp;<span class="has-error">*</span>
+                        </span>
+                          <i class="fa fax fa-fw fa-circle text-muted " color="#7266ba" label-color style="color: rgb(35, 183, 229);"></i>
+                      </div>
+                      <input class="form-control"
+                             type="text"
+                             ng-model="appdetail.name">
+                     <div class="app-push-appName" style="position:relative;">应用代号&nbsp;<span class="has-error">*</span>
+                          <i class="fa fax fa-fw fa-circle text-muted " color="#7266ba" label-color style="color: rgb(250, 215, 51);"></i>
+                     </div>
+                     <input class="form-control"
+                            type="text"
+                            readonly="readonly"
+                            ng-model="appdetail.serial">
+                      <div class="app-push-appName" style="position:relative;">应用key&nbsp;<span class="has-error">*</span>
+                          <i class="fa fax fa-fw fa-circle text-muted " color="#7266ba" label-color style="color: rgb(114, 102, 186);"></i>
+                      </div>
+                      <input class="form-control"
+                           type="text"
+                           readonly="readonly"
+                           ng-model="appdetail.appKey">
+                     <div class="app-push-appName" style="position:relative;">应用密钥&nbsp;<span class="has-error">*</span>
+                          <i class="fa fax fa-fw fa-circle text-muted " color="#7266ba" label-color style="color: rgb(240, 80, 80);"></i>
+                     </div>
+                     <input class="form-control"
+                          type="text"
+                          readonly="readonly"
+                          ng-model="appdetail.appSecret">
+                      <div class="app-push-appName" style="position:relative;">
+                          <span class="label text-base bg-success pos-rlt m-r"  style="font-size:15px;">
+                            <i class="arrow left arrow-success"></i>
+                            主机组&nbsp;<span class="has-error">*</span>
+                          </span>
+                          <i class="fa fax fa-fw fa-circle text-muted " color="#7266ba" label-color style="color:rgb(39, 194, 76);"></i>
+                      </div>
+                      <input class="form-control"
+                             type="text"
+                             ng-model="appdetail.hostGroup">
+                      <div class="app-push-appName" style="position:relative;">
+                        <span class="label text-base bg-primary pos-rlt m-r"  style="font-size:15px;">
+                          <i class="arrow left arrow-primary"></i>
+                          应用描述&nbsp;
+                        </span>
+                          <i class="fa fax fa-fw fa-circle text-muted " color="#7266ba" label-color style="color: rgb(114, 102, 186);"></i>
+                      </div>
+                      <textarea class="form-control"
+                                rows="3"
+                                ng-model="appdetail.description">
+                      </textarea>
+                        <!-- <div class="app-push-appName">应用名称<span class="has-error">*</span></div>
+                        <input class="form-control"
+                               type="text"
+                               ng-model="appdetail.name">
+                         <div class="app-push-appName">应用代号<span class="has-error">*</span></div>
+                         <div class="ng-binding text-left">{{appdetail.serial}}</div>
+                         <div class="app-push-appName">应用key<span class="has-error">*</span></div>
+                         <div class="ng-binding text-left">{{appdetail.appKey}}</div>
+                         <div class="app-push-appName">应用密钥<span class="has-error">*</span></div>
+                         <div class="ng-binding text-left">{{appdetail.appSecret}}</div>
+                         <div class="app-push-appName">主机组<span class="has-error">*</span></div>
+                         <input class="form-control"
+                               type="text"
+                               ng-model="appdetail.hostGroup">
+                            <div class="app-push-appName">应用描述</div>
+                        <textarea class="form-control"
+                                  rows="3"
+                                  ng-model="appdetail.description">
+                        </textarea> -->
+                        <div class="app-push-save-btn" style="float:left; margin:20px 0 0 20px;">
+                            <button  class="btn btn-lg btn-info btn-block "
+                                     ng-disabled="form.$invalid"
+                                     ng-click="updateApp()">修改应用</button>
+                        </div>
+                        <div class="app-push-save-btn " style="float:right;margin:20px 20px 0 0;">
+                            <button  class="btn btn-lg btn-danger btn-block "
+                                     ng-disabled="form.$invalid"
+                                     ng-click="deleteApp()">删除应用</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="prompt-popup1" ng-if="popupshow1">
+            <div class="popup-text">
+              <div class="promptxt1">
+                  <p>提示<span class="glyphicon glyphicon-remove" style="float:right; margin:8px 12px 0 0;" ng-click="closePopup()"></span></p>
+              </div>
+              <div class="promptxt2">
+                  <p>您确定要修改该应用吗？</p>
+              </div>
+              <div class="promptxt3">
+                    <div class="app-push-save-btn " style="float:right;margin:6px 20px 0 0; background:#ffffff;">
+                        <button  class="btn  btn-danger btn-block "
+                                  ng-disabled="form.$invalid"
+                                  ng-click="okUpdate(appdetail)">确认修改</button>
+                    </div>
+                    <div class="app-push-save-btn " style="float:right;margin:6px 20px 0 0; background:#ffffff;">
+                      <button  class="btn  btn-info btn-block "
+                               ng-disabled="form.$invalid"
+                               ng-click="noUpdate()">放弃修改</button>
+                   </div>
+             </div>
+           </div>
+        </div>
+        <div class="prompt-popup2"ng-if="popupshow2">
+            <div class="popup-text">
+              <div class="promptxt1">
+                  <p>提示<span class="glyphicon glyphicon-remove" style="float:right; margin:8px 12px 0 0;" ng-click="closePopup()"></span></p>
+              </div>
+              <div class="promptxt2">
+                  <p>您确定要删除该应用吗？</p>
+              </div>
+              <div class="promptxt3">
+                    <div class="app-push-save-btn " style="float:right;margin:6px 20px 0 0; background:#ffffff;">
+                        <button  class="btn  btn-danger btn-block "
+                                  ng-disabled="form.$invalid"
+                                  ng-click="okDelete()">确认删除</button>
+                    </div>
+                    <div class="app-push-save-btn " style="float:right;margin:6px 20px 0 0; background:#ffffff;">
+                      <button  class="btn  btn-info btn-block "
+                               ng-disabled="form.$invalid"
+                               ng-click="noDelete()">放弃删除</button>
+                   </div>
+             </div>
+           </div>
+        </div>
+    </div>
+</div>

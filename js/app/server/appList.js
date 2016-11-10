@@ -46,8 +46,10 @@ app.controller('apiListCtrl', ['$scope', '$http', '$state', '$location', 'isLogi
         }
         $scope.currentPageApi = 0;
         $scope.totalItemsApi = 1;
+        // debugger;
         function getApiList(data){
             api.getApiList(data).then(function(res){
+              console.log(res);
               if(res.data.totalSize < 11){
                 $scope.pagination2 = false;
               }
