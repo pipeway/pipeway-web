@@ -31,7 +31,7 @@
 14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:211:5)
 15 verbose pkgid pipeway-web@1.0.0
 16 verbose cwd /Users/huip/Work/pipeway-web
-17 error Darwin 15.5.0
+17 error Darwin 16.0.0
 18 error argv "/Users/huip/.nvm/versions/io.js/v2.3.4/bin/iojs" "/Users/huip/.nvm/versions/io.js/v2.3.4/lib/node_modules/ccnpm/node_modules/.bin/npm" "--userconfig=/Users/huip/.ccnpmrc" "--disturl=https://npm.taobao.org/mirrors/iojs" "--cache=/Users/huip/.ccnpm" "--registry=http://npmcc.creditcloud.com" "run" "dev"
 19 error node v2.3.4
 20 error npm  v3.7.5

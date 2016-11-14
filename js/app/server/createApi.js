@@ -5,7 +5,9 @@ app.controller('createApiCtrl', ['$scope', '$http', '$state', '$location', '$mod
         $scope.params = {
             parentAppkey: appKey,
             auth: '1',
-            method: '0'
+            method: '0',
+            buildIn: false,
+            captchaRequired: false
         }
         $scope.expireBtn = false;
         $scope.timesBtn = false;
@@ -49,16 +51,18 @@ app.controller('createApiCtrl', ['$scope', '$http', '$state', '$location', '$mod
             })
         };
         function validateForm(data){
-            // if(!data.method){
-            //     $scope.methodValidateMessage = true;
-            // } else {
-            //     $scope.methodValidateMessage = false;
-            // }
-            // if(!data.auth){
-            //     $scope.authValidateMessage = true;
-            // } else {
-            //     $scope.authValidateMessage = false;
-            // }
+           data.captchaRequired = data.captchaRequired ? 1 : 0;
+            data.buildIn = data.buildIn ? 1 : 0;
+            if(!data.method){
+                $scope.methodValidateMessage = true;
+            } else {
+                $scope.methodValidateMessage = false;
+            }
+            if(!data.auth){
+                $scope.authValidateMessage = true;
+            } else {
+                $scope.authValidateMessage = false;
+            }
         }
         function addSuccess(size) {
             var modalInstance = $modal.open({

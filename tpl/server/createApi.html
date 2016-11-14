@@ -63,6 +63,25 @@
                           </div>
                         </div>
                         <div class="form-group">
+                            <label class="col-sm-5">是否为内置方法</label>
+                            <div class="col-sm-7">
+                                <label class="i-switch m-t-xs m-r">
+                                    <input type="checkbox" ng-model="params.buildIn">
+                                    <i></i>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-5">是否需要图形验证码验证</label>
+                            <div class="col-sm-7">
+                                <label class="i-switch m-t-xs m-r">
+                                    <input type="checkbox" ng-model="params.captchaRequired">
+                                    <i></i>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
                           <label class="col-sm-5">是否开启接口访问过期时间</label>
                           <div class="col-sm-7">
                             <label class="i-switch m-t-xs m-r">
