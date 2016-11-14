@@ -88,15 +88,15 @@ angular.module('app')
                           }]
                   }
               })
-              .state('server.add', {
+              .state('server.create', {
                   url: '/add',
-                  templateUrl: 'tpl/server/addServer.html',
+                  templateUrl: 'tpl/server/createServer.html',
                   resolve: {
                       deps: ['uiLoad', '$ocLazyLoad',
                           function( uiLoad, $ocLazyLoad){
                               return $ocLazyLoad.load('angularFileUpload').then(
                                   function() {
-                                      return $ocLazyLoad.load(['js/app/server/addServer.js',
+                                      return $ocLazyLoad.load(['js/app/server/createServer.js',
                                           'vendor/libs/moment.min.js'
                                       ]);
                                   }
@@ -185,15 +185,15 @@ angular.module('app')
                           }]
                   }
               })
-              .state('client.add', {
+              .state('client.create', {
                   url: '/add',
-                  templateUrl: 'tpl/client/addClient.html',
+                  templateUrl: 'tpl/client/createClient.html',
                   resolve: {
                       deps: ['uiLoad', '$ocLazyLoad',
                           function( uiLoad, $ocLazyLoad){
                               return $ocLazyLoad.load('angularFileUpload').then(
                                   function() {
-                                      return $ocLazyLoad.load(['js/app/client/addClient.js',
+                                      return $ocLazyLoad.load(['js/app/client/createClient.js',
                                           'vendor/libs/moment.min.js'
                                       ]);
                                   }

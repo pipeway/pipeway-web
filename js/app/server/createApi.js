@@ -29,7 +29,7 @@ app.controller('createApiCtrl', ['$scope', '$http', '$state', '$location', '$mod
             } else {
                 $scope.params.auth = '1';
             }
-            
+
         }
         $scope.createApi = function (params){
             console.log(params);
@@ -49,16 +49,16 @@ app.controller('createApiCtrl', ['$scope', '$http', '$state', '$location', '$mod
             })
         };
         function validateForm(data){
-            if(!data.method){
-                $scope.methodValidateMessage = true;
-            } else {
-                $scope.methodValidateMessage = false;
-            }
-            if(!data.auth){
-                $scope.authValidateMessage = true;
-            } else {
-                $scope.authValidateMessage = false;
-            }
+            // if(!data.method){
+            //     $scope.methodValidateMessage = true;
+            // } else {
+            //     $scope.methodValidateMessage = false;
+            // }
+            // if(!data.auth){
+            //     $scope.authValidateMessage = true;
+            // } else {
+            //     $scope.authValidateMessage = false;
+            // }
         }
         function addSuccess(size) {
             var modalInstance = $modal.open({
