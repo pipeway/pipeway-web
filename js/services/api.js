@@ -23,6 +23,7 @@ function api($http) {
             return httpPost('/pipeway/v1/api/create', data);
         },
         getApiList: function(data){
+            data.appKey = data.appKey.replace('#hash', '');
             return httpGet('/pipeway/v1/api/list/' + data.appKey + '?page=' + data.page + '&pageSize=' + data.pageSize);
         },
         getAppDetail:function(data){
@@ -35,6 +36,7 @@ function api($http) {
             return httpPost('/pipeway/v1/host/create', data);
         },
         getHostList: function(data){
+            // data.appKey = data.appKey.replace('#hash', '');
             return httpGet('/pipeway/v1/host/list/' + data.appKey + '?page=' + data.page + '&pageSize=' + data.pageSize);
         },
         hostDetail: function(data){
