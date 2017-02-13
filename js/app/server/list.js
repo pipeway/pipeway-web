@@ -1,5 +1,5 @@
-app.controller('ServerListCtrl', ['$scope', '$http', '$state', 'isLogin', 'user', '$cookies', 'api',
-    function ($scope, $http, $state, isLogin, user, $cookies, api) {
+app.controller('ServerListCtrl', ['$scope', '$http', '$state', 'isLogin', 'user', '$cookies', 'api', '$cookieStore',
+    function ($scope, $http, $state, isLogin, user, $cookies, api, $cookieStore) {
     var data = {
         type: 1,
         page: 1,
@@ -23,4 +23,10 @@ app.controller('ServerListCtrl', ['$scope', '$http', '$state', 'isLogin', 'user'
         data.page = index;
         getServerList(data);
     };
+    (function getCookie(){
+      if($cookieStore.get('hostIsviewed2')||$cookieStore.get('hostIsviewed1')){
+         $cookieStore.remove('hostIsviewed2');
+         $cookieStore.remove('hostIsviewed1');
+      }
+    })();
 }]);

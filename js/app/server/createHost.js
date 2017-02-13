@@ -1,6 +1,8 @@
-app.controller('createHostCtrl', ['$scope', '$http', '$state', '$location', '$modal', 'isLogin', 'user', '$cookies', 'api', 'appKey',
-    function ($scope, $http, $state, $location, $modal, isLogin, user, $cookies, api, appKey) {
-        var appKey = appKey;
+app.controller('createHostCtrl', ['$scope', '$http', '$state', '$location', '$modal', 'isLogin', 'user', '$cookies', 'api', '$cookieStore',
+    function ($scope, $http, $state, $location, $modal, isLogin, user, $cookies,api,$cookieStore ) {
+        var url = $location.url();
+        var path = url.split('/');
+        var appKey = path[3];
         $scope.appKey = appKey;
         $scope.params = {
             parentAppkey: appKey,
@@ -61,4 +63,12 @@ app.controller('createHostCtrl', ['$scope', '$http', '$state', '$location', '$mo
                 $location.path('/server/appList/' + appKey);
             });
         }
+
+        (function getCookie(){
+          var hostIsviewed1 = 'hostIsviewed1';
+          if($cookieStore.get('hostIsviewed2')){
+            $cookieStore.remove('hostIsviewed2');
+            $cookieStore.put('hostIsviewed1',hostIsviewed1);
+          }
+        })();
 }]);

@@ -10,7 +10,7 @@
         <div class="vbox">
             <div class="wrapper">
                 <div class="app-box-push">
-                    <a href="#/server/appList/{{appKey}}#hash"
+                    <a href="#/server/appList/{{appKey}}"
                        class="btn btn-sm btn-danger btn-options pull-right">返回
                     </a>
                     <form name="form" class="form-validation">
@@ -56,7 +56,7 @@
                         <div class="form-group">
                           <label class="col-sm-5">是否需要鉴权</label>
                           <div class="col-sm-7">
-                            <label class="i-switch m-t-xs m-r">
+                            <label class="i-switch bg-info m-t-xs m-r">
                               <input type="checkbox" ng-click="openAuth()">
                               <i></i>
                             </label>
@@ -65,7 +65,7 @@
                         <div class="form-group">
                             <label class="col-sm-5">是否为内置方法</label>
                             <div class="col-sm-7">
-                                <label class="i-switch m-t-xs m-r">
+                                <label class="i-switch bg-info m-t-xs m-r">
                                     <input type="checkbox" ng-model="params.buildIn">
                                     <i></i>
                                 </label>
@@ -74,7 +74,7 @@
                         <div class="form-group">
                             <label class="col-sm-5">是否需要图形验证码验证</label>
                             <div class="col-sm-7">
-                                <label class="i-switch m-t-xs m-r">
+                                <label class="i-switch bg-info m-t-xs m-r">
                                     <input type="checkbox" ng-model="params.captchaRequired">
                                     <i></i>
                                 </label>
@@ -84,7 +84,7 @@
                         <div class="form-group">
                           <label class="col-sm-5">是否开启接口访问过期时间</label>
                           <div class="col-sm-7">
-                            <label class="i-switch m-t-xs m-r">
+                            <label class="i-switch bg-info m-t-xs m-r">
                               <input type="checkbox" ng-click="openExpire()">
                               <i></i>
                             </label>
@@ -103,7 +103,7 @@
                         <div class="form-group">
                           <label class="col-sm-5">是否开启接口限制次数</label>
                           <div class="col-sm-7">
-                            <label class="i-switch m-t-xs m-r">
+                            <label class="i-switch bg-info m-t-xs m-r">
                               <input type="checkbox" ng-click="openTimes()">
                               <i></i>
                             </label>
@@ -122,7 +122,7 @@
                         <div class="form-group">
                           <label class="col-sm-5">是否开启接口缓存</label>
                           <div class="col-sm-7">
-                            <label class="i-switch m-t-xs m-r">
+                            <label class="i-switch bg-info m-t-xs m-r">
                               <input type="checkbox" ng-click="openCache()">
                               <i></i>
                             </label>
@@ -149,7 +149,7 @@
                         <div class="form-group">
                           <label class="col-sm-5">是否添加接口描述</label>
                           <div class="col-sm-7">
-                            <label class="i-switch m-t-xs m-r">
+                            <label class="i-switch bg-info m-t-xs m-r">
                               <input type="checkbox" ng-click="openDescribe()">
                               <i></i>
                             </label>

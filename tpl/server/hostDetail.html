@@ -6,7 +6,102 @@
   app.hideAside = false;
   app.hideFooter = true;"
   ng-controller="hostDetailCtrl">
-    <div class="col w-lg lt host-detail">
+  <div class="col w-lg lt">
+      <div class="vbox">
+          <div class="wrapper">
+              <div class="app-box-push clearfix">
+                  <a href="#/server/appList/{{hostdetail.parentAppkey}}"
+                     class="btn btn-sm btn-danger btn-options pull-right">返回
+                  </a>
+                  <form name="form" class="form-validation">
+                      <div class="app-push-appName">主机名称<span class="has-error">*</span></div>
+                      <input class="form-control"
+                             type="text"
+                             ng-model="hostdetail.name">
+                        <div class="app-push-appName">协议名称<span class="has-error">*</span></div>
+                        <select name="account" class="form-control" ng-model="hostdetail.protocal">
+                          <option value="0">http</option>
+                          <option value="1">https</option>
+                          <option value="2">socket</option>
+                          <option value="3">udp</option>
+                        </select>
+                        <!-- <input class="form-control"
+                               type="text"
+                               ng-model="hostdetail.protocal"> -->
+                         <div class="app-push-appName">主机地址<span class="has-error">*</span></div>
+                         <input class="form-control"
+                                type="text"
+                                ng-model="hostdetail.host">
+                          <div class="app-push-appName">端口号<span class="has-error">*</span></div>
+                          <input class="form-control"
+                                 type="text"
+                                 ng-model="hostdetail.port">
+                            <div class="app-push-appName">主机描述</div>
+                            <textarea class="form-control"
+                                      rows="3"
+                                      placeholder="请输入应用描述"
+                                      ng-model="hostdetail.description">
+                            </textarea>
+                      <div class="app-push-save-btn" style="float:left; margin:20px 0 0 20px;">
+                          <button  class="btn btn-lg btn-info btn-block "
+                                   ng-disabled="form.$invalid"
+                                   ng-click="updateApp()">修改应用</button>
+                      </div>
+                      <div class="app-push-save-btn " style="float:right;margin:20px 20px 0 0;">
+                          <button  class="btn btn-lg btn-danger btn-block "
+                                   ng-disabled="form.$invalid"
+                                   ng-click="deleteApp()">删除应用</button>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+      <div class="prompt-popup1" ng-if="popupshow1">
+          <div class="popup-text">
+            <div class="promptxt1">
+                <p>提示<span class="glyphicon glyphicon-remove" style="float:right; margin:8px 12px 0 0;" ng-click="closePopup()"></span></p>
+            </div>
+            <div class="promptxt2">
+                <p>您确定要修改该应用吗？</p>
+            </div>
+            <div class="promptxt3">
+                  <div class="app-push-save-btn " style="float:right;margin:6px 20px 0 0; background:#ffffff;">
+                      <button  class="btn  btn-danger btn-block "
+                                ng-disabled="form.$invalid"
+                                ng-click="okUpdate(hostdetail)">确认修改</button>
+                  </div>
+                  <div class="app-push-save-btn " style="float:right;margin:6px 20px 0 0; background:#ffffff;">
+                    <button  class="btn  btn-info btn-block "
+                             ng-disabled="form.$invalid"
+                             ng-click="noUpdate()">放弃修改</button>
+                 </div>
+           </div>
+         </div>
+      </div>
+      <div class="prompt-popup2"ng-if="popupshow2">
+          <div class="popup-text">
+            <div class="promptxt1">
+                <p>提示<span class="glyphicon glyphicon-remove" style="float:right; margin:8px 12px 0 0;" ng-click="closePopup()"></span></p>
+            </div>
+            <div class="promptxt2">
+                <p>您确定要删除该应用吗？</p>
+            </div>
+            <div class="promptxt3">
+                  <div class="app-push-save-btn " style="float:right;margin:6px 20px 0 0; background:#ffffff;">
+                      <button  class="btn  btn-danger btn-block "
+                                ng-disabled="form.$invalid"
+                                ng-click="okDelete()">确认删除</button>
+                  </div>
+                  <div class="app-push-save-btn " style="float:right;margin:6px 20px 0 0; background:#ffffff;">
+                    <button  class="btn  btn-info btn-block "
+                             ng-disabled="form.$invalid"
+                             ng-click="noDelete()">放弃删除</button>
+                 </div>
+           </div>
+         </div>
+      </div>
+  </div>
+    <!-- <div class="col w-lg lt host-detail">
         <div class="vbox">
             <div class="wrapper">
                 <div class="app-box-push">
@@ -15,7 +110,7 @@
                     </a>
                     <form name="formValidate" class="form-horizontal form-validation">
                       <div class="panel panel-default">
-                        <div class="panel-body">                    
+                        <div class="panel-body">
                           <div class="form-group">
                             <label class="col-sm-3 control-label">主机名称:</label>
                             <div class="col-sm-9">
@@ -56,5 +151,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>
