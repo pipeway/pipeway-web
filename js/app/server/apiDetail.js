@@ -23,6 +23,8 @@ app.controller('apiDetailCtrl', ['$scope', '$http', '$state', '$location', 'isLo
                     $scope.method = res.data.method;
                     $scope.requestUrl = res.data.requestUrl;
                     $scope.auth = res.data.auth;
+                    $scope.buildIn = res.data.buildIn;
+                    $scope.captchaRequired = res.data.captchaRequired;
                     $scope.rateLimitTtl = res.data.rateLimitTtl;
                     $scope.rateLimitNum = res.data.rateLimitNum;
                     $scope.cacheKey = res.data.cacheKey;
@@ -54,6 +56,12 @@ app.controller('apiDetailCtrl', ['$scope', '$http', '$state', '$location', 'isLo
             }
             if ($scope.auth != $scope.apidetail.auth) {
                 data.auth = $scope.apidetail.auth;
+            }
+            if ($scope.buildIn != $scope.apidetail.buildIn) {
+                data.buildIn = $scope.apidetail.buildIn;
+            }
+            if ($scope.captchaRequired != $scope.apidetail.captchaRequired) {
+                data.captchaRequired = $scope.apidetail.captchaRequired;
             }
             if ($scope.rateLimitTtl != $scope.apidetail.rateLimitTtl) {
                 data.rateLimitTtl = $scope.apidetail.rateLimitTtl;
@@ -105,6 +113,20 @@ app.controller('apiDetailCtrl', ['$scope', '$http', '$state', '$location', 'isLo
                 $scope.apidetail.auth = 0;
             } else {
                 $scope.apidetail.auth = 1;
+            }
+        };
+        var openBuildIn = function () {
+            if ($scope.apidetail.buildIn) {
+                $scope.apidetail.buildIn = 0;
+            } else {
+                $scope.apidetail.buildIn = 1;
+            }
+        };
+        var openCaptcha = function () {
+            if ($scope.apidetail.captchaRequired) {
+                $scope.apidetail.captchaRequired = 0;
+            } else {
+                $scope.apidetail.captchaRequired = 1;
             }
         };
 
@@ -167,6 +189,8 @@ app.controller('apiDetailCtrl', ['$scope', '$http', '$state', '$location', 'isLo
             openCache: openCache,
             openExpire: openExpire,
             openAuth: openAuth,
+            openBuildIn: openBuildIn,
+            openCaptcha: openCaptcha,
             checkCache: checkCache,
             checkExpire: checkExpire,
             editApi: editApi,
