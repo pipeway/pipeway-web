@@ -27,7 +27,7 @@ function api($http) {
             return httpGet('/pipeway/v1/api/list/' + data.appKey + '?page=' + data.page + '&pageSize=' + data.pageSize);
         },
         apiUpdate: function(data){
-            return httpPost('/pipeway/v1/api/update/'+ data.id);
+            return httpPost('/pipeway/v1/api/update/'+ data.id, data);
         },
         apiDelete: function(data){
             return httpPost('/pipeway/v1/api/delete/' + data.id);
@@ -36,7 +36,7 @@ function api($http) {
              return httpGet('/pipeway/v1/app/' + data.appKey);
         },
         appUpdate: function(data){
-            return httpPost('/pipeway/v1/app/update/' + data.appKey);
+            return httpPost('/pipeway/v1/app/update/' + data.appKey, data);
         },
         appDelete: function(data){
             return httpPost('/pipeway/v1/app/delete/' + data.appKey);
@@ -55,7 +55,7 @@ function api($http) {
             return httpGet('/pipeway/v1/host/' + data.id);
         },
         hostUpdate: function(data){
-            return httpPost('/pipeway/v1/host/update/' + data.id);
+            return httpPost('/pipeway/v1/host/update/' + data.id, data);
         },
         hostDelete: function(data){
             return httpPost('/pipeway/v1/host/delete/' + data.id);
