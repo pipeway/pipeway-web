@@ -5,42 +5,46 @@
   app.settings.container = false;
   app.hideAside = false;
   app.hideFooter = true;"
-  ng-controller="appDetailCtrl">
-  <div class="col w-lg lt host-detail">
-      <div class="vbox">
-          <div class="wrapper">
-              <div class="app-box-push">
-                  <a href="#/client/list"
-                     class="btn btn-sm btn-danger btn-options pull-right">返回
-                  </a>
-                  <form name="formValidate" class="form-horizontal form-validation">
-                    <div class="padders">
-                      <div class="list-group ">
-                        <div class="list-group-item list-text b-l-info b-l-8x bg-light clearfix ">
-                            <div class="col-sm-3 text-right">应用名称:</div>
-                            <div class="col-sm-9 text-left">{{appDetail.name}}</div>
-                        </div>
-                        <div class="list-group-item list-text b-l-warning b-l-8x clearfix">
-                            <div class="col-sm-3 text-right">应用代号:</div>
-                            <div class="col-sm-9 text-left">{{appDetail.serial}}</div>
-                        </div>
-                        <div class="list-group-item list-text b-l-primary b-l-8x bg-light clearfix">
-                            <div class="col-sm-3 text-right">主机组:</div>
-                            <div class="col-sm-9 text-left">{{appDetail.hostGroup}}</div>
-                        </div>
-                        <div class="list-group-item list-text b-l-danger b-l-8x clearfix">
-                            <div class="col-sm-3 text-right">appKey:</div>
-                            <div class="col-sm-9 text-left">{{appKey}}</div>
-                        </div>
-                        <div class="list-group-item list-text b-l-success b-l-8x bg-light clearfix">
-                            <span class="col-sm-3 text-right">应用描述:</span>
-                            <small class="col-sm-9  text-left">{{appDetail.description}}</small>
-                        </div>
-                    </div>
-                  </form>
-              </div>
-          </div>
-      </div>
-  </div>
+     ng-controller="appDetailCtrl">
+    <div class="col w-lg lt host-detail">
+        <div class="vbox">
+            <div class="wrapper">
+                <div class="app-box-push">
+                    <a href="#/client/list"
+                       class="btn btn-sm btn-danger btn-options pull-right">返回
+                    </a>
+                    <form name="formValidate" class="form-horizontal form-validation">
+                        <div class="padders">
+                            <div class="list-group ">
+                                <div class="list-group-item list-text b-l-info b-l-8x bg-light clearfix ">
+                                    <div class="col-sm-3 text-right">应用名称:</div>
+                                    <div class="col-sm-9 text-left">{{appDetail.name}}</div>
+                                </div>
+                                <div class="list-group-item list-text b-l-warning b-l-8x clearfix">
+                                    <div class="col-sm-3 text-right">应用代号:</div>
+                                    <div class="col-sm-9 text-left">{{appDetail.serial}}</div>
+                                </div>
+                                <div class="list-group-item list-text b-l-primary b-l-8x bg-light clearfix">
+                                    <div class="col-sm-3 text-right">主机组:</div>
+                                    <div class="col-sm-9 text-left">{{appDetail.hostGroup}}</div>
+                                </div>
+                                <div class="list-group-item list-text b-l-info b-l-8x clearfix">
+                                    <div class="col-sm-3 text-right">appSecret:</div>
+                                    <div class="col-sm-9 text-left">{{appDetail.appSecret}}</div>
+                                </div>
+                                <div class="list-group-item list-text b-l-danger b-l-8x clearfix">
+                                    <div class="col-sm-3 text-right">appKey:</div>
+                                    <div class="col-sm-9 text-left">{{appKey}}</div>
+                                </div>
+                                <div class="list-group-item list-text b-l-success b-l-8x bg-light clearfix">
+                                    <span class="col-sm-3 text-right">应用描述:</span>
+                                    <small class="col-sm-9  text-left">{{appDetail.description}}</small>
+                                </div>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- /column -->
 </div>
