@@ -52,8 +52,8 @@ app.controller('createApiCtrl', ['$scope', '$http', '$state', '$location', '$mod
             }
         };
         $scope.createApi = function(params){
-            console.log(params);
-            validateForm(params);
+            //console.log(params);
+            //validateForm(params);
             if ($scope.methodValidateMessage || $scope.authValidateMessage) {
                 return;
             }
