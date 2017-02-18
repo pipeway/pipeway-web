@@ -5,7 +5,7 @@
   app.settings.container = false;
   app.hideAside = false;
   app.hideFooter = true;"
-  ng-controller="CreateServerCtrl">
+     ng-controller="CreateServerCtrl">
     <div class="col w-lg lt">
         <div class="vbox">
             <div class="wrapper">
@@ -21,47 +21,48 @@
                                ng-model="params.name"
                                required>
                         <div class="error">
-                          <span ng-if="nameValidateMessage">*您输入的应用名称格式有误，请您重新输入</span>
+                            <span ng-if="nameValidateMessage">*您输入的应用名称格式有误，请您重新输入</span>
                         </div>
-                         <div class="app-push-appName">应用代号<span class="has-error">*</span></div>
-                         <input class="form-control"
-                                type="text"
-                                placeholder="请输入应用代号"
-                                ng-model="params.serial"
-                                required>
-                          <div class="error">
+                        <div class="app-push-appName">应用代号<span class="has-error">*</span></div>
+                        <input class="form-control"
+                               type="text"
+                               placeholder="请输入应用代号"
+                               ng-model="params.serial"
+                               required>
+                        <div class="error">
                             <span ng-if="serialValidateMessage">*您输入的应用代号格式有误，请您重新输入</span>
-                          </div>
-                          <div class="app-push-appName">主机组<span class="has-error">*</span></div>
-                          <input class="form-control"
-                                 type="text"
-                                 placeholder="请输入主机组"
-                                 ng-model="params.hostGroup">
-                           <div class="error">
-                             <span ng-if="hostGroupValidateMessage">*您输入的主机组格式有误，请您重新输入</span>
-                           </div>
-                           <div class="form-group">
-                             <label class="col-sm-5">是否添加应用描述</label>
-                             <div class="col-sm-7">
-                               <label class="i-switch bg-info m-t-xs m-r">
-                                 <input type="checkbox" ng-click="openDescribe()">
-                                 <i></i>
-                               </label>
-                             </div>
-                           </div>
-                           <div ng-if="describeBtn">
-                              <div class="app-push-appName">应用描述<span class="has-error">*</span></div>
-                              <textarea class="form-control"
-                                        rows="3"
-                                        placeholder="请输入应用描述"
-                                        ng-model="params.description"
-                                        required>
+                        </div>
+                        <div class="app-push-appName">主机组<span class="has-error">*</span></div>
+                        <input class="form-control"
+                               type="text"
+                               placeholder="请输入主机组"
+                               ng-model="params.hostGroup">
+                        <div class="error">
+                            <span ng-if="hostGroupValidateMessage">*您输入的主机组格式有误，请您重新输入</span>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-5">是否添加应用描述</label>
+                            <div class="col-sm-7">
+                                <label class="i-switch bg-info m-t-xs m-r">
+                                    <input type="checkbox" ng-click="openDescribe()">
+                                    <i></i>
+                                </label>
+                            </div>
+                        </div>
+                        <div ng-if="describeBtn">
+                            <div class="app-push-appName">应用描述<span class="has-error">*</span></div>
+                            <textarea class="form-control"
+                                      rows="3"
+                                      placeholder="请输入应用描述"
+                                      ng-model="params.description"
+                                      required>
                               </textarea>
                         </div>
                         <div class="app-push-save-btn">
-                            <button  class="btn btn-lg btn-info btn-block "
-                                     ng-disabled="form.$invalid"
-                                     ng-click="createApp(params)">创建应用</button>
+                            <button class="btn btn-lg btn-info btn-block "
+                                    ng-disabled="form.$invalid"
+                                    ng-click="createApp(params)">创建应用
+                            </button>
                         </div>
                     </form>
                 </div>

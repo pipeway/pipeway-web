@@ -9,38 +9,51 @@ app.controller('createApiCtrl', ['$scope', '$http', '$state', '$location', '$mod
         $scope.appKey = appKey;
         $scope.params = {
             parentAppkey: appKey,
-            auth: '1',
+            auth: '0',
             method: '0',
-            // buildIn: false,
-            captchaRequired: false
-        }
+            buildIn: '0',
+            captchaRequired: '0'
+        };
         $scope.expireBtn = false;
         $scope.timesBtn = false;
         $scope.cacheBtn = false;
         $scope.describeBtn = false;
         $scope.openExpire = function(){
             $scope.expireBtn = !$scope.expireBtn;
-        }
+        };
         $scope.openTimes = function() {
             $scope.timesBtn = !$scope.timesBtn;
-        }
+        };
         $scope.openCache = function() {
             $scope.cacheBtn = !$scope.cacheBtn;
-        }
+        };
         $scope.openDescribe = function() {
             $scope.describeBtn = !$scope.describeBtn;
-        }
+        };
         $scope.openAuth = function(){
             if ($scope.params.auth === '1'){
                 $scope.params.auth = '0';
             } else {
                 $scope.params.auth = '1';
             }
-
-        }
+        };
+        $scope.openBuildIn = function() {
+            if ($scope.params.buildIn === '1') {
+                $scope.params.buildIn = '0';
+            } else {
+                $scope.params.buildIn = '1';
+            }
+        };
+        $scope.openCaptcha = function () {
+            if ($scope.params.captchaRequired === '1') {
+                $scope.params.captchaRequired = '0';
+            } else {
+                $scope.params.captchaRequired = '1';
+            }
+        };
         $scope.createApi = function(params){
-            console.log(params);
-            validateForm(params);
+            //console.log(params);
+            //validateForm(params);
             if ($scope.methodValidateMessage || $scope.authValidateMessage) {
                 return;
             }
