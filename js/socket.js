@@ -1,4 +1,4 @@
-var sock = new SockJS('http://10.99.97.113:3000/wstunnel');
+var sock = new SockJS('http://localhost:4100/wstunnel');
 sock.onopen = function() {
     sock.send(JSON.stringify({'type': 'alias', body: {
         name: '13522338363_1_15527928085',
