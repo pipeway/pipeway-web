@@ -5596,7 +5596,7 @@ span.font-active {
     line-height: 40px;
 }
 .tablex{
-  width: 100px;
+  width: 230px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
