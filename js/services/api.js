@@ -62,8 +62,10 @@ function api($http) {
         },
         accessLogs: function(data){
             return httpGet('/pipeway/v1/analysis/app/count');
+        },
+        search: function(searchParams, keywords) {
+            return httpPost('/pipeway/v1/api/search/' + searchParams.appKey + '?page=' + searchParams.page + '&pageSize=' + searchParams.pageSize, keywords);
         }
-
     };
 
     function httpGet(url) {
