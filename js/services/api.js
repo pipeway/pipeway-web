@@ -65,6 +65,10 @@ function api($http) {
         },
         search: function(searchParams, keywords) {
             return httpPost('/pipeway/v1/api/search/' + searchParams.appKey + '?page=' + searchParams.page + '&pageSize=' + searchParams.pageSize, keywords);
+        },
+        ///pipeway/v1/analysis/api/count?span=1
+        apiCount: function(data) {
+            return httpGet('/pipeway/v1/analysis/api/count?span=' + data);
         }
     };
 
