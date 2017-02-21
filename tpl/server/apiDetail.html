@@ -28,6 +28,10 @@
                         <input class="form-control"
                                type="text"
                                ng-model="apidetail.requestUrl">
+                        <div class="app-push-appName">所属组名称<span class="has-error">*</span></div>
+                        <input class="form-control"
+                               type="text"
+                               ng-model="apidetail.group">
                         <div class="app-push-appName">请求类型<span class="has-error">*</span></div>
                         <select name="account" class="form-control" ng-model="apidetail.method">
                             <option value="0">GET</option>
@@ -136,6 +140,8 @@
                         <input disabled class="form-control" type="text" ng-model="apidetail.name">
                         <div class="app-push-appName">接口地址<span class="has-error">*</span></div>
                         <input disabled class="form-control" type="text" ng-model="apidetail.requestUrl">
+                        <div class="app-push-appName">所属组名称<span class="has-error">*</span></div>
+                        <input disabled class="form-control" type="text" ng-model="apidetail.group">
                         <div class="form-group">
                             <label class="col-sm-10">请求类型</label>
                             <div class="col-sm-2">

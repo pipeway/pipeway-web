@@ -51,6 +51,9 @@ app.controller('apiDetailCtrl', ['$scope', '$http', '$state', '$location', 'isLo
             if ($scope.requestUrl != $scope.apidetail.requestUrl) {
                 data.requestUrl = $scope.apidetail.requestUrl;
             }
+            if ($scope.group != $scope.apidetail.group) {
+                data.group = $scope.apidetail.group;
+            }
             if ($scope.method != $scope.apidetail.method) {
                 data.method = $scope.apidetail.method;
             }
