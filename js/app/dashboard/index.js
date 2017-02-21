@@ -56,4 +56,28 @@ app.controller('DashboardCtrl', ['$scope', '$http', '$state', 'isLogin', 'user',
             }
         }, 1000);
 
+        /*function getApiList(data) {
+            api.getApiList(data).then(function (res) {
+                if (res.data.totalSize < 11) {
+                    $scope.pagination2 = false;
+                }
+                else {
+                    $scope.pagination2 = true;
+                }
+                $scope.apiList = res.data.results;
+                $scope.totalItemsApi = res.data.totalSize;
+            })
+        }*/
+        function apiCount(data) {
+            api.apiCount(data).then(function (res) {
+                if (res.success) {
+                    console.log(res.data);
+                    $scope.apiList = res.data;
+                }
+
+            })
+        }
+        setInterval(function() {
+            apiCount(7);
+        }, 5000);
     }]);

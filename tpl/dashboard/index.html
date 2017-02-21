@@ -6,16 +6,160 @@
   app.hideAside = false;
   app.hideFooter = true;"
      ng-controller="DashboardCtrl">
-  <div class="col w-lg lt">
-    <div class="vbox">
-      <div class="wrapper">
-        <div id="main" style="width: 800px;height: 400px; margin: 20px auto;"></div>
-        <div>
-          <h3 style="color:#7266ba;margin-top:10px;">
-            top10 接口
-          </h3>
+    <div class="col w-lg lt">
+        <div class="vbox">
+            <div class="wrapper">
+                <div id="main" style="width: 800px;height: 400px; margin: 20px auto;"></div>
+                <div>
+                    <h3 style="color:#7266ba;margin-top:10px;">
+                        top10 接口
+                    </h3>
+                </div>
+                <tabset class="tab-container" ng-init="steps={percent:10, step1:true, step2:false, step3:true}">
+                    <tab heading="API数据统计" active="actived1" select="steps.percent=50" ng-click="changeActive('actived1')">
+                        <div>
+                            <table id="myTable" class="table table-striped m-b-none" style="width: 100%;">
+                                <thead>
+                                <tr>
+                                    <th style="width:10%">接口名称</th>
+                                    <th style="width:10%">访问数量</th>
+                                    <th style="width:10%;">平均耗时(ms)</th>
+                                    <th style="width:10%">客户端名称</th>
+                                    <th style="width:20%">接口地址</th>
+                                    <th style="width:10%;">服务端名称</th>
+                                </tr>
+                                </thead>
+                                <tbody ng-if="apiList.length">
+                                <tr ng-repeat="list in apiList">
+                                    <td>
+                                        <div class="text-left"><a href="/#/server/server/hostDetail/{{list.id}}"
+                                                               style="color: #428bca;">{{list.apiName}}</a></div>
+                                    </td>
+                                    <td>
+                                        <div class="text-left">{{list.count}}</div>
+                                    </td>
+                                    <td>
+                                        <div class="text-left">{{list.avgTime}}</div>
+                                    </td>
+                                    <td>
+                                        <div class="text-left">{{list.clientName}}</div>
+                                    </td>
+                                    <td>
+                                        <div class="text-left">{{list.apiUrl}}</div>
+                                    </td>
+                                    <td>
+                                        <div class="text-left">{{list.serverName}}</div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                                <tbody ng-if="!apiList.length">
+                                <tr>
+                                    <td colspan="6" style="text-align:center;color:#665ca7;font-size:15px;">暂无数据！</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </tab>
+                    <!--<tab heading="接口列表" active="actived2" select="steps.percent=50" ng-click="changeActive('actived2')">
+                        <div class="pull-right" style="position: relative; top: -28px;right: -15px;">
+                            <a href="/#/server/createApi/{{appKey}}">
+                                <button type="button" class="btn btn-sm btn-primary btn-addon" ng-click="addEvent()">
+                                    <i class="fa fa-plus"></i>新建接口
+                                </button>
+                            </a>
+                        </div>
+                        <div ng-if="pagination2">
+                            <div class="" style="width: 100%; height: 582px; margin-top:-32px;">
+                                <table id="myTable" class="table table-striped m-b-none" style="width: 100%;">
+                                    <thead>
+                                    <tr>
+                                        <th style="width:15%">接口名称</th>
+                                        <th style="width:20%">接口地址</th>
+                                        <th style="width:15%">组名称</th>
+                                        <th style="width:15%">请求类型</th>
+                                        <th style="width:15%">接口鉴权</th>
+                                        <th style="width:20%">接口描述</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="list in apiList">
+                                        <td>
+                                            <div class="tablex"><a href="/#/server/server/apiDetail/{{list.id}}"
+                                                                   style="color: #428bca;">{{list.name}}</a></div>
+                                        </td>
+                                        <td>
+                                            <div class="tablex">{{list.requestUrl}}</div>
+                                        </td>
+                                        <td>
+                                            <div>{{list.group}}</div>
+                                        </td>
+                                        &lt;!&ndash; <td>{{list.method}}</td> &ndash;&gt;
+                                        <td ng-if="list.method == 0">GET</td>
+                                        <td ng-if="list.method == 1">POST</td>
+                                        <td ng-if="list.method == 2">PUT</td>
+                                        <td ng-if="list.method == 3">DELETE</td>
+                                        <td ng-if="list.auth == 0">不需要鉴权</td>
+                                        <td ng-if="list.auth == 1">需要鉴权</td>
+                                        <td>
+                                            <div class="tablex">{{list.description}}</div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="pagination-wrapper" ng-if="pagination2">
+                                <pagination previous-text='上一页' next-text="下一页" total-items="totalItemsApi"
+                                            ng-model="currentPageApi" ng-click="pageChangedApi(currentPageApi)"
+                                            class="m-t-none m-b pages"></pagination>
+                            </div>
+                        </div>
+                        <div style="margin-top:-32px;" ng-if="!pagination2">
+                            <table id="myTable" class="table table-striped m-b-none" style="width: 100%;">
+                                <thead>
+                                <tr>
+                                    <th style="width:20%">接口名称</th>
+                                    <th style="width:20%">接口地址</th>
+                                    <th style="width:20%">请求类型</th>
+                                    <th style="width:20%">接口鉴权</th>
+                                    <th style="width:20%">接口描述</th>
+                                </tr>
+                                </thead>
+                                <tbody ng-if="apiList.length">
+                                <tr ng-repeat="list in apiList">
+                                    <td>
+                                        <div class="tablex"><a href="/#/server/server/apiDetail/{{list.id}}"
+                                                               style="color: #428bca;">{{list.name}}</a></div>
+                                    </td>
+                                    <td>
+                                        <div class="tablex">{{list.requestUrl}}</div>
+                                    </td>
+                                    &lt;!&ndash; <td>{{list.method}}</td> &ndash;&gt;
+                                    <td ng-if="list.method == 0">GET</td>
+                                    <td ng-if="list.method == 1">POST</td>
+                                    <td ng-if="list.method == 2">PUT</td>
+                                    <td ng-if="list.method == 3">DELETE</td>
+                                    <td ng-if="list.auth == 0">不需要鉴权</td>
+                                    <td ng-if="list.auth == 1">需要鉴权</td>
+                                    <td>
+                                        <div class="tablex">{{list.description}}</div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                                <tbody ng-if="!apiList.length">
+                                <tr>
+                                    <td colspan="5" style="text-align:center;color:#665ca7;font-size:15px;">暂无数据！</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class="pagination-wrapper" ng-if="pagination2">
+                                <pagination previous-text='上一页' next-text="下一页" total-items="totalItemsApi"
+                                            ng-model="currentPageApi" ng-click="pageChangedApi(currentPageApi)"
+                                            class="m-t-none m-b pages"></pagination>
+                            </div>
+                        </div>
+                    </tab>-->
+                </tabset>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>
