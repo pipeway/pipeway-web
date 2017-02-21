@@ -48,7 +48,6 @@ app.controller('apiListCtrl', ['$scope', '$http', '$state', '$location', 'isLogi
         // debugger;
         function getApiList(data) {
             api.getApiList(data).then(function (res) {
-                console.log(res);
                 if (res.data.totalSize < 11) {
                     $scope.pagination2 = false;
                 }
@@ -82,16 +81,20 @@ app.controller('apiListCtrl', ['$scope', '$http', '$state', '$location', 'isLogi
                 pageSize: 10
             };
             console.log(keywords);
-            api.search(searchParams, keywords).then(function (res) {
-                console.log(res,'搜索内容');
-                if (res.data.totalSize < 11) {
-                    $scope.pagination2 = false;
-                } else {
-                    $scope.pagination2 = true;
-                }
-                $scope.apiList = res.data.results;
-                $scope.totalItemsApi = res.data.totalSize;
-            })
+            if (keywords != '') {
+                api.search(searchParams, keywords).then(function (res) {
+                    console.log(res,'搜索内容');
+                    if (res.data.totalSize < 11) {
+                        $scope.pagination2 = false;
+                    } else {
+                        $scope.pagination2 = true;
+                    }
+                    $scope.apiList = res.data.results;
+                    $scope.totalItemsApi = res.data.totalSize;
+                });
+            } else {
+                getApiList(dataApi);
+            }
         };
         $scope.changeActive = function (x) {
             var hostisviewed1 = 'hostisviewed1';
