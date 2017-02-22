@@ -6,15 +6,42 @@
   app.hideAside = false;
   app.hideFooter = true;"
      ng-controller="DashboardCtrl">
+    <!--<div class="bg-light lter b-b wrapper-md shrink">
+        <h1 class="m-n font-thin h3 inline-h1">主机和接口列表</h1>
+    </div>-->
     <div class="col w-lg lt">
-        <div class="vbox">
+        <div class="vbox" style="height: 0; min-height: 550px;">
             <div class="wrapper">
-                <div id="main" style="width: 800px;height: 400px; margin: 20px auto;"></div>
-                <div>
-                    <h3 style="color:#7266ba;margin-top:10px;">
-                        top10 接口
-                    </h3>
-                </div>
+                <tabset class="tab-container">
+                    <tab heading="应用数据统计" active="actived1" select="steps.percent=50" ng-click="init('all')">
+                        <div id="all" style="width: 800px;height: 400px; margin: 20px auto;"></div>
+                        <div>
+                            <h3 style="color:#7266ba;margin-top:10px;">
+                                top10 接口
+                            </h3>
+                        </div>
+                    </tab>
+                    <tab heading="缓存数据统计" active="actived2" select="steps.percent=50" ng-click="init('cached')">
+                        <div id="cached" style="width: 800px;height: 400px; margin: 20px auto;"></div>
+                        <div>
+                            <h3 style="color:#7266ba;margin-top:10px;">
+                                top10 接口
+                            </h3>
+                        </div>
+                    </tab>
+                    <tab heading="直连数据统计" active="actived3" select="steps.percent=50" ng-click="init('origin')">
+                        <div id="origin" style="width: 800px;height: 400px; margin: 20px auto;"></div>
+                        <div>
+                            <h3 style="color:#7266ba;margin-top:10px;">
+                                top10 接口
+                            </h3>
+                        </div>
+                    </tab>
+                </tabset>
+            </div>
+        </div>
+        <div class="vbox" style="margin-top: 50px;height: 0;">
+            <div class="wrapper">
                 <tabset class="tab-container" ng-init="steps={percent:10, step1:true, step2:false, step3:true}">
                     <tab heading="API数据统计" active="actived1" select="steps.percent=50" ng-click="changeActive('actived1')">
                         <div>
