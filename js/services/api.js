@@ -61,7 +61,7 @@ function api($http) {
             return httpPost('/pipeway/v1/host/delete/' + data.id);
         },
         accessLogs: function(data){
-            return httpGet('/pipeway/v1/analysis/app/count');
+            return httpGet('/pipeway/v1/analysis/app/count?type=' + data);
         },
         search: function(searchParams, keywords) {
             return httpPost('/pipeway/v1/api/search/' + searchParams.appKey + '?page=' + searchParams.page + '&pageSize=' + searchParams.pageSize, keywords);
