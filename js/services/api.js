@@ -11,6 +11,9 @@ function api($http) {
         signIn: function(url, data) {
             return httpPost(url, data);
         },
+        loginConfig: function () {
+            return httpGet('/pipeway/v1/clientConfligs');
+        },
         appCreate: function(data) {
             return httpPost('/pipeway/v1/app/create', data);
         },
@@ -73,13 +76,22 @@ function api($http) {
     };
 
     function httpGet(url) {
-        return $http.get(url).then(function(r) {
+       var token = sessionStorage.getItem('token');
+        return $http.get(url, {
+            headers: {
+                'Authorization': 'Bearer' + ' ' + token
+            }
+        }).then(function(r) {
             return r.data;
         });
     }
     function httpPost(url, data) {
+        var token = sessionStorage.getItem('token');
         return $http.post(url, param(data), {
-            headers: WWW_FORM_HEADER
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer' + ' ' + token
+            }
         }).then(function(r) {
             return r.data;
         });
