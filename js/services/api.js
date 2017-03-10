@@ -89,8 +89,8 @@ function api($http) {
         var token = sessionStorage.getItem('token');
         return $http.post(url, param(data), {
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer' + ' ' + token
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Authorization': 'Bearer' + ' ' + token,
             }
         }).then(function(r) {
             return r.data;
