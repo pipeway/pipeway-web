@@ -34,11 +34,13 @@
                         <table id="myTable" class="table table-striped m-b-none" style="width: 100%;">
                             <thead>
                             <tr>
-                                <th style="width:20%">主机名称</th>
-                                <th style="width:20%">协议名称</th>
+                                <th style="width:10%">主机名称</th>
+                                <th style="width:10%">协议名称</th>
                                 <th style="width:20%">主机地址</th>
-                                <th style="width:20%">端口号</th>
+                                <th style="width:10%">端口号</th>
+                                <th style="width:10%">状态</th>
                                 <th style="width:20%">主机描述</th>
+                                <th style="width:20%;">操作</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -52,13 +54,26 @@
                                 <td ng-if="list.protocal == 2">socket</td>
                                 <td ng-if="list.protocal == 3">udp</td>
                                 <td>
-                                    <div class="tablex">{{list.host}}</div>
+                                    <div>{{list.host}}</div>
                                 </td>
                                 <td>
-                                    <div class="tablex">{{list.port}}</div>
+                                    <div>{{list.port}}</div>
                                 </td>
                                 <td>
-                                    <div class="tablex">{{list.description}}</div>
+                                    <div>{{list.status}}</div>
+                                </td>
+                                <td>
+                                    <div>{{list.description}}</div>
+                                </td>
+                                <td ng-if="list.status == 'offline'">
+                                    <button class="btn btn-sm btn-danger btn-options pull-left" style="margin-top: 5px;" ng-click="modifyStatus(list.id,'online', list.name)">
+
+                                    </button>
+                                </td>
+                                <td ng-if="list.status == 'online'">
+                                    <button class="btn btn-sm btn-danger btn-options pull-left" style="margin-top: 5px;" ng-click="modifyStatus(list.id,'offline', list.name)">
+
+                                    </button>
                                 </td>
                             </tr>
                             </tbody>
@@ -74,11 +89,13 @@
                     <table id="myTable" class="table table-striped m-b-none" style="width: 100%;">
                         <thead>
                         <tr>
-                            <th style="width:20%">主机名称</th>
-                            <th style="width:20%">协议名称</th>
+                            <th style="width:10%">主机名称</th>
+                            <th style="width:10%">协议名称</th>
                             <th style="width:20%">主机地址</th>
-                            <th style="width:20%">端口号</th>
+                            <th style="width:10%">端口号</th>
+                            <th style="width:10%;">状态</th>
                             <th style="width:20%">主机描述</th>
+                            <th style="width:20%">操作</th>
                         </tr>
                         </thead>
                         <tbody ng-if="hostList.length">
@@ -92,19 +109,32 @@
                             <td ng-if="list.protocal == 2">socket</td>
                             <td ng-if="list.protocal == 3">udp</td>
                             <td>
-                                <div class="tablex">{{list.host}}</div>
+                                <div>{{list.host}}</div>
                             </td>
                             <td>
-                                <div class="tablex">{{list.port}}</div>
+                                <div>{{list.port}}</div>
                             </td>
                             <td>
-                                <div class="tablex">{{list.description}}</div>
+                                <div>{{list.status}}</div>
+                            </td>
+                            <td>
+                                <div>{{list.description}}</div>
+                            </td>
+                            <td ng-if="list.status == 'offline'">
+                                <button class="btn btn-sm btn-danger btn-options pull-left" style="margin-top: 5px;" ng-click="modifyStatus(list.id,'online', list.name)">
+                                    上线
+                                </button>
+                            </td>
+                            <td ng-if="list.status == 'online'">
+                                <button class="btn btn-sm btn-danger btn-options pull-left" style="margin-top: 5px;" ng-click="modifyStatus(list.id,'offline', list.name)">
+                                    下线
+                                </button>
                             </td>
                         </tr>
                         </tbody>
                         <tbody ng-if="!hostList.length">
                         <tr>
-                            <td colspan="5" style="text-align:center;color:#665ca7;font-size:15px;">暂无数据！</td>
+                            <td colspan="7" style="text-align:center;color:#665ca7;font-size:15px;">暂无数据！</td>
                         </tr>
                         </tbody>
                     </table>
@@ -215,5 +245,30 @@
                 </div>
             </tab>
         </tabset>
+        <!--<div class="prompt-popup1" ng-if="popupshow1">
+            <div class="popup-text">
+                <div class="promptxt1">
+                    <p>提示<span class="glyphicon glyphicon-remove" style="float:right; margin:8px 12px 0 0;"
+                               ng-click="closePopup()"></span></p>
+                </div>
+                <div class="promptxt2">
+                    <p>您确定要修改该主机状态吗？</p>
+                </div>
+                <div class="promptxt3">
+                    <div class="app-push-save-btn " style="float:right;margin:6px 20px 0 0; background:#ffffff;">
+                        <button class="btn  btn-danger btn-block "
+                                ng-disabled="form.$invalid"
+                                ng-click="okUpdate()">确认修改
+                        </button>
+                    </div>
+                    <div class="app-push-save-btn " style="float:right;margin:6px 20px 0 0; background:#ffffff;">
+                        <button class="btn  btn-info btn-block "
+                                ng-disabled="form.$invalid"
+                                ng-click="noUpdate()">放弃修改
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>-->
     </div>
 </div>

@@ -15,6 +15,8 @@ app.controller('apiListCtrl', ['$scope', '$http', '$state', '$location', 'isLogi
             page: 1,
             pageSize: 10
         };
+        $scope.updateOk = false;
+        $scope.popupshow1 = false;
         $scope.currentPageHost = 0;
         $scope.totalItemsHost = 1;
         function getHostList(data) {
@@ -64,6 +66,37 @@ app.controller('apiListCtrl', ['$scope', '$http', '$state', '$location', 'isLogi
             dataApi.page = index;
             getApiList(dataApi);
         };
+        //修改主机状态
+         $scope.modifyStatus = function (id, status, name) {
+             var data = {
+                 id: id,
+                 status: status
+             };
+             api.hostUpdate(data).then(function (res) {
+                 if (res.success) {
+                     alert(name +'修改成功');
+                     getHostList(dataHost);
+                     //$location.path('/server/appList/' + $scope.hostdetail.parentAppkey);
+                 }
+             });
+
+        };
+        $scope.okUpdate = function () {
+            $scope.updateOk = true;
+            $scope.popupshow1 = false;
+        };
+        $scope.noUpdate = function () {
+            $scope.updateOk = false;
+            $scope.popupshow1 = false;
+        };
+        //获取用户信息
+        function getUserInfo() {
+            api.getUserInfo().then(function (res) {
+                console.log(res.data);
+
+            })
+        }
+        //getUserInfo();
         // (function getHash(){
         //   var hash = $location.hash();
         //   if(hash){
