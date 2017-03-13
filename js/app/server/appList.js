@@ -15,6 +15,9 @@ app.controller('apiListCtrl', ['$scope', '$http', '$state', '$location', 'isLogi
             page: 1,
             pageSize: 10
         };
+        $scope.data = {
+            keywords: ''
+        };
         $scope.updateOk = false;
         $scope.popupshow1 = false;
         $scope.currentPageHost = 0;
@@ -45,9 +48,9 @@ app.controller('apiListCtrl', ['$scope', '$http', '$state', '$location', 'isLogi
             page: 1,
             pageSize: 10
         };
+        $scope.maxSize = 5;
         $scope.currentPageApi = 0;
         $scope.totalItemsApi = 1;
-        // debugger;
         function getApiList(data) {
             api.getApiList(data).then(function (res) {
                 if (res.data.totalSize < 11) {
@@ -63,8 +66,14 @@ app.controller('apiListCtrl', ['$scope', '$http', '$state', '$location', 'isLogi
 
         getApiList(dataApi);
         $scope.pageChangedApi = function (index) {
-            dataApi.page = index;
-            getApiList(dataApi);
+            if ($scope.data.keywords !== '') {
+                console.log($scope.data.keywords);
+                searchParams.page = index;
+                $scope.searchList($scope.data);
+            } else {
+                dataApi.page = index;
+                getApiList(dataApi);
+            }
         };
         //修改主机状态
          $scope.modifyStatus = function (id, status, name) {
@@ -96,34 +105,29 @@ app.controller('apiListCtrl', ['$scope', '$http', '$state', '$location', 'isLogi
 
             })
         }
-        //getUserInfo();
-        // (function getHash(){
-        //   var hash = $location.hash();
-        //   if(hash){
-        //     $scope.actived1 = false;
-        //     $scope.actived2 = true;
-        //     hash = "";
-        //   }
-        // })();
-        //搜索
 
+        //搜索
+        var searchParams = {
+            appKey: appKey,
+            page: 1,
+            pageSize: 10
+        };
         $scope.searchList = function (keywords) {
-            var searchParams = {
-                appKey: appKey,
-                page: 1,
-                pageSize: 10
-            };
             console.log(keywords);
-            if (keywords != '') {
+            if (keywords !== '') {
                 api.search(searchParams, keywords).then(function (res) {
-                    console.log(res,'搜索内容');
-                    if (res.data.totalSize < 11) {
-                        $scope.pagination2 = false;
+                    if (res.success) {
+                        console.log(res,'搜索内容');
+                        if (res.data.totalSize < 11) {
+                            $scope.pagination2 = false;
+                        } else {
+                            $scope.pagination2 = true;
+                        }
+                        $scope.apiList = res.data.results;
+                        $scope.totalItemsApi = res.data.totalSize;
                     } else {
-                        $scope.pagination2 = true;
+                        getApiList(dataApi);
                     }
-                    $scope.apiList = res.data.results;
-                    $scope.totalItemsApi = res.data.totalSize;
                 });
             } else {
                 getApiList(dataApi);
