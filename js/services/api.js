@@ -72,6 +72,9 @@ function api($http) {
         ///pipeway/v1/analysis/api/count?span=1
         apiCount: function(data) {
             return httpGet('/pipeway/v1/analysis/api/count?span=' + data);
+        },
+        getUserInfo: function() {
+            return httpGet('pipeway/v1/user/MYSELF');
         }
     };
 

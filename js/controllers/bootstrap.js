@@ -319,6 +319,6 @@ app.controller('userCtrl', ['$scope', '$http', '$state', function ($scope, $http
             $scope.loginName = response.data.data.loginName;
             $scope.email = response.data.data.email;
         })
-    }
-    $scope.getUserInfo();
-}])
+    };
+    //$scope.getUserInfo();
+}]);
