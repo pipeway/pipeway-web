@@ -107,9 +107,17 @@ app.controller('apiDetailCtrl', ['$scope', '$http', '$state', '$location', 'isLo
 //接口缓存
         var openCache = function () {
             $scope.cacheBtn = !$scope.cacheBtn;
+            if (!$scope.cacheBtn) {
+                $scope.apidetail.cacheKey = '';
+                $scope.apidetail.cacheTtl = '';
+            }
         };
         var openExpire = function () {
             $scope.expireBtn = !$scope.expireBtn;
+            if (!$scope.expireBtn) {
+                $scope.apidetail.rateLimitTtl = '';
+                $scope.apidetail.rateLimitNum = '';
+            }
         };
         var openAuth = function () {
             if ($scope.apidetail.auth) {

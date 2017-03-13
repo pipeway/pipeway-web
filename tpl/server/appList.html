@@ -195,8 +195,10 @@
                     </div>
                     <div class="pagination-wrapper" ng-if="pagination2">
                         <pagination previous-text='上一页' next-text="下一页" total-items="totalItemsApi"
+                                    max-size="maxSize"
                                     ng-model="currentPageApi" ng-click="pageChangedApi(currentPageApi)"
                                     class="m-t-none m-b pages"></pagination>
+
                     </div>
                 </div>
                 <div style="margin-top:-32px;" ng-if="!pagination2">
