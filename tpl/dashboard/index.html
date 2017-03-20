@@ -16,25 +16,21 @@
                     <tab heading="应用数据统计" active="actived1" select="steps.percent=50" ng-click="init('all')">
                         <div id="all" style="width: 800px;height: 400px; margin: 20px auto;"></div>
                         <div>
-                            <h3 style="color:#7266ba;margin-top:10px;">
+                            <!--<h3 style="color:#7266ba;margin-top:10px;">
                                 top10 接口
-                            </h3>
+                            </h3>-->
                         </div>
                     </tab>
                     <tab heading="缓存数据统计" active="actived2" select="steps.percent=50" ng-click="init('cached')">
                         <div id="cached" style="width: 800px;height: 400px; margin: 20px auto;"></div>
                         <div>
-                            <h3 style="color:#7266ba;margin-top:10px;">
-                                top10 接口
-                            </h3>
+
                         </div>
                     </tab>
                     <tab heading="直连数据统计" active="actived3" select="steps.percent=50" ng-click="init('origin')">
                         <div id="origin" style="width: 800px;height: 400px; margin: 20px auto;"></div>
                         <div>
-                            <h3 style="color:#7266ba;margin-top:10px;">
-                                top10 接口
-                            </h3>
+
                         </div>
                     </tab>
                 </tabset>
@@ -49,11 +45,18 @@
                                 <thead>
                                 <tr>
                                     <th style="width:10%">接口名称</th>
-                                    <th style="width:10%">访问数量</th>
-                                    <th style="width:10%;">平均耗时(ms)</th>
-                                    <th style="width:10%">客户端名称</th>
+                                    <th style="width:10%">
+                                        访问数量
+                                        <span ng-click="countSort(-1)" class="fa fa-caret-down"></span>
+                                        <span ng-click="countSort(1)" class="fa fa-caret-up"></span>
+                                    </th>
+                                    <th style="width:15%;">
+                                        平均耗时(ms)
+                                        <span ng-click="avgTimeSort(-1)" class="fa fa-caret-down"></span>
+                                        <span ng-click="avgTimeSort(1)" class="fa fa-caret-up"></span>
+                                    </th>
                                     <th style="width:20%">接口地址</th>
-                                    <th style="width:10%;">服务端名称</th>
+                                    <th style="width:10%;">是否缓存</th>
                                 </tr>
                                 </thead>
                                 <tbody ng-if="apiList.length">
@@ -69,13 +72,11 @@
                                         <div class="text-left">{{list.avgTime}}</div>
                                     </td>
                                     <td>
-                                        <div class="text-left">{{list.clientName}}</div>
-                                    </td>
-                                    <td>
                                         <div class="text-left">{{list.apiUrl}}</div>
                                     </td>
                                     <td>
-                                        <div class="text-left">{{list.serverName}}</div>
+                                        <div class="text-left" ng-if="list.isCached">是</div>
+                                        <div class="text-left" ng-if="!list.isCached">否</div>
                                     </td>
                                 </tr>
                                 </tbody>
