@@ -58,7 +58,6 @@ app.controller('createApiCtrl', ['$scope', '$http', '$state', '$location', '$mod
                 return;
             }
             api.createApi(params).then(function(res){
-                alert(0);
                  $scope.items = res;
                  console.log(res);
                  if (res.success) {

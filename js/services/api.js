@@ -74,8 +74,12 @@ function api($http) {
             return httpGet('/pipeway/v1/analysis/api/count?span=' + data);
         },
         getUserInfo: function() {
-            return httpGet('pipeway/v1/user/MYSELF');
+            return httpGet('/pipeway/v1/user/MYSELF');
+        },
+        configReload: function () {
+            return httpGet('/pipeway/v1/config/reload');
         }
+        ///config/reload
     };
 
     function httpGet(url) {

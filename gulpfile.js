@@ -6,7 +6,7 @@ var less = require('gulp-less');
 var shell = require('gulp-shell');
 var host = "http://10.99.97.62:3000";
 //var host = "http://172.16.3.192:9082";
-
+//var host = "http://cg.kfxfd.cn:9082/";
 gulp.task('connect', function () {
 	connect.server({
 		root: './',

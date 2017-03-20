@@ -146,14 +146,74 @@ app.controller('DashboardCtrl', ['$scope', '$http', '$state', 'isLogin', 'user',
                 init();
             }
         }, 1000);
-
+        var apiList = [];
+        var sortField = 'count';
+        var sortFlag = -1;
         function apiCount(data) {
             api.apiCount(data).then(function (res) {
                 if (res.success) {
-                    $scope.apiList = res.data;
+                    apiList = res.data;
+                    if (sortField == 'count') {
+                        $scope.countSort(sortFlag);
+                    }
+                    if (sortField == 'avgTime') {
+                        $scope.avgTimeSort(sortFlag);
+                    }
+                    //$scope.apiList = res.data;
                 }
             })
         }
+        $scope.countSort = function(flag) {
+            sortField = 'count';
+            sortFlag = flag;
+            if (flag == -1) {
+                $scope.apiList = apiList.sort(function (a, b) {
+                    if (a.count > b.count) {
+                        return -1;
+                    }
+                    if (a.count < b.count) {
+                        return 1;
+                    }
+                    return 0;
+                });
+            } else {
+                $scope.apiList = apiList.sort(function (a, b) {
+                    if (a.count > b.count) {
+                        return 1;
+                    }
+                    if (a.count < b.count) {
+                        return -1;
+                    }
+                    return 0;
+                });
+            }
+            console.log($scope.apiList);
+        };
+        $scope.avgTimeSort = function(flag) {
+            sortField = 'avgTime';
+            sortFlag = flag;
+            if (flag == -1) {
+                $scope.apiList = apiList.sort(function (a, b) {
+                    if (a.avgTime > b.avgTime) {
+                        return -1;
+                    }
+                    if (a.avgTime < b.avgTime) {
+                        return 1;
+                    }
+                    return 0;
+                });
+            } else {
+                $scope.apiList = apiList.sort(function (a, b) {
+                    if (a.avgTime > b.avgTime) {
+                        return 1;
+                    }
+                    if (a.avgTime < b.avgTime) {
+                        return -1;
+                    }
+                    return 0;
+                });
+            }
+        };
         setInterval(function() {
             apiCount(7);
         }, 5000);
