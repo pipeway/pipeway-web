@@ -81,13 +81,16 @@ app.controller('apiListCtrl', ['$scope', '$http', '$state', '$location', 'isLogi
                  id: id,
                  status: status
              };
-             api.hostUpdate(data).then(function (res) {
-                 if (res.success) {
-                     alert(name +'修改成功');
-                     getHostList(dataHost);
-                     //$location.path('/server/appList/' + $scope.hostdetail.parentAppkey);
-                 }
-             });
+             var r = confirm('你确定要修改主机的状态吗?');
+             if (r == true) {
+                 api.hostUpdate(data).then(function (res) {
+                     if (res.success) {
+                         alert(name +'修改成功');
+                         getHostList(dataHost);
+                         //$location.path('/server/appList/' + $scope.hostdetail.parentAppkey);
+                     }
+                 });
+             }
 
         };
         $scope.okUpdate = function () {

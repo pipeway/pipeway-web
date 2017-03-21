@@ -311,7 +311,7 @@
   //     // $cookieStore.remove('token');
   //   }
   // }]);
-app.controller('userCtrl', ['$scope', '$http', '$state', function ($scope, $http, $state){
+app.controller('userCtrl', ['$scope', '$http', '$state', 'api', function ($scope, $http, $state, api){
     $scope.getUserInfo = function() {
       $http.get('/pipeway/v1/user/MYSELF')
         .then(function (response) {
@@ -320,5 +320,25 @@ app.controller('userCtrl', ['$scope', '$http', '$state', function ($scope, $http
             $scope.email = response.data.data.email;
         })
     };
+    $scope.refresh = function () {
+      api.configReload().then(function(res) {
+        if (res.success) {
+          $scope.alerts = [
+            { type: 'success', msg: '同步成功!' }
+          ];
+        } else {
+          $scope.alerts = [
+            { type: 'danger', msg: '同步失败!' }
+          ];
+        }
+        //console.log(res,'res');
+      })
+    };
+    $scope.closeAlert = function() {
+      $scope.alerts.splice(0, 1);
+    };
+
+
+
     //$scope.getUserInfo();
 }]);
