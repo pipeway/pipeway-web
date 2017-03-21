@@ -1,6 +1,5 @@
 app.controller('DashboardCtrl', ['$scope', '$http', '$state', 'isLogin', 'user','api', '$cookies',
     function ($scope, $http, $state, isLogin, user,api, $cookies) {
-
         function initChartsAll(legend, series, xAxis) {
             var myChart = echarts.init(document.getElementById('all'));
             option = {
@@ -141,11 +140,11 @@ app.controller('DashboardCtrl', ['$scope', '$http', '$state', 'isLogin', 'user',
 
         };
         $scope.init('all');
-        setInterval(function() {
+        /*setInterval(function() {
             if (moment().format('ss') === '00') {
                 init();
             }
-        }, 1000);
+        }, 1000);*/
         var apiList = [];
         var sortField = 'count';
         var sortFlag = -1;

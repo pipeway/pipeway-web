@@ -188,7 +188,11 @@
             &lt;!&ndash; / dropdown &ndash;&gt;
           </li>-->
           <li class="hidden-xs" ng-controller="userCtrl">
-            <div class="fa fa-refresh" style="padding: 20px;"></div>
+            <div class="fa fa-refresh" style="padding: 20px;" ng-click="refresh()"></div>
+            <div uib-alert ng-repeat="alert in alerts" ng-class="'alert-' + (alert.type || 'warning')" style="padding: 20px;position: absolute;top: 60px; width: 200px; text-align: center; font-size: 16px; right: 0;">
+              <span ng-click="closeAlert($index)" class="fa fa-times" style="position: absolute; top: 8px; right: 8px;"></span>
+              {{alert.msg}}
+            </div>
           </li>
           <li class="hidden-xs">
             <a ui-fullscreen></a>
