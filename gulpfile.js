@@ -4,7 +4,8 @@ var modRewrite = require('connect-modrewrite');
 var watch = require('gulp-watch');
 var less = require('gulp-less');
 var shell = require('gulp-shell');
-var host = "http://10.99.97.113:3000";
+// var host = "http://10.99.97.113:3000";
+var host = "http://cg.kfxfd.cn:9082";
 
 gulp.task('connect', function () {
 	connect.server({
