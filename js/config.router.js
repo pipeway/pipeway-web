@@ -17,7 +17,7 @@ angular.module('app')
       function ($stateProvider,   $urlRouterProvider) {
 
           $urlRouterProvider
-              .otherwise('client/list');
+              .otherwise('access/signin');
           $stateProvider
               .state('app', {
                   abstract: true,
@@ -252,7 +252,16 @@ angular.module('app')
                       }]
                   }
               })
-
+              .state('login', {
+                  url: '/signup',
+                  templateUrl: 'tpl/page_signup.html',
+                  resolve: {
+                      deps: ['uiLoad',
+                          function( uiLoad ){
+                              return uiLoad.load( ['js/controllers/signup.js'] );
+                          }]
+                  }
+              })
               .state('access.signup', {
                   url: '/signup',
                   templateUrl: 'tpl/page_signup.html',
@@ -373,7 +382,7 @@ angular.module('app')
                               );
                           }]
                   }
-              })
+              });
 
 
       }

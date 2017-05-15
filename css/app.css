@@ -5492,6 +5492,22 @@ span.font-active {
     text-align: left;
     padding: 15px 0 5px 0;
 }
+.cache-content {
+   border: 1px solid #CFDA72;
+    padding-bottom: 10px;
+}
+.cache-content .cache-error {
+    color: #ff0000;
+    font-size: 14px;
+}
+.cache-content .cache {
+  font-size: 14px;
+  padding: 10px 0 0 15px;
+}
+.cache-content .cache-form {
+  margin-left: 15px;
+  width: 94%;
+}
 .tab-container {
   height: 80px;
 }
@@ -5580,7 +5596,7 @@ span.font-active {
     line-height: 40px;
 }
 .tablex{
-  width: 100px;
+  width: 230px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

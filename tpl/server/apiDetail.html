@@ -5,185 +5,248 @@
   app.settings.container = false;
   app.hideAside = false;
   app.hideFooter = true;"
-  ng-controller="apiDetailCtrl">
-  <div class="col w-lg lt">
-      <div class="vbox">
-          <div class="wrapper">
-              <div class="app-box-push clearfix">
-                  <a href="#/server/appList/{{apidetail.parentAppkey}}"
-                     class="btn btn-sm btn-danger btn-options pull-right">返回
-                  </a>
-                  <form name="form" class="form-validation">
-                      <div class="app-push-appName">接口名称<span class="has-error">*</span></div>
-                      <input class="form-control"
-                             type="text"
-                             ng-model="apidetail.name">
+     ng-controller="apiDetailCtrl">
+    <div class="col w-lg lt">
+        <div class="vbox">
+            <div class="wrapper">
+                <div class="app-box-push clearfix">
+
+                    <a href="#/server/appList/{{apidetail.parentAppkey}}"
+                       class="btn btn-sm btn-danger btn-options pull-right" style="margin-left: 10px;">返回
+                    </a>
+                    <a class="btn btn-sm btn-danger btn-options pull-right" ng-click="editApi()" ng-if="!edit">编辑
+                    </a>
+                    <a class="btn btn-sm btn-danger btn-options pull-right" ng-click="editApi()" ng-if="edit">查看
+                    </a>
+                    <form name="form" class="form-validation" ng-if="edit">
+                        <div class="app-push-appName">接口名称<span class="has-error">*</span></div>
+                        <input class="form-control"
+                               type="text"
+                               ng-model="apidetail.name"
+                        >
                         <div class="app-push-appName">接口地址<span class="has-error">*</span></div>
                         <input class="form-control"
                                type="text"
                                ng-model="apidetail.requestUrl">
-                         <div class="app-push-appName">请求类型<span class="has-error">*</span></div>
-                         <select name="account" class="form-control" ng-model="apidetail.method">
-                             <option value="0">GET</option>
-                             <option value="1">POST</option>
-                             <option value="2">PUT</option>
-                             <option value="3">DELETE</option>
-                         </select>
-                         <div class="app-push-appName">接口鉴权</div>
-                         <input class="form-control"
-                                type="text"
-                                ng-model="apidetail.auth">
-                          <div class="app-push-appName">接口访问过期时间</div>
-                          <input class="form-control"
-                                 type="text"
-                                 ng-model="apidetail.rateLimitTtl">
-                           <div class="app-push-appName">接口限制次数</div>
-                           <input class="form-control"
-                                  type="text"
-                                  ng-model="apidetail.rateLimitNum">
-                          <div class="app-push-appName">接口缓存的key值</div>
-                          <input class="form-control"
-                                 type="text"
-                                 ng-model="apidetail.cacheKey">
-                           <div class="app-push-appName">接口缓存时间</div>
-                           <input class="form-control"
-                                  type="text"
-                                  ng-model="apidetail.cacheTtl">
-                            <div class="app-push-appName">接口描述</div>
-                            <textarea class="form-control"
-                                      rows="3"
-                                      ng-model="apidetail.description">
+                        <div class="app-push-appName">所属组名称<span class="has-error">*</span></div>
+                        <input class="form-control"
+                               type="text"
+                               ng-model="apidetail.group">
+                        <div class="app-push-appName">请求类型<span class="has-error">*</span></div>
+                        <select name="account" class="form-control" ng-model="apidetail.method">
+                            <option value="0">GET</option>
+                            <option value="1">POST</option>
+                            <option value="2">PUT</option>
+                            <option value="3">DELETE</option>
+                        </select>
+                        <div class="form-group">
+                            <label class="col-sm-10">接口鉴权</label>
+                            <div class="col-sm-2">
+                                <label class="i-switch bg-info m-t-xs m-r">
+                                    <input type="checkbox" ng-checked="apidetail.auth" ng-click="openAuth()">
+                                    <i></i>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-10">内置方法</label>
+                            <div class="col-sm-2">
+                                <label class="i-switch bg-info m-t-xs m-r">
+                                    <input type="checkbox" ng-checked="apidetail.buildIn" ng-click="openBuildIn()">
+                                    <i></i>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-10">图形验证码</label>
+                            <div class="col-sm-2">
+                                <label class="i-switch bg-info m-t-xs m-r">
+                                    <input type="checkbox" ng-checked="apidetail.captchaRequired" ng-click="openCaptcha()">
+                                    <i></i>
+                                </label>
+                            </div>
+                        </div>
+                        <!--<div class="app-push-appName">接口鉴权</div>
+                        <input class="form-control"
+                               type="text"
+                               ng-model="apidetail.auth">-->
+                        <div class="form-group">
+                            <label class="col-sm-10">修改接口访问限制</label>
+                            <div class="col-sm-2">
+                                <label class="i-switch bg-info m-t-xs m-r">
+                                    <input type="checkbox" ng-checked="expireBtn" ng-click="openExpire()">
+                                    <i></i>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="cache-content" ng-if="expireBtn">
+                            <div class="app-push-appName cache">接口访问过期时间</div>
+                            <input class="form-control cache-form"
+                                   type="text"
+                                   ng-change="checkExpire()"
+                                   ng-model="apidetail.rateLimitTtl">
+                            <div class="app-push-appName cache">接口限制次数</div>
+                            <input class="form-control cache-form"
+                                   type="text"
+                                   ng-change="checkExpire()"
+                                   ng-model="apidetail.rateLimitNum">
+                            <div class="app-push-appName cache-error">{{expireError}}</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-10">修改接口缓存</label>
+                            <div class="col-sm-2">
+                                <label class="i-switch bg-info m-t-xs m-r">
+                                    <input type="checkbox" ng-checked="cacheBtn" ng-click="openCache()">
+                                    <i></i>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="cache-content" ng-if="cacheBtn">
+                            <div class="app-push-appName cache">接口缓存的key值</div>
+                            <input class="form-control cache-form"
+                                   type="text"
+                                   ng-model="apidetail.cacheKey"
+                                   ng-change="checkCache()"
+                            >
+                            <div class="app-push-appName cache">接口缓存时间</div>
+                            <input class="form-control cache-form"
+                                   type="text"
+                                   ng-change="checkCache()"
+                                   ng-model="apidetail.cacheTtl">
+                            <div class="app-push-appName cache-error">{{cacheError}}</div>
+                        </div>
+                        <div class="app-push-appName">接口描述</div>
+                        <textarea class="form-control"
+                                  rows="3"
+                                  ng-model="apidetail.description">
                             </textarea>
-                      <div class="app-push-save-btn" style="float:left; margin:20px 0 0 20px;">
-                          <button  class="btn btn-lg btn-info btn-block "
-                                   ng-disabled="form.$invalid"
-                                   ng-click="updateApp()">修改应用</button>
-                      </div>
-                      <div class="app-push-save-btn " style="float:right;margin:20px 20px 0 0;">
-                          <button  class="btn btn-lg btn-danger btn-block "
-                                   ng-disabled="form.$invalid"
-                                   ng-click="deleteApp()">删除应用</button>
-                      </div>
-                  </form>
-              </div>
-          </div>
-      </div>
-      <div class="prompt-popup1" ng-if="popupshow1">
-          <div class="popup-text">
-            <div class="promptxt1">
-                <p>提示<span class="glyphicon glyphicon-remove" style="float:right; margin:8px 12px 0 0;" ng-click="closePopup()"></span></p>
-            </div>
-            <div class="promptxt2">
-                <p>您确定要修改该应用吗？</p>
-            </div>
-            <div class="promptxt3">
-                  <div class="app-push-save-btn " style="float:right;margin:6px 20px 0 0; background:#ffffff;">
-                      <button  class="btn  btn-danger btn-block "
-                                ng-disabled="form.$invalid"
-                                ng-click="okUpdate(apidetail)">确认修改</button>
-                  </div>
-                  <div class="app-push-save-btn " style="float:right;margin:6px 20px 0 0; background:#ffffff;">
-                    <button  class="btn  btn-info btn-block "
-                             ng-disabled="form.$invalid"
-                             ng-click="noUpdate()">放弃修改</button>
-                 </div>
-           </div>
-         </div>
-      </div>
-      <div class="prompt-popup2"ng-if="popupshow2">
-          <div class="popup-text">
-            <div class="promptxt1">
-                <p>提示<span class="glyphicon glyphicon-remove" style="float:right; margin:8px 12px 0 0;" ng-click="closePopup()"></span></p>
-            </div>
-            <div class="promptxt2">
-                <p>您确定要删除该应用吗？</p>
-            </div>
-            <div class="promptxt3">
-                  <div class="app-push-save-btn " style="float:right;margin:6px 20px 0 0; background:#ffffff;">
-                      <button  class="btn  btn-danger btn-block "
-                                ng-disabled="form.$invalid"
-                                ng-click="okDelete()">确认删除</button>
-                  </div>
-                  <div class="app-push-save-btn " style="float:right;margin:6px 20px 0 0; background:#ffffff;">
-                    <button  class="btn  btn-info btn-block "
-                             ng-disabled="form.$invalid"
-                             ng-click="noDelete()">放弃删除</button>
-                 </div>
-           </div>
-         </div>
-      </div>
-  </div>
-
-    <!-- <div class="col w-lg lt host-detail">
-        <div class="vbox">
-            <div class="wrapper">
-                <div class="app-box-push">
-                    <a href="#/server/appList/{{apiDetail.parentAppkey}}"
-                       class="btn btn-sm btn-danger btn-options pull-right">返回
-                    </a>
-                    <form name="formValidate" class="form-horizontal form-validation">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                <div class="form-group">
-                                    <label class="col-sm-4 control-label">接口名称:</label>
-                                    <div class="col-sm-8">
-                                         <span class="form-control">{{apiDetail.name}}</span>
-                                    </div>
-                                </div>
-                                <div class="line line-dashed b-b line-lg pull-in"></div>
-                                <div class="form-group">
-                                    <label class="col-sm-4 control-label">接口地址:</label>
-                                    <div class="col-sm-8">
-                                         <span class="form-control">{{apiDetail.requestUrl}}</span>
-                                    </div>
-                                </div>
-                                <div class="line line-dashed b-b line-lg pull-in"></div>
-                                <div class="form-group">
-                                    <label class="col-sm-4 control-label">接口鉴权:</label>
-                                    <div class="col-sm-8">
-                                         <span class="form-control">{{apiDetail.auth}}</span>
-                                    </div>
-                                </div>
-                                <div class="line line-dashed b-b line-lg pull-in"></div>
-                                <div class="form-group">
-                                    <label class="col-sm-4 control-label">接口描述:</label>
-                                    <div class="col-sm-8">
-                                         <span class="form-control">{{apiDetail.description}}</span>
-                                    </div>
-                                </div>
-                                <div class="line line-dashed b-b line-lg pull-in"></div>
-                                <div class="form-group">
-                                    <label class="col-sm-4 control-label">接口访问过期时间:</label>
-                                    <div class="col-sm-8">
-                                      <span class="form-control">{{apiDetail.rateLimitTtl}}</span>
-                                    </div>
-                                </div>
-                                <div class="line line-dashed b-b line-lg pull-in"></div>
-                                <div class="form-group">
-                                    <label class="col-sm-4 control-label">接口限制次数:</label>
-                                    <div class="col-sm-8">
-                                      <span class="form-control">{{apiDetail.rateLimitNum}}</span>
-                                    </div>
-                                </div>
-                                <div class="line line-dashed b-b line-lg pull-in"></div>
-                                <div class="form-group">
-                                    <label class="col-sm-4 control-label">接口缓存的key值:</label>
-                                    <div class="col-sm-8">
-                                      <span class="form-control">{{apiDetail.cacheKey}}</span>
-                                    </div>
-                                </div>
-                                <div class="line line-dashed b-b line-lg pull-in"></div>
-                                <div class="form-group">
-                                    <label class="col-sm-4 control-label">接口缓存时间:</label>
-                                    <div class="col-sm-8">
-                                      <span class="form-control">{{apiDetail.cacheTtl}}</span>
-                                    </div>
-                                </div>
+                        <div>
+                            <div class="app-push-save-btn" style="float:right; margin:20px 20px 0 0;">
+                                <button class="btn btn-lg btn-info btn-block "
+                                        ng-disabled="form.$invalid"
+                                        ng-click="updateApp()">修改接口
+                                </button>
+                            </div>
+                            <div class="app-push-save-btn " style="float:left;margin:20px 0 0 20px;">
+                                <button class="btn btn-lg btn-danger btn-block "
+                                        ng-disabled="form.$invalid"
+                                        ng-click="deleteApp()">删除接口
+                                </button>
                             </div>
                         </div>
                     </form>
+                    <div class="form-validation" ng-if="!edit">
+                        <div class="app-push-appName">接口名称<span class="has-error">*</span></div>
+                        <input disabled class="form-control" type="text" ng-model="apidetail.name">
+                        <div class="app-push-appName">接口地址<span class="has-error">*</span></div>
+                        <input disabled class="form-control" type="text" ng-model="apidetail.requestUrl">
+                        <div class="app-push-appName">所属组名称<span class="has-error">*</span></div>
+                        <input disabled class="form-control" type="text" ng-model="apidetail.group">
+                        <div class="form-group">
+                            <label class="col-sm-10">请求类型</label>
+                            <div class="col-sm-2">
+                                <label class="m-t-xs ">
+                                    <span ng-if="apidetail.method == 0">GET</span>
+                                    <span ng-if="apidetail.method == 1">POST</span>
+                                    <span ng-if="apidetail.method == 2">PUT</span>
+                                    <span ng-if="apidetail.method == 3">DELETE</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-10">接口鉴权</label>
+                            <div class="col-sm-2">
+                                <label class="i-switch bg-info m-t-xs m-r">
+                                    <input type="checkbox" ng-checked="apidetail.auth" disabled>
+                                    <i></i>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-10">内置方法</label>
+                            <div class="col-sm-2">
+                                <label class="i-switch bg-info m-t-xs m-r">
+                                    <input type="checkbox" ng-checked="apidetail.buildIn" disabled>
+                                    <i></i>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-10">图形验证码</label>
+                            <div class="col-sm-2">
+                                <label class="i-switch bg-info m-t-xs m-r">
+                                    <input type="checkbox" ng-checked="apidetail.captchaRequired" disabled>
+                                    <i></i>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="app-push-appName">接口访问过期时间<span class="has-error">*</span></div>
+                        <input disabled class="form-control" type="text" ng-model="apidetail.rateLimitTtl">
+                        <div class="app-push-appName">接口限制次数<span class="has-error">*</span></div>
+                        <input disabled class="form-control" type="text" ng-model="apidetail.rateLimitNum">
+                        <div class="app-push-appName">接口缓存的key值<span class="has-error">*</span></div>
+                        <input disabled class="form-control" type="text" ng-model="apidetail.cacheKey">
+                        <div class="app-push-appName">接口缓存时间<span class="has-error">*</span></div>
+                        <input disabled class="form-control" type="text" ng-model="apidetail.cacheTtl">
+                        <div class="app-push-appName">接口描述<span class="has-error">*</span></div>
+                        <textarea class="form-control"
+                                  rows="3"
+                                  disabled
+                                  ng-model="apidetail.description">
+                            </textarea>
+                    </div>
                 </div>
             </div>
         </div>
-    </div> -->
+        <div class="prompt-popup1" ng-if="popupshow1">
+            <div class="popup-text">
+                <div class="promptxt1">
+                    <p>提示<span class="glyphicon glyphicon-remove" style="float:right; margin:8px 12px 0 0;"
+                               ng-click="closePopup()"></span></p>
+                </div>
+                <div class="promptxt2">
+                    <p>您确定要修改该接口吗？</p>
+                </div>
+                <div class="promptxt3">
+                    <div class="app-push-save-btn " style="float:right;margin:6px 20px 0 0; background:#ffffff;">
+                        <button class="btn  btn-danger btn-block "
+                                ng-disabled="form.$invalid"
+                                ng-click="okUpdate(apidetail)">确认修改
+                        </button>
+                    </div>
+                    <div class="app-push-save-btn " style="float:right;margin:6px 20px 0 0; background:#ffffff;">
+                        <button class="btn  btn-info btn-block "
+                                ng-disabled="form.$invalid"
+                                ng-click="noUpdate()">放弃修改
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="prompt-popup2" ng-if="popupshow2">
+            <div class="popup-text">
+                <div class="promptxt1">
+                    <p>提示<span class="glyphicon glyphicon-remove" style="float:right; margin:8px 12px 0 0;"
+                               ng-click="closePopup()"></span></p>
+                </div>
+                <div class="promptxt2">
+                    <p>您确定要删除该接口吗？</p>
+                </div>
+                <div class="promptxt3">
+                    <div class="app-push-save-btn " style="float:right;margin:6px 20px 0 0; background:#ffffff;">
+                        <button class="btn  btn-danger btn-block "
+                                ng-disabled="form.$invalid"
+                                ng-click="okDelete()">确认删除
+                        </button>
+                    </div>
+                    <div class="app-push-save-btn " style="float:right;margin:6px 20px 0 0; background:#ffffff;">
+                        <button class="btn  btn-info btn-block "
+                                ng-disabled="form.$invalid"
+                                ng-click="noDelete()">放弃删除
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -11,6 +11,9 @@ function api($http) {
         signIn: function(url, data) {
             return httpPost(url, data);
         },
+        loginConfig: function () {
+            return httpGet('/pipeway/v1/clientConfligs');
+        },
         appCreate: function(data) {
             return httpPost('/pipeway/v1/app/create', data);
         },
@@ -27,7 +30,7 @@ function api($http) {
             return httpGet('/pipeway/v1/api/list/' + data.appKey + '?page=' + data.page + '&pageSize=' + data.pageSize);
         },
         apiUpdate: function(data){
-            return httpPost('/pipeway/v1/api/update/'+ data.id);
+            return httpPost('/pipeway/v1/api/update/'+ data.id, data);
         },
         apiDelete: function(data){
             return httpPost('/pipeway/v1/api/delete/' + data.id);
@@ -36,7 +39,7 @@ function api($http) {
              return httpGet('/pipeway/v1/app/' + data.appKey);
         },
         appUpdate: function(data){
-            return httpPost('/pipeway/v1/app/update/' + data.appKey);
+            return httpPost('/pipeway/v1/app/update/' + data.appKey, data);
         },
         appDelete: function(data){
             return httpPost('/pipeway/v1/app/delete/' + data.appKey);
@@ -55,25 +58,47 @@ function api($http) {
             return httpGet('/pipeway/v1/host/' + data.id);
         },
         hostUpdate: function(data){
-            return httpPost('/pipeway/v1/host/update/' + data.id);
+            return httpPost('/pipeway/v1/host/update/' + data.id, data);
         },
         hostDelete: function(data){
             return httpPost('/pipeway/v1/host/delete/' + data.id);
         },
         accessLogs: function(data){
-            return httpGet('/pipeway/v1/analysis/app/count');
+            return httpGet('/pipeway/v1/analysis/app/count?type=' + data);
+        },
+        search: function(searchParams, keywords) {
+            return httpPost('/pipeway/v1/api/search/' + searchParams.appKey + '?page=' + searchParams.page + '&pageSize=' + searchParams.pageSize, keywords);
+        },
+        ///pipeway/v1/analysis/api/count?span=1
+        apiCount: function(data) {
+            return httpGet('/pipeway/v1/analysis/api/count?span=' + data);
+        },
+        getUserInfo: function() {
+            return httpGet('/pipeway/v1/user/MYSELF');
+        },
+        configReload: function () {
+            return httpGet('/pipeway/v1/config/reload');
         }
-
+        ///config/reload
     };
 
     function httpGet(url) {
-        return $http.get(url).then(function(r) {
+       var token = sessionStorage.getItem('token');
+        return $http.get(url, {
+            headers: {
+                'Authorization': 'Bearer' + ' ' + token
+            }
+        }).then(function(r) {
             return r.data;
         });
     }
     function httpPost(url, data) {
+        var token = sessionStorage.getItem('token');
         return $http.post(url, param(data), {
-            headers: WWW_FORM_HEADER
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Authorization': 'Bearer' + ' ' + token,
+            }
         }).then(function(r) {
             return r.data;
         });
