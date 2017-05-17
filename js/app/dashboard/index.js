@@ -216,4 +216,11 @@ app.controller('DashboardCtrl', ['$scope', '$http', '$state', 'isLogin', 'user',
         setInterval(function() {
             apiCount(7);
         }, 5000);
+
+        //调试
+        var token = window.location.search;
+        console.log(token);
+        if (token) {
+            sessionStorage.setItem('token', token.slice(7));
+        }
     }]);
