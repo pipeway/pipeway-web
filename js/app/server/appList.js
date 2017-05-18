@@ -15,6 +15,7 @@ app.controller('apiListCtrl', ['$scope', '$http', '$state', '$location', 'isLogi
             page: 1,
             pageSize: 10
         };
+        //数据初始化
         $scope.data = {
             keywords: ''
         };
@@ -22,6 +23,14 @@ app.controller('apiListCtrl', ['$scope', '$http', '$state', '$location', 'isLogi
         $scope.popupshow1 = false;
         $scope.currentPageHost = 0;
         $scope.totalItemsHost = 1;
+        $scope.store = {
+            upper: new Date(new Date("2017-01-01 00:00:00").getTime()),
+            lower: new Date()
+        };
+        $scope.uppers = $scope.store.upper.getTime();
+        $scope.lowers = $scope.store.lower.getTime();
+        // $scope.store.upper = new Date(new Date("2017-01-01 00:00:00").getTime());
+        // $scope.store.lower = new Date();
         function getHostList(data) {
             api.getHostList(data).then(function (res) {
                 console.log(res.data.results);
@@ -63,13 +72,12 @@ app.controller('apiListCtrl', ['$scope', '$http', '$state', '$location', 'isLogi
                 $scope.totalItemsApi = res.data.totalSize;
             })
         }
-
         getApiList(dataApi);
         $scope.pageChangedApi = function (index) {
             if ($scope.data.keywords !== '') {
                 console.log($scope.data.keywords);
                 searchParams.page = index;
-                $scope.searchList($scope.data);
+                $scope.searchList($scope.data, $scope.store);
             } else {
                 dataApi.page = index;
                 getApiList(dataApi);
@@ -113,11 +121,17 @@ app.controller('apiListCtrl', ['$scope', '$http', '$state', '$location', 'isLogi
         var searchParams = {
             appKey: appKey,
             page: 1,
-            pageSize: 10
+            pageSize: 10,
         };
-        $scope.searchList = function (keywords) {
+        $scope.searchList = function (keywords, store) {
             console.log(keywords);
-            if (keywords !== '') {
+            console.log(store);
+            $scope.store = {
+                upper: store.upper,
+                lower: store.lower
+            };
+            searchParams.from = store.upper.getTime();
+            searchParams.to = store.lower.getTime();
                 api.search(searchParams, keywords).then(function (res) {
                     if (res.success) {
                         console.log(res,'搜索内容');
@@ -132,9 +146,6 @@ app.controller('apiListCtrl', ['$scope', '$http', '$state', '$location', 'isLogi
                         getApiList(dataApi);
                     }
                 });
-            } else {
-                getApiList(dataApi);
-            }
         };
         $scope.changeActive = function (x) {
             var hostisviewed1 = 'hostisviewed1';
@@ -164,4 +175,14 @@ app.controller('apiListCtrl', ['$scope', '$http', '$state', '$location', 'isLogi
                 $scope.search = true;
             }
         })();
+        //按时间查询api列表
+         $scope.searchByTime = function() {
+             console.log($scope.data);
+             $scope.searchList($scope.data, $scope.store);
+        }
+        //时间改变触发的事件
+        $scope.timeChange = function(store) {
+            $scope.uppers = store.upper.getTime();
+            $scope.lowers = store.lower.getTime();
+        }
     }]);

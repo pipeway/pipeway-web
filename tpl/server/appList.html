@@ -13,10 +13,42 @@
     </div>
     <div class="row" style="margin-left: 0; margin-top: 10px;" ng-if="search">
         <div class="col-lg-5 form-group">
-            <label class="col-lg-3 control-label" style="margin-top: 14px; font-size: 18px; padding-right: 0;">搜索接口</label>
-            <div class="col-lg-8" style="padding-left: 0;">
-                <input type="text" class="form-control" placeholder="接口名称、接口地址" ng-model="data.keywords" ng-change="searchList(data)">
+            <label class="col-lg-3 control-label" style="margin-top: 36px; font-size: 18px; padding-right: 0;">搜索接口</label>
+            <div class="col-lg-8" style="padding-left: 0; margin-top: 24px; ">
+                <input type="text" class="form-control" placeholder="接口名称、接口地址" ng-model="data.keywords" ng-change="searchList(data, store)">
             </div>
+        </div>
+        <div class="col-sm-2" style=" width: 180px; padding: 0;">
+            <div class="form-group col-sm-12" style="padding-left: 0;">
+                <label>开始日期</label>
+                <input type="date"
+                     class="form-control m-b"
+                     ng-model="store.upper"
+                     ng-change="timeChange(store)"
+                     required>
+                <p class="has-error" style="width: 350px;">{{error_warnTimes}}</p>
+            </div>
+        </div>
+        <div class="col-sm-2" style="width: 180px;padding: 0;">
+            <div class="form-group col-sm-12" style="padding-left: 0">
+                <label>结束日期</label>
+                <input type="date"
+                     class="form-control m-b"
+                     ng-model="store.lower"
+                     ng-change="timeChange(store)"
+                     required>
+            </div>
+        </div>
+        <div  class="col-sm-1" style="margin: 34px 0 0 -15px;">
+            <button class="btn btn-sm btn-info"
+                            type="button"
+                            ng-click="searchByTime()"
+                            style="font-size: 15px; ">查询</button>
+        </div>
+        <div  class="col-sm-1" style="margin: 34px 0 0 -40px;">
+            <a target="_blank"
+               ng-href="/pipeway/v1/api/export/{{appKey}}?from={{uppers}}&to={{lowers}}&keywords={{data.keywords}}"
+               class="btn m-b-xs btn-info">导出</a>
         </div>
     </div>
     <div class="wrapper-md">
@@ -148,6 +180,11 @@
             <tab heading="接口列表" active="actived2" select="steps.percent=50" ng-if="hostList.length"
                  ng-click="changeActive('actived2')">
                 <div class="pull-right" style="position: relative; top: -28px;right: -15px;">
+                    <a href="/#/server/fileUpload/{{appKey}}">
+                        <button type="button" class="btn btn-sm btn-primary btn-addon" ng-click="addEvent()">
+                            <i class="fa fa-plus"></i>导入数据
+                        </button>
+                    </a>
                     <a href="/#/server/createApi/{{appKey}}">
                         <button type="button" class="btn btn-sm btn-primary btn-addon" ng-click="addEvent()">
                             <i class="fa fa-plus"></i>新建接口

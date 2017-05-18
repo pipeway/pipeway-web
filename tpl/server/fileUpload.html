@@ -1,0 +1,41 @@
+<!-- hbox layout -->
+<div class="hbox hbox-auto-xs bg-light " ng-init="
+      app.settings.asideFixed = true;
+      app.settings.asideDock = false;
+      app.settings.container = false;
+      app.hideAside = false;
+      app.hideFooter = true;"
+     ng-controller="fileUploadCtrl">
+    <div class="col w-lg lt">
+        <div class="vbox">
+            <div class="wrapper">
+                <div class="app-box-push">
+                    <a href="#/server/appList/{{appKey}}"
+                       class="btn btn-sm btn-danger btn-options pull-right">返回
+                    </a>
+                    <div class="row wrapper">
+                        <form style="height: 100px;padding: 50px 0 0 115px;">
+                            <span class="pull-left" style="margin:  -3px 0 0 10px; font-size: 18px; color: #4e4680;">上传文件：</span>
+                            <input type="file" id="avatar" name="avatar">
+                        </form>
+                        <div style="padding: 10px 20px;">
+                            <button type="button" class="btn btn-addon btn-primary upload"><i class="fa fa-arrow-circle-o-up"></i> 上传
+                            </button>
+                        </div>
+                    </div>
+                    <p style="color: #ee5656; font-size: 15px; padding: 10px 15px; line-height: 25px;">温馨提示:您上传的文件必须为后缀名为xls的Excel文件,且文件名称必须与模板保持一致，如："接口导入模板.xls"</p>
+                    <a href="#/server/appList/{{appKey}}">
+                        <button type="button"
+                                class="btn btn-lg btn-info btn-block"
+                                ng-click="goBack()"
+                                style="width: 300px; margin-left: 110px;">完成
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/ng-template" id="warn.html">
+    <div ng-include="'tpl/modal.html'"></div>
+</script>
