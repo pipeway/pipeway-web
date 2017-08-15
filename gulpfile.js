@@ -4,29 +4,29 @@ var modRewrite = require('connect-modrewrite');
 var watch = require('gulp-watch');
 var less = require('gulp-less');
 var shell = require('gulp-shell');
-var host = "http://10.99.97.62:3000";
+var host = "http://10.99.96.49:3000";
 //var host = "http://172.16.3.192:9082";
 
-gulp.task('connect', function () {
-	connect.server({
-		root: './',
-		port: 10000,
-		livereload: false,
-		middleware: function (connect, o) {
-			return [
-				(function () {
-					var url = require('url');
-					var proxy = require('proxy-middleware');
-					var options = url.parse(host + '/pipeway');
-					options.route = '/pipeway';
-					return proxy(options);
-				})(),
-				modRewrite([
-					'!\\.html|\\.js|\\.css|\\.swf|\\.jp(e?)g|\\.png|\\.gif|\\.eot|\\.woff|\\.ttf|\\.svg$ /index.html'
-				])
-			];
-		}
-	});
+gulp.task('connect', function() {
+    connect.server({
+        root: './',
+        port: 10000,
+        livereload: false,
+        middleware: function(connect, o) {
+            return [
+                (function() {
+                    var url = require('url');
+                    var proxy = require('proxy-middleware');
+                    var options = url.parse(host + '/pipeway');
+                    options.route = '/pipeway';
+                    return proxy(options);
+                })(),
+                modRewrite([
+                    '!\\.html|\\.js|\\.css|\\.swf|\\.jp(e?)g|\\.png|\\.gif|\\.eot|\\.woff|\\.ttf|\\.svg$ /index.html'
+                ])
+            ];
+        }
+    });
 });
 
 gulp.task('dev', ['connect']);

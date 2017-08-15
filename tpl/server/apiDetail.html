@@ -4,15 +4,13 @@
   app.settings.asideDock = false;
   app.settings.container = false;
   app.hideAside = false;
-  app.hideFooter = true;"
-     ng-controller="apiDetailCtrl">
+  app.hideFooter = true;" ng-controller="apiDetailCtrl">
     <div class="col w-lg lt">
         <div class="vbox">
             <div class="wrapper">
                 <div class="app-box-push clearfix">
 
-                    <a href="#/server/appList/{{apidetail.parentAppkey}}"
-                       class="btn btn-sm btn-danger btn-options pull-right" style="margin-left: 10px;">返回
+                    <a href="#/server/appList/{{apidetail.parentAppkey}}" class="btn btn-sm btn-danger btn-options pull-right" style="margin-left: 10px;">返回
                     </a>
                     <a class="btn btn-sm btn-danger btn-options pull-right" ng-click="editApi()" ng-if="!edit">编辑
                     </a>
@@ -20,18 +18,11 @@
                     </a>
                     <form name="form" class="form-validation" ng-if="edit">
                         <div class="app-push-appName">接口名称<span class="has-error">*</span></div>
-                        <input class="form-control"
-                               type="text"
-                               ng-model="apidetail.name"
-                        >
+                        <input class="form-control" type="text" ng-model="apidetail.name">
                         <div class="app-push-appName">接口地址<span class="has-error">*</span></div>
-                        <input class="form-control"
-                               type="text"
-                               ng-model="apidetail.requestUrl">
+                        <input class="form-control" type="text" ng-model="apidetail.requestUrl">
                         <div class="app-push-appName">所属组名称<span class="has-error">*</span></div>
-                        <input class="form-control"
-                               type="text"
-                               ng-model="apidetail.group">
+                        <input class="form-control" type="text" ng-model="apidetail.group">
                         <div class="app-push-appName">请求类型<span class="has-error">*</span></div>
                         <select name="account" class="form-control" ng-model="apidetail.method">
                             <option value="0">GET</option>
@@ -81,15 +72,9 @@
                         </div>
                         <div class="cache-content" ng-if="expireBtn">
                             <div class="app-push-appName cache">接口访问过期时间</div>
-                            <input class="form-control cache-form"
-                                   type="text"
-                                   ng-change="checkExpire()"
-                                   ng-model="apidetail.rateLimitTtl">
+                            <input class="form-control cache-form" type="text" ng-change="checkExpire()" ng-model="apidetail.rateLimitTtl">
                             <div class="app-push-appName cache">接口限制次数</div>
-                            <input class="form-control cache-form"
-                                   type="text"
-                                   ng-change="checkExpire()"
-                                   ng-model="apidetail.rateLimitNum">
+                            <input class="form-control cache-form" type="text" ng-change="checkExpire()" ng-model="apidetail.rateLimitNum">
                             <div class="app-push-appName cache-error">{{expireError}}</div>
                         </div>
                         <div class="form-group">
@@ -103,34 +88,21 @@
                         </div>
                         <div class="cache-content" ng-if="cacheBtn">
                             <div class="app-push-appName cache">接口缓存的key值</div>
-                            <input class="form-control cache-form"
-                                   type="text"
-                                   ng-model="apidetail.cacheKey"
-                                   ng-change="checkCache()"
-                            >
+                            <input class="form-control cache-form" type="text" ng-model="apidetail.cacheKey" ng-change="checkCache()">
                             <div class="app-push-appName cache">接口缓存时间</div>
-                            <input class="form-control cache-form"
-                                   type="text"
-                                   ng-change="checkCache()"
-                                   ng-model="apidetail.cacheTtl">
+                            <input class="form-control cache-form" type="text" ng-change="checkCache()" ng-model="apidetail.cacheTtl">
                             <div class="app-push-appName cache-error">{{cacheError}}</div>
                         </div>
                         <div class="app-push-appName">接口描述</div>
-                        <textarea class="form-control"
-                                  rows="3"
-                                  ng-model="apidetail.description">
+                        <textarea class="form-control" rows="3" ng-model="apidetail.description">
                             </textarea>
                         <div>
                             <div class="app-push-save-btn" style="float:right; margin:20px 20px 0 0;">
-                                <button class="btn btn-lg btn-info btn-block "
-                                        ng-disabled="form.$invalid"
-                                        ng-click="updateApp()">修改接口
+                                <button class="btn btn-lg btn-info btn-block " ng-disabled="form.$invalid" ng-click="updateApp()">修改接口
                                 </button>
                             </div>
                             <div class="app-push-save-btn " style="float:left;margin:20px 0 0 20px;">
-                                <button class="btn btn-lg btn-danger btn-block "
-                                        ng-disabled="form.$invalid"
-                                        ng-click="deleteApp()">删除接口
+                                <button class="btn btn-lg btn-danger btn-block " ng-disabled="form.$invalid" ng-click="deleteApp()">删除接口
                                 </button>
                             </div>
                         </div>
@@ -189,10 +161,7 @@
                         <div class="app-push-appName">接口缓存时间<span class="has-error">*</span></div>
                         <input disabled class="form-control" type="text" ng-model="apidetail.cacheTtl">
                         <div class="app-push-appName">接口描述<span class="has-error">*</span></div>
-                        <textarea class="form-control"
-                                  rows="3"
-                                  disabled
-                                  ng-model="apidetail.description">
+                        <textarea class="form-control" rows="3" disabled ng-model="apidetail.description">
                             </textarea>
                     </div>
                 </div>
@@ -201,23 +170,18 @@
         <div class="prompt-popup1" ng-if="popupshow1">
             <div class="popup-text">
                 <div class="promptxt1">
-                    <p>提示<span class="glyphicon glyphicon-remove" style="float:right; margin:8px 12px 0 0;"
-                               ng-click="closePopup()"></span></p>
+                    <p>提示<span class="glyphicon glyphicon-remove" style="float:right; margin:8px 12px 0 0;" ng-click="closePopup()"></span></p>
                 </div>
                 <div class="promptxt2">
                     <p>您确定要修改该接口吗？</p>
                 </div>
                 <div class="promptxt3">
                     <div class="app-push-save-btn " style="float:right;margin:6px 20px 0 0; background:#ffffff;">
-                        <button class="btn  btn-danger btn-block "
-                                ng-disabled="form.$invalid"
-                                ng-click="okUpdate(apidetail)">确认修改
+                        <button class="btn  btn-danger btn-block " ng-disabled="form.$invalid" ng-click="okUpdate(apidetail)">确认修改
                         </button>
                     </div>
                     <div class="app-push-save-btn " style="float:right;margin:6px 20px 0 0; background:#ffffff;">
-                        <button class="btn  btn-info btn-block "
-                                ng-disabled="form.$invalid"
-                                ng-click="noUpdate()">放弃修改
+                        <button class="btn  btn-info btn-block " ng-disabled="form.$invalid" ng-click="noUpdate()">放弃修改
                         </button>
                     </div>
                 </div>
@@ -226,23 +190,18 @@
         <div class="prompt-popup2" ng-if="popupshow2">
             <div class="popup-text">
                 <div class="promptxt1">
-                    <p>提示<span class="glyphicon glyphicon-remove" style="float:right; margin:8px 12px 0 0;"
-                               ng-click="closePopup()"></span></p>
+                    <p>提示<span class="glyphicon glyphicon-remove" style="float:right; margin:8px 12px 0 0;" ng-click="closePopup()"></span></p>
                 </div>
                 <div class="promptxt2">
                     <p>您确定要删除该接口吗？</p>
                 </div>
                 <div class="promptxt3">
                     <div class="app-push-save-btn " style="float:right;margin:6px 20px 0 0; background:#ffffff;">
-                        <button class="btn  btn-danger btn-block "
-                                ng-disabled="form.$invalid"
-                                ng-click="okDelete()">确认删除
+                        <button class="btn  btn-danger btn-block " ng-disabled="form.$invalid" ng-click="okDelete()">确认删除
                         </button>
                     </div>
                     <div class="app-push-save-btn " style="float:right;margin:6px 20px 0 0; background:#ffffff;">
-                        <button class="btn  btn-info btn-block "
-                                ng-disabled="form.$invalid"
-                                ng-click="noDelete()">放弃删除
+                        <button class="btn  btn-info btn-block " ng-disabled="form.$invalid" ng-click="noDelete()">放弃删除
                         </button>
                     </div>
                 </div>
