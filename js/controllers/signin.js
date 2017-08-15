@@ -39,7 +39,7 @@ app.controller('SigninFormController', ['$scope', '$http', '$state', '$cookies',
             $scope.Login = '登录中……';
             sessionStorage.setItem('token', token.slice(7));
             setTimeout(function () {
-                $state.go('client.list');
+                $state.go('dashboard.home');
                 //window.location.href = window.location.origin + '/table';
             }, 2000);
         } else {

@@ -15,8 +15,22 @@ app.controller('apiListCtrl', ['$scope', '$http', '$state', '$location', 'isLogi
             page: 1,
             pageSize: 10
         };
+        //数据初始化
+        $scope.data = {
+            keywords: ''
+        };
+        $scope.updateOk = false;
+        $scope.popupshow1 = false;
         $scope.currentPageHost = 0;
         $scope.totalItemsHost = 1;
+        $scope.store = {
+            upper: new Date(new Date("2017-01-01 00:00:00").getTime()),
+            lower: new Date()
+        };
+        $scope.uppers = $scope.store.upper.getTime();
+        $scope.lowers = $scope.store.lower.getTime();
+        // $scope.store.upper = new Date(new Date("2017-01-01 00:00:00").getTime());
+        // $scope.store.lower = new Date();
         function getHostList(data) {
             api.getHostList(data).then(function (res) {
                 console.log(res.data.results);
@@ -43,9 +57,9 @@ app.controller('apiListCtrl', ['$scope', '$http', '$state', '$location', 'isLogi
             page: 1,
             pageSize: 10
         };
+        $scope.maxSize = 5;
         $scope.currentPageApi = 0;
         $scope.totalItemsApi = 1;
-        // debugger;
         function getApiList(data) {
             api.getApiList(data).then(function (res) {
                 if (res.data.totalSize < 11) {
@@ -58,43 +72,80 @@ app.controller('apiListCtrl', ['$scope', '$http', '$state', '$location', 'isLogi
                 $scope.totalItemsApi = res.data.totalSize;
             })
         }
-
         getApiList(dataApi);
         $scope.pageChangedApi = function (index) {
-            dataApi.page = index;
-            getApiList(dataApi);
-        };
-        // (function getHash(){
-        //   var hash = $location.hash();
-        //   if(hash){
-        //     $scope.actived1 = false;
-        //     $scope.actived2 = true;
-        //     hash = "";
-        //   }
-        // })();
-        //搜索
-
-        $scope.searchList = function (keywords) {
-            var searchParams = {
-                appKey: appKey,
-                page: 1,
-                pageSize: 10
-            };
-            console.log(keywords);
-            if (keywords != '') {
-                api.search(searchParams, keywords).then(function (res) {
-                    console.log(res,'搜索内容');
-                    if (res.data.totalSize < 11) {
-                        $scope.pagination2 = false;
-                    } else {
-                        $scope.pagination2 = true;
-                    }
-                    $scope.apiList = res.data.results;
-                    $scope.totalItemsApi = res.data.totalSize;
-                });
+            if ($scope.data.keywords !== '') {
+                console.log($scope.data.keywords);
+                searchParams.page = index;
+                $scope.searchList($scope.data, $scope.store);
             } else {
+                dataApi.page = index;
                 getApiList(dataApi);
             }
+        };
+        //修改主机状态
+         $scope.modifyStatus = function (id, status, name) {
+             var data = {
+                 id: id,
+                 status: status
+             };
+             var r = confirm('你确定要修改主机的状态吗?');
+             if (r == true) {
+                 api.hostUpdate(data).then(function (res) {
+                     if (res.success) {
+                         alert(name +'修改成功');
+                         getHostList(dataHost);
+                         //$location.path('/server/appList/' + $scope.hostdetail.parentAppkey);
+                     }
+                 });
+             }
+
+        };
+        $scope.okUpdate = function () {
+            $scope.updateOk = true;
+            $scope.popupshow1 = false;
+        };
+        $scope.noUpdate = function () {
+            $scope.updateOk = false;
+            $scope.popupshow1 = false;
+        };
+        //获取用户信息
+        function getUserInfo() {
+            api.getUserInfo().then(function (res) {
+                console.log(res.data);
+
+            })
+        }
+
+        //搜索
+        var searchParams = {
+            appKey: appKey,
+            page: 1,
+            pageSize: 10,
+        };
+        $scope.searchList = function (keywords, store) {
+            console.log(keywords);
+            console.log(store);
+            $scope.store = {
+                upper: store.upper,
+                lower: store.lower
+            };
+            searchParams.from = store.upper.getTime();
+            searchParams.to = store.lower.getTime();
+                api.search(searchParams, keywords).then(function (res) {
+                    if (res.success) {
+                        console.log(res,'搜索内容');
+                        if (res.data.totalSize < 11) {
+                            $scope.pagination2 = false;
+                        } else {
+                            $scope.pagination2 = true;
+                        }
+                        $scope.apiList = res.data.results;
+                        $scope.totalItemsApi = res.data.totalSize;
+                    } else {
+                        getApiList(dataApi);
+                    }
+                });
         };
         $scope.changeActive = function (x) {
             var hostisviewed1 = 'hostisviewed1';
@@ -124,4 +175,14 @@ app.controller('apiListCtrl', ['$scope', '$http', '$state', '$location', 'isLogi
                 $scope.search = true;
             }
         })();
+        //按时间查询api列表
+         $scope.searchByTime = function() {
+             console.log($scope.data);
+             $scope.searchList($scope.data, $scope.store);
+        }
+        //时间改变触发的事件
+        $scope.timeChange = function(store) {
+            $scope.uppers = store.upper.getTime();
+            $scope.lowers = store.lower.getTime();
+        }
     }]);

@@ -1,5 +1,5 @@
 app.controller('apiDetailCtrl', ['$scope', '$http', '$state', '$location', 'isLogin', 'user', '$cookies', 'api',
-    function ($scope, $http, $state, $location, isLogin, user, $cookies, api) {
+    function($scope, $http, $state, $location, isLogin, user, $cookies, api) {
         var url = $location.url();
         var path = url.split('/');
         var id = path[4];
@@ -14,9 +14,9 @@ app.controller('apiDetailCtrl', ['$scope', '$http', '$state', '$location', 'isLo
             edit: false
         });
 
-//查询接口
+        //查询接口
         function apiDetail(params) {
-            api.apiDetail(params).then(function (res) {
+            api.apiDetail(params).then(function(res) {
                 if (res.success) {
                     $scope.apidetail = res.data;
                     $scope.name = res.data.name;
@@ -40,8 +40,8 @@ app.controller('apiDetailCtrl', ['$scope', '$http', '$state', '$location', 'isLo
             })
         };
         apiDetail(params);
-//修改接口
-        var okUpdate = function () {
+        //修改接口
+        var okUpdate = function() {
             var data = {
                 id: id
             };
@@ -81,7 +81,7 @@ app.controller('apiDetailCtrl', ['$scope', '$http', '$state', '$location', 'isLo
             if ($scope.description != $scope.apidetail.description) {
                 data.description = $scope.apidetail.description;
             }
-            api.apiUpdate(data).then(function (res) {
+            api.apiUpdate(data).then(function(res) {
                 console.log(data);
                 console.log(res);
                 if (res.success) {
@@ -91,12 +91,12 @@ app.controller('apiDetailCtrl', ['$scope', '$http', '$state', '$location', 'isLo
                 }
             });
         };
-//删除接口
-        var okDelete = function () {
+        //删除接口
+        var okDelete = function() {
             var data = {
                 id: id
             };
-            api.apiDelete(data).then(function (res) {
+            api.apiDelete(data).then(function(res) {
                 console.log(data.id);
                 console.log(res);
                 if (res.success) {
@@ -104,28 +104,36 @@ app.controller('apiDetailCtrl', ['$scope', '$http', '$state', '$location', 'isLo
                 }
             });
         };
-//接口缓存
-        var openCache = function () {
+        //接口缓存
+        var openCache = function() {
             $scope.cacheBtn = !$scope.cacheBtn;
+            if (!$scope.cacheBtn) {
+                $scope.apidetail.cacheKey = '';
+                $scope.apidetail.cacheTtl = '';
+            }
         };
-        var openExpire = function () {
+        var openExpire = function() {
             $scope.expireBtn = !$scope.expireBtn;
+            if (!$scope.expireBtn) {
+                $scope.apidetail.rateLimitTtl = '';
+                $scope.apidetail.rateLimitNum = '';
+            }
         };
-        var openAuth = function () {
+        var openAuth = function() {
             if ($scope.apidetail.auth) {
                 $scope.apidetail.auth = 0;
             } else {
                 $scope.apidetail.auth = 1;
             }
         };
-        var openBuildIn = function () {
+        var openBuildIn = function() {
             if ($scope.apidetail.buildIn) {
                 $scope.apidetail.buildIn = 0;
             } else {
                 $scope.apidetail.buildIn = 1;
             }
         };
-        var openCaptcha = function () {
+        var openCaptcha = function() {
             if ($scope.apidetail.captchaRequired) {
                 $scope.apidetail.captchaRequired = 0;
             } else {
@@ -133,7 +141,7 @@ app.controller('apiDetailCtrl', ['$scope', '$http', '$state', '$location', 'isLo
             }
         };
 
-//检测缓存
+        //检测缓存
         var checkCache = function() {
             if ($scope.apidetail.cacheKey) {
                 if (!$scope.apidetail.cacheTtl) {
@@ -143,14 +151,14 @@ app.controller('apiDetailCtrl', ['$scope', '$http', '$state', '$location', 'isLo
                 }
             }
             if ($scope.apidetail.cacheTtl) {
-                if(!$scope.apidetail.cacheKey) {
+                if (!$scope.apidetail.cacheKey) {
                     $scope.cacheError = '接口缓存key值不能为空'
                 } else {
                     $scope.cacheError = '';
                 }
             }
         };
-        var checkExpire = function () {
+        var checkExpire = function() {
             if ($scope.apidetail.rateLimitTtl) {
                 if (!$scope.apidetail.rateLimitNum) {
                     $scope.expireError = '接口限制次数不能为空'
@@ -166,23 +174,23 @@ app.controller('apiDetailCtrl', ['$scope', '$http', '$state', '$location', 'isLo
                 }
             }
         };
-//编辑
+        //编辑
         var editApi = function() {
             $scope.edit = !$scope.edit;
         };
-        var updateApp = function () {
+        var updateApp = function() {
             $scope.popupshow1 = true;
         };
-        var deleteApp = function () {
+        var deleteApp = function() {
             $scope.popupshow2 = true;
         };
-        var noUpdate = function () {
+        var noUpdate = function() {
             $scope.popupshow1 = false;
         };
-        var noDelete = function () {
+        var noDelete = function() {
             $scope.popupshow2 = false;
         };
-        var closePopup = function () {
+        var closePopup = function() {
             $scope.popupshow1 = false;
             $scope.popupshow2 = false;
         };

@@ -118,6 +118,7 @@ angular.module('app')
                         }
                     })
 
+
                 .state('server.appList', {
                         url: '/appList/:appkey',
                         templateUrl: 'tpl/server/appList.html',
@@ -144,6 +145,23 @@ angular.module('app')
                                     return $ocLazyLoad.load('angularFileUpload').then(
                                         function() {
                                             return $ocLazyLoad.load(['js/app/server/createApi.js',
+                                                'vendor/libs/moment.min.js'
+                                            ]);
+                                        }
+                                    );
+                                }
+                            ]
+                        }
+                    })
+                    .state('server.fileUpload', {
+                        url: '/fileUpload/:appKey',
+                        templateUrl: 'tpl/server/fileUpload.html',
+                        resolve: {
+                            deps: ['uiLoad', '$ocLazyLoad',
+                                function(uiLoad, $ocLazyLoad) {
+                                    return $ocLazyLoad.load('angularFileUpload').then(
+                                        function() {
+                                            return $ocLazyLoad.load(['js/app/server/fileUpload.js',
                                                 'vendor/libs/moment.min.js'
                                             ]);
                                         }

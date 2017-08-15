@@ -14,15 +14,15 @@
                             <label class="col-sm-10">严格模式</label>
                             <div class="col-sm-2">
                                 <label class="i-switch bg-info m-t-xs m-r">
-                                    <input type="checkbox" ng-checked="alarmSettings.strictMode" ng-click="openAuth()">
+                                    <input type="checkbox" ng-model="alarmSettings.strictMode">
                                     <i></i>
                                 </label>
                             </div>
                         </div>
                         <div class="app-push-appName">超时时间<span class="has-error">*</span></div>
                         <input class="form-control" type="text" ng-model="alarmSettings.timeout">
-                        <div class="app-push-appName">接口报错阈值(设置格式 秒/报错次数，如 60/10)<span class="has-error">*</span></div>
-                        <input class="form-control" type="text" placeholder="秒/报错次数" ng-model="alarmSettings.errorThreshold">
+                        <div class="app-push-appName">接口报错阈值(设置格式 报错次数/秒，如 10/60)<span class="has-error">*</span></div>
+                        <input class="form-control" type="text" placeholder="报错次数/秒" ng-model="alarmSettings.errorThreshold">
                         <div class="" style="margin-top: 15px">
                             <button class="btn  btn-info btn-block " ng-disabled="form.$invalid" ng-click="create()">确定
                         </div>
