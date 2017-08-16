@@ -1,5 +1,5 @@
 app.controller('ClientSettingCtrl', ['$scope', '$http', '$state', '$modal', '$location', 'isLogin', 'user', '$cookies', 'api', 'FileUploader',
-    function ($scope, $http, $state, $modal, $location, isLogin, user, $cookies, api, FileUploader) {
+    function($scope, $http, $state, $modal, $location, isLogin, user, $cookies, api, FileUploader) {
         var url = $location.url();
         var path = url.split('/');
         var appKey = path[3];
@@ -9,9 +9,9 @@ app.controller('ClientSettingCtrl', ['$scope', '$http', '$state', '$modal', '$lo
         };
         $scope.popupshow1 = false;
         $scope.popupshow2 = false;
-//查询应用
+        //查询应用
         function appDetail(data) {
-            api.getAppDetail(data).then(function (res) {
+            api.getAppDetail(data).then(function(res) {
                 console.log(res);
                 if (res.success) {
                     $scope.appdetail = res.data;
@@ -22,8 +22,8 @@ app.controller('ClientSettingCtrl', ['$scope', '$http', '$state', '$modal', '$lo
             });
         };
         appDetail(params);
-//修改应用
-        $scope.okUpdate = function (appdetail) {
+        //修改应用
+        $scope.okUpdate = function(appdetail) {
             var data = {
                 appKey: appKey
             };
@@ -36,7 +36,7 @@ app.controller('ClientSettingCtrl', ['$scope', '$http', '$state', '$modal', '$lo
             if ($scope.description != $scope.appdetail.description) {
                 data.description = $scope.appdetail.description;
             }
-            api.appUpdate(data).then(function (res) {
+            api.appUpdate(data).then(function(res) {
                 console.log(res);
                 if (res.success) {
                     // window.location.reload();
@@ -44,31 +44,32 @@ app.controller('ClientSettingCtrl', ['$scope', '$http', '$state', '$modal', '$lo
                 }
             });
         };
-//删除应用
-        $scope.okDelete = function () {
+        //删除应用
+        $scope.okDelete = function() {
             var data = {
                 appKey: appKey
             };
-            api.appDelete(data).then(function (res) {
+            api.appDelete(data).then(function(res) {
                 if (res.success) {
                     $location.path('/client/list');
                 }
             });
         };
-        $scope.updateApp = function () {
+        $scope.updateApp = function() {
             $scope.popupshow1 = true;
         };
-        $scope.deleteApp = function () {
+        $scope.deleteApp = function() {
             $scope.popupshow2 = true;
         };
-        $scope.noUpdate = function () {
+        $scope.noUpdate = function() {
             $scope.popupshow1 = false;
         };
-        $scope.noDelete = function () {
+        $scope.noDelete = function() {
             $scope.popupshow2 = false;
         };
-        $scope.closePopup = function () {
+        $scope.closePopup = function() {
             $scope.popupshow1 = false;
             $scope.popupshow2 = false;
         }
-    }]);
+    }
+]);

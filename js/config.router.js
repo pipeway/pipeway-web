@@ -443,7 +443,7 @@ angular.module('app')
                                     return $ocLazyLoad.load('angularFileUpload').then(
                                         function() {
                                             return $ocLazyLoad.load(['js/app/alarm/settings.js',
-                                                'vendor/libs/moment.min.js'
+                                                'vendor/libs/moment.min.js', 'toaster'
                                             ]);
                                         }
                                     );
