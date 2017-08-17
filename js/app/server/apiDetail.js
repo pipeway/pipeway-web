@@ -30,6 +30,7 @@ app.controller('apiDetailCtrl', ['$scope', '$http', '$state', '$location', 'isLo
                     $scope.cacheKey = res.data.cacheKey;
                     $scope.cacheTtl = res.data.cacheTtl;
                     $scope.description = res.data.description;
+                    $scope.strictMode = (+res.data.strictMode) ? true : false;
                 }
                 if (res.data.cacheKey) {
                     $scope.cacheBtn = true;
@@ -66,6 +67,14 @@ app.controller('apiDetailCtrl', ['$scope', '$http', '$state', '$location', 'isLo
             if ($scope.captchaRequired != $scope.apidetail.captchaRequired) {
                 data.captchaRequired = $scope.apidetail.captchaRequired;
             }
+
+            var strictMode = 0;
+            if ($scope.apidetail.strictMode) {
+                strictMode = 1;
+            }
+
+            data.strictMode = strictMode;
+
             if ($scope.rateLimitTtl != $scope.apidetail.rateLimitTtl) {
                 data.rateLimitTtl = $scope.apidetail.rateLimitTtl;
             }
@@ -82,8 +91,6 @@ app.controller('apiDetailCtrl', ['$scope', '$http', '$state', '$location', 'isLo
                 data.description = $scope.apidetail.description;
             }
             api.apiUpdate(data).then(function(res) {
-                console.log(data);
-                console.log(res);
                 if (res.success) {
                     $scope.popupshow1 = false;
                     $scope.apidetail = _.merge($scope.apidetail, data);
@@ -194,6 +201,10 @@ app.controller('apiDetailCtrl', ['$scope', '$http', '$state', '$location', 'isLo
             $scope.popupshow1 = false;
             $scope.popupshow2 = false;
         };
+
+        var setStrictMode = function() {
+            $scope.apidetail.strictMode = !$scope.apidetail.strictMode
+        }
         _.merge($scope, {
             okUpdate: okUpdate,
             okDelete: okDelete,
@@ -209,7 +220,8 @@ app.controller('apiDetailCtrl', ['$scope', '$http', '$state', '$location', 'isLo
             deleteApp: deleteApp,
             noUpdate: noUpdate,
             noDelete: noDelete,
-            closePopup: closePopup
+            closePopup: closePopup,
+            setStrictMode: setStrictMode
         })
     }
 ]);

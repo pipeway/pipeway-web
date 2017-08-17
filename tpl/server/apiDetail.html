@@ -71,6 +71,15 @@
                             </div>
                         </div>
                         <div class="cache-content" ng-if="expireBtn">
+                            <div class="form-group">
+                                <label class="col-sm-4 cache" style="margin-left: 15px;">严格模式</label>
+                                <div class="col-sm-2">
+                                    <label class="i-switch bg-info m-t-xs m-r">
+                                    <input type="checkbox" ng-checked="apidetail.strictMode" ng-click="setStrictMode()">
+                                    <i></i>
+                                </label>
+                                </div>
+                            </div>
                             <div class="app-push-appName cache">接口访问过期时间</div>
                             <input class="form-control cache-form" type="text" ng-change="checkExpire()" ng-model="apidetail.rateLimitTtl">
                             <div class="app-push-appName cache">接口限制次数</div>
