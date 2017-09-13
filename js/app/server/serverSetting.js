@@ -21,41 +21,42 @@ app.controller('ServerSettingCtrl', ['$scope', '$http', '$state', '$modal', '$lo
                 }
             });
         };
+
         appDetail(params);
+
         //修改应用
         $scope.okUpdate = function(appdetail) {
-                data = {
-                    appKey: appKey
-                }
-                if ($scope.name != appdetail.name) {
-                    data.name = appdetail.name;
-                }
-                if ($scope.hostGroup != appdetail.hostGroup) {
-                    data.hostGroup = appdetail.hostGroup;
-                }
-                if ($scope.description != appdetail.description) {
-                    data.description = appdetail.description;
-                }
-
-                if ($scope.rateLimitNum != appdetail.rateLimitNum) {
-                    data.rateLimitNum = appdetail.rateLimitNum;
-                }
-                if ($scope.rateLimitTtl != appdetail.rateLimitTtl) {
-                    data.rateLimitTtl = appdetail.rateLimitTtl;
-                }
-
-                console.log(data)
-                api.appUpdate(data).then(function(res) {
-                    console.log(data.name);
-                    console.log(data.hostGroup);
-                    console.log(data.description);
-                    if (res.success) {
-                        console.log(res);
-                        // window.location.reload();
-                    }
-                });
+            data = {
+                appKey: appKey
             }
-            //删除应用
+            if ($scope.name != appdetail.name) {
+                data.name = appdetail.name;
+            }
+            if ($scope.hostGroup != appdetail.hostGroup) {
+                data.hostGroup = appdetail.hostGroup;
+            }
+            if ($scope.description != appdetail.description) {
+                data.description = appdetail.description;
+            }
+
+            if ($scope.rateLimitNum != appdetail.rateLimitNum) {
+                data.rateLimitNum = appdetail.rateLimitNum;
+            }
+            if ($scope.rateLimitTtl != appdetail.rateLimitTtl) {
+                data.rateLimitTtl = appdetail.rateLimitTtl;
+            }
+
+            if ($scope.jwtSecret != appdetail.jwtSecret) {
+                data.jwtSecret = appdetail.jwtSecret;
+            }
+            api.appUpdate(data).then(function(res) {
+                if (res.success) {
+                    window.location.reload();
+                }
+            });
+        }
+
+        //删除应用
         $scope.okDelete = function() {
             data = {
                 appKey: appKey

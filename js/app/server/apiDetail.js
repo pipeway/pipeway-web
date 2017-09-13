@@ -31,6 +31,7 @@ app.controller('apiDetailCtrl', ['$scope', '$http', '$state', '$location', 'isLo
                     $scope.cacheTtl = res.data.cacheTtl;
                     $scope.description = res.data.description;
                     $scope.strictMode = (+res.data.strictMode) ? true : false;
+                    $scope.jwtEnable = res.data.jwtEnable;
                 }
                 if (res.data.cacheKey) {
                     $scope.cacheBtn = true;
@@ -68,6 +69,11 @@ app.controller('apiDetailCtrl', ['$scope', '$http', '$state', '$location', 'isLo
                 data.captchaRequired = $scope.apidetail.captchaRequired;
             }
 
+            console.log($scope.apidetail)
+            if ($scope.jwtEnable != $scope.apidetail.jwtEnable) {
+                data.jwtEnable = $scope.apidetail.jwtEnable;
+            }
+
             var strictMode = 0;
             if ($scope.apidetail.strictMode) {
                 strictMode = 1;
@@ -90,6 +96,7 @@ app.controller('apiDetailCtrl', ['$scope', '$http', '$state', '$location', 'isLo
             if ($scope.description != $scope.apidetail.description) {
                 data.description = $scope.apidetail.description;
             }
+            console.log(data)
             api.apiUpdate(data).then(function(res) {
                 if (res.success) {
                     $scope.popupshow1 = false;
@@ -104,8 +111,6 @@ app.controller('apiDetailCtrl', ['$scope', '$http', '$state', '$location', 'isLo
                 id: id
             };
             api.apiDelete(data).then(function(res) {
-                console.log(data.id);
-                console.log(res);
                 if (res.success) {
                     $location.path('/server/appList/' + $scope.apidetail.parentAppkey);
                 }
@@ -133,6 +138,14 @@ app.controller('apiDetailCtrl', ['$scope', '$http', '$state', '$location', 'isLo
                 $scope.apidetail.auth = 1;
             }
         };
+
+        var toggleJwt = function() {
+            if ($scope.apidetail.jwtEnable) {
+                $scope.apidetail.jwtEnable = 0;
+            } else {
+                $scope.apidetail.jwtEnable = 1;
+            }
+        }
         var openBuildIn = function() {
             if ($scope.apidetail.buildIn) {
                 $scope.apidetail.buildIn = 0;
@@ -221,7 +234,8 @@ app.controller('apiDetailCtrl', ['$scope', '$http', '$state', '$location', 'isLo
             noUpdate: noUpdate,
             noDelete: noDelete,
             closePopup: closePopup,
-            setStrictMode: setStrictMode
+            setStrictMode: setStrictMode,
+            toggleJwt: toggleJwt
         })
     }
 ]);

@@ -4,40 +4,26 @@
       app.settings.asideDock = false;
       app.settings.container = false;
       app.hideAside = false;
-      app.hideFooter = true;"
-     ng-controller="createApiCtrl">
+      app.hideFooter = true;" ng-controller="createApiCtrl">
     <div class="col w-lg lt">
         <div class="vbox">
             <div class="wrapper">
                 <div class="app-box-push">
-                    <a href="#/server/appList/{{appKey}}"
-                       class="btn btn-sm btn-danger btn-options pull-right">返回
+                    <a href="#/server/appList/{{appKey}}" class="btn btn-sm btn-danger btn-options pull-right">返回
                     </a>
                     <form name="form" class="form-validation">
                         <div class="app-push-appName">接口名称
                             <span class="has-error">*</span>
                         </div>
-                        <input class="form-control"
-                               type="text"
-                               placeholder="请输入接口名称"
-                               ng-model="params.name"
-                               required>
+                        <input class="form-control" type="text" placeholder="请输入接口名称" ng-model="params.name" required>
                         <div class="app-push-appName">接口地址
                             <span class="has-error">*</span>
                         </div>
-                        <input class="form-control"
-                               type="text"
-                               placeholder="请输入接口地址"
-                               ng-model="params.requestUrl"
-                               required>
+                        <input class="form-control" type="text" placeholder="请输入接口地址" ng-model="params.requestUrl" required>
                         <div class="app-push-appName">所属组名称
                             <span class="has-error">*</span>
                         </div>
-                        <input class="form-control"
-                               type="text"
-                               placeholder="请输入组名称"
-                               ng-model="params.group"
-                               required>
+                        <input class="form-control" type="text" placeholder="请输入组名称" ng-model="params.group" required>
                         <div class="app-push-appName">请求类型
                             <span class="has-error">*</span>
                         </div>
@@ -55,6 +41,15 @@
                             <div class="col-sm-7">
                                 <label class="i-switch bg-info m-t-xs m-r">
                                     <input type="checkbox" ng-click="openAuth()">
+                                    <i></i>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-5">是否开启jwt鉴权</label>
+                            <div class="col-sm-7">
+                                <label class="i-switch bg-info m-t-xs m-r">
+                                    <input type="checkbox" ng-click="toggleJwt()">
                                     <i></i>
                                 </label>
                             </div>
@@ -91,19 +86,11 @@
                             <div class="app-push-appName">接口访问过期时间
                                 <span class="has-error">*</span>
                             </div>
-                            <input class="form-control"
-                                   type="text"
-                                   placeholder="请输入接口访问过期时间"
-                                   ng-model="params.rateLimitTtl"
-                                   required>
+                            <input class="form-control" type="text" placeholder="请输入接口访问过期时间" ng-model="params.rateLimitTtl" required>
                             <div class="app-push-appName">接口限制次数
                                 <span class="has-error">*</span>
                             </div>
-                            <input class="form-control"
-                                   type="text"
-                                   placeholder="请输入接口限制次数"
-                                   ng-model="params.rateLimitNum"
-                                   required>
+                            <input class="form-control" type="text" placeholder="请输入接口限制次数" ng-model="params.rateLimitNum" required>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-5">是否开启接口缓存</label>
@@ -118,19 +105,11 @@
                             <div class="app-push-appName">接口缓存的key值
                                 <span class="has-error">*</span>
                             </div>
-                            <input class="form-control"
-                                   type="text"
-                                   placeholder="请输入接口缓存的key值"
-                                   ng-model="params.cacheKey"
-                                   required>
+                            <input class="form-control" type="text" placeholder="请输入接口缓存的key值" ng-model="params.cacheKey" required>
                             <div class="app-push-appName">接口缓存时间
                                 <span class="has-error">*</span>
                             </div>
-                            <input class="form-control"
-                                   type="text"
-                                   placeholder="请输入接口缓存时间"
-                                   ng-model="params.cacheTtl"
-                                   required>
+                            <input class="form-control" type="text" placeholder="请输入接口缓存时间" ng-model="params.cacheTtl" required>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-5">是否添加接口描述</label>
@@ -145,18 +124,12 @@
                             <div class="app-push-appName">接口描述
                                 <span class="has-error">*</span>
                             </div>
-                            <textarea class="form-control"
-                                      rows="3"
-                                      placeholder="请输入接口描述"
-                                      ng-model="params.description"
-                                      required>
+                            <textarea class="form-control" rows="3" placeholder="请输入接口描述" ng-model="params.description" required>
                             </textarea>
                         </div>
 
                         <div class="app-push-save-btn">
-                            <button class="btn btn-lg btn-info btn-block"
-                                    ng-disabled="form.$invalid"
-                                    ng-click="createApi(params)">创建API
+                            <button class="btn btn-lg btn-info btn-block" ng-disabled="form.$invalid" ng-click="createApi(params)">创建API
                             </button>
                         </div>
                     </form>

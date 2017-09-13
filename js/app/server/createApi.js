@@ -1,5 +1,5 @@
 app.controller('createApiCtrl', ['$scope', '$http', '$state', '$location', '$modal', 'isLogin', 'user', '$cookies', 'api', '$cookieStore',
-    function ($scope, $http, $state, $location, $modal, isLogin, user, $cookies, api, $cookieStore) {
+    function($scope, $http, $state, $location, $modal, isLogin, user, $cookies, api, $cookieStore) {
         var url = $location.url();
         var path = url.split('/');
         // var pathx = path[3].split('#');
@@ -18,7 +18,7 @@ app.controller('createApiCtrl', ['$scope', '$http', '$state', '$location', '$mod
         $scope.timesBtn = false;
         $scope.cacheBtn = false;
         $scope.describeBtn = false;
-        $scope.openExpire = function(){
+        $scope.openExpire = function() {
             $scope.expireBtn = !$scope.expireBtn;
         };
         $scope.openTimes = function() {
@@ -30,8 +30,8 @@ app.controller('createApiCtrl', ['$scope', '$http', '$state', '$location', '$mod
         $scope.openDescribe = function() {
             $scope.describeBtn = !$scope.describeBtn;
         };
-        $scope.openAuth = function(){
-            if ($scope.params.auth === '1'){
+        $scope.openAuth = function() {
+            if ($scope.params.auth === '1') {
                 $scope.params.auth = '0';
             } else {
                 $scope.params.auth = '1';
@@ -44,34 +44,40 @@ app.controller('createApiCtrl', ['$scope', '$http', '$state', '$location', '$mod
                 $scope.params.buildIn = '1';
             }
         };
-        $scope.openCaptcha = function () {
+
+        $scope.toggleJwt = function() {
+            if ($scope.params.jwtEnable === '1') {
+                $scope.params.jwtEnable = '0';
+            } else {
+                $scope.params.jwtEnable = '1';
+            }
+        };
+        $scope.openCaptcha = function() {
             if ($scope.params.captchaRequired === '1') {
                 $scope.params.captchaRequired = '0';
             } else {
                 $scope.params.captchaRequired = '1';
             }
         };
-        $scope.createApi = function(params){
-            //console.log(params);
-            //validateForm(params);
+        $scope.createApi = function(params) {
             if ($scope.methodValidateMessage || $scope.authValidateMessage) {
                 return;
             }
-            api.createApi(params).then(function(res){
-                 $scope.items = res;
-                 console.log(res);
-                 if (res.success) {
+            api.createApi(params).then(function(res) {
+                $scope.items = res;
+                if (res.success) {
                     $scope.params = {
                         parentAppkey: appKey
                     };
                     addSuccess();
-                 }
+                }
             })
         };
-        function validateForm(data){
-           data.captchaRequired = data.captchaRequired ? 1 : 0;
+
+        function validateForm(data) {
+            data.captchaRequired = data.captchaRequired ? 1 : 0;
             // data.buildIn = data.buildIn ? 1 : 0;
-            if(!data.method){
+            if (!data.method) {
                 $scope.methodValidateMessage = true;
             } else {
                 $scope.methodValidateMessage = false;
@@ -82,29 +88,31 @@ app.controller('createApiCtrl', ['$scope', '$http', '$state', '$location', '$mod
             //     $scope.authValidateMessage = false;
             // }
         }
+
         function addSuccess(size) {
             var modalInstance = $modal.open({
                 templateUrl: 'myModalContentSuccess.html',
                 controller: 'ModalInstanceCtrl',
                 size: size,
                 resolve: {
-                    items: function () {
+                    items: function() {
                         return $scope.items;
                     }
                 }
             });
-            modalInstance.result.then(function (selectedItem) {
+            modalInstance.result.then(function(selectedItem) {
                 $scope.selected = selectedItem;
                 window.location.reload();
-            }, function () {
+            }, function() {
                 $location.path('/server/appList/' + appKey);
             });
         }
-        (function getCookie(){
-          var hostIsviewed2 = 'hostIsviewed2';
-          if($cookieStore.get('hostIsviewed1')){
-              $cookieStore.remove('hostIsviewed1');
-              $cookieStore.put('hostIsviewed2',hostIsviewed2);
-          }
+        (function getCookie() {
+            var hostIsviewed2 = 'hostIsviewed2';
+            if ($cookieStore.get('hostIsviewed1')) {
+                $cookieStore.remove('hostIsviewed1');
+                $cookieStore.put('hostIsviewed2', hostIsviewed2);
+            }
         })();
-}]);
+    }
+]);
