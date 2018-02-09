@@ -76,17 +76,11 @@ app.controller('createApiCtrl', ['$scope', '$http', '$state', '$location', '$mod
 
         function validateForm(data) {
             data.captchaRequired = data.captchaRequired ? 1 : 0;
-            // data.buildIn = data.buildIn ? 1 : 0;
             if (!data.method) {
                 $scope.methodValidateMessage = true;
             } else {
                 $scope.methodValidateMessage = false;
             }
-            // if(!data.auth){
-            //     $scope.authValidateMessage = true;
-            // } else {
-            //     $scope.authValidateMessage = false;
-            // }
         }
 
         function addSuccess(size) {

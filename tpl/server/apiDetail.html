@@ -30,6 +30,9 @@
                             <option value="2">PUT</option>
                             <option value="3">DELETE</option>
                         </select>
+                        <div class="app-push-appName">超时时间(ms)
+                        </div>
+                        <input class="form-control" type="text" placeholder="响应超过该值将会报警(可选)" ng-model="apidetail.timeout">
                         <div class="form-group">
                             <label class="col-sm-10">接口鉴权</label>
                             <div class="col-sm-2">
@@ -143,6 +146,9 @@
                                 </label>
                             </div>
                         </div>
+                        <div class="app-push-appName">超时时间(ms)
+                        </div>
+                        <input disabled class="form-control" type="text" placeholder="响应超过该值将会报警(可选)" ng-model="apidetail.timeout">
                         <div class="form-group">
                             <label class="col-sm-10">接口鉴权</label>
                             <div class="col-sm-2">

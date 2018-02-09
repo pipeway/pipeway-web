@@ -36,6 +36,9 @@
                         <div class="error">
                             <span ng-if="methodValidateMessage">*请求类型不能为空，请选择请求类型</span>
                         </div>
+                        <div class="app-push-appName">超时时间(ms)
+                        </div>
+                        <input class="form-control" type="text" placeholder="响应超过该值将会报警(可选)" ng-model="params.timeout">
                         <div class="form-group">
                             <label class="col-sm-5">是否需要鉴权</label>
                             <div class="col-sm-7">

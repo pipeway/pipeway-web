@@ -96,7 +96,9 @@ app.controller('apiDetailCtrl', ['$scope', '$http', '$state', '$location', 'isLo
             if ($scope.description != $scope.apidetail.description) {
                 data.description = $scope.apidetail.description;
             }
-            console.log(data)
+            if ($scope.timeout != $scope.apidetail.timeout) {
+                data.timeout = $scope.apidetail.timeout;
+            }
             api.apiUpdate(data).then(function(res) {
                 if (res.success) {
                     $scope.popupshow1 = false;
