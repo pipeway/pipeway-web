@@ -12,7 +12,6 @@ app.controller('ServerSettingCtrl', ['$scope', '$http', '$state', '$modal', '$lo
         //查询应用
         function appDetail(data) {
             api.getAppDetail(data).then(function(res) {
-                console.log(res);
                 if (res.success) {
                     $scope.appdetail = res.data;
                     $scope.name = res.data.name;
@@ -48,6 +47,9 @@ app.controller('ServerSettingCtrl', ['$scope', '$http', '$state', '$modal', '$lo
 
             if ($scope.jwtSecret != appdetail.jwtSecret) {
                 data.jwtSecret = appdetail.jwtSecret;
+            }
+            if ($scope.authorizedJwtSecrets != appdetail.authorizedJwtSecrets) {
+                data.authorizedJwtSecrets = appdetail.authorizedJwtSecrets;
             }
             api.appUpdate(data).then(function(res) {
                 if (res.success) {

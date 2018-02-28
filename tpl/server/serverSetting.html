@@ -41,31 +41,54 @@
                             <div class="app-push-appName cache">应用限制次数</div>
                             <input class="form-control cache-form" type="text" ng-change="checkExpire()" ng-model="appdetail.rateLimitNum">
                         </div>
-                        <div class="app-push-appName" style="position:relative;">
-                            <span class="label text-base bg-success pos-rlt m-r" style="font-size:15px;">
-                            <i class="arrow left arrow-success"></i>
-                            jwtSecret&nbsp;<span class="has-error">*</span>
+
+                        <div>
+                            <div class="app-push-appName" style="position:relative;">
+                                <span class="label text-base bg-success pos-rlt m-r" style="font-size:15px;">
+                                <i class="arrow left arrow-success"></i>
+                                jwtSecret&nbsp;<span class="has-error">*</span>
+                                </span>
+                                <i class="fa fax fa-fw fa-circle text-muted " color="#7266ba" label-color style="color:rgb(39, 194, 76);"></i>
+                            </div>
+                            <input class="form-control" type="text" ng-model="appdetail.jwtSecret">
+                        </div>
+
+                        <div>
+                            <div class="app-push-appName" style="position:relative;">
+                                <span class="label text-base bg-success pos-rlt m-r" style="font-size:15px;">
+                                <i class="arrow left arrow-success"></i>
+                                已授权的jwtSecret&nbsp;
+                                </span>
+                                <i class="fa fax fa-fw fa-circle text-muted " color="#7266ba" label-color style="color:rgb(39, 194, 76);"></i>
+                            </div>
+
+                            <textarea class="form-control" placeholder="secret1, secret2, secret3, eg..." ng-model="appdetail.authorizedJwtSecrets">
+                                
+                            </textarea>
+                        </div>
+
+                        <div>
+                            <div class="app-push-appName" style="position:relative;">
+                                <span class="label text-base bg-success pos-rlt m-r" style="font-size:15px;">
+                                <i class="arrow left arrow-success"></i>
+                                主机组&nbsp;<span class="has-error">*</span>
+                                </span>
+                                <i class="fa fax fa-fw fa-circle text-muted " color="#7266ba" label-color style="color:rgb(39, 194, 76);"></i>
+                            </div>
+                            <input class="form-control" type="text" ng-model="appdetail.hostGroup">
+                        </div>
+
+                        <div>
+                            <div class="app-push-appName" style="position:relative;">
+                                <span class="label text-base bg-primary pos-rlt m-r" style="font-size:15px;">
+                              <i class="arrow left arrow-primary"></i>
+                              应用描述&nbsp;
                             </span>
-                            <i class="fa fax fa-fw fa-circle text-muted " color="#7266ba" label-color style="color:rgb(39, 194, 76);"></i>
+                                <i class="fa fax fa-fw fa-circle text-muted " color="#7266ba" label-color style="color: rgb(114, 102, 186);"></i>
+                            </div>
+                            <textarea class="form-control" rows="3" ng-model="appdetail.description"></textarea>
                         </div>
-                        <input class="form-control" type="text" ng-model="appdetail.jwtSecret">
-                        <div class="app-push-appName" style="position:relative;">
-                            <span class="label text-base bg-success pos-rlt m-r" style="font-size:15px;">
-                            <i class="arrow left arrow-success"></i>
-                            主机组&nbsp;<span class="has-error">*</span>
-                            </span>
-                            <i class="fa fax fa-fw fa-circle text-muted " color="#7266ba" label-color style="color:rgb(39, 194, 76);"></i>
-                        </div>
-                        <input class="form-control" type="text" ng-model="appdetail.hostGroup">
-                        <div class="app-push-appName" style="position:relative;">
-                            <span class="label text-base bg-primary pos-rlt m-r" style="font-size:15px;">
-                          <i class="arrow left arrow-primary"></i>
-                          应用描述&nbsp;
-                        </span>
-                            <i class="fa fax fa-fw fa-circle text-muted " color="#7266ba" label-color style="color: rgb(114, 102, 186);"></i>
-                        </div>
-                        <textarea class="form-control" rows="3" ng-model="appdetail.description">
-                      </textarea>
+
                         <div class="app-push-save-btn" style="float:right; margin:20px 20px 0 0;">
                             <button class="btn btn-lg btn-info btn-block " ng-disabled="form.$invalid" ng-click="updateApp()">修改应用
                             </button>
