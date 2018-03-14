@@ -61,6 +61,15 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="col-sm-10">短信验证码</label>
+                            <div class="col-sm-2">
+                                <label class="i-switch bg-info m-t-xs m-r">
+                                    <input type="checkbox" ng-checked="apidetail.smsCaptchaRequired"  ng-click="openSmsCaptcha()">
+                                    <i></i>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="col-sm-10">jwt auth</label>
                             <div class="col-sm-2">
                                 <label class="i-switch bg-info m-t-xs m-r">
@@ -69,10 +78,6 @@
                                 </label>
                             </div>
                         </div>
-                        <!--<div class="app-push-appName">接口鉴权</div>
-                        <input class="form-control"
-                               type="text"
-                               ng-model="apidetail.auth">-->
                         <div class="form-group">
                             <label class="col-sm-10">修改接口访问限制</label>
                             <div class="col-sm-2">
@@ -181,6 +186,15 @@
                             <div class="col-sm-2">
                                 <label class="i-switch bg-info m-t-xs m-r">
                                     <input type="checkbox" ng-checked="apidetail.captchaRequired" disabled>
+                                    <i></i>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-10">短信验证码</label>
+                            <div class="col-sm-2">
+                                <label class="i-switch bg-info m-t-xs m-r">
+                                    <input type="checkbox" ng-checked="apidetail.smsCaptchaRequired" disabled>
                                     <i></i>
                                 </label>
                             </div>

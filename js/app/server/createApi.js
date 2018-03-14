@@ -59,6 +59,13 @@ app.controller('createApiCtrl', ['$scope', '$http', '$state', '$location', '$mod
                 $scope.params.captchaRequired = '1';
             }
         };
+        $scope.openSmsCaptcha = function() {
+            if ($scope.params.smsCaptchaRequired === '1') {
+                $scope.params.smsCaptchaRequired = '0';
+            } else {
+                $scope.params.smsCaptchaRequired = '1';
+            }
+        }
         $scope.createApi = function(params) {
             if ($scope.methodValidateMessage || $scope.authValidateMessage) {
                 return;

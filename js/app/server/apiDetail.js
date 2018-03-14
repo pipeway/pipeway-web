@@ -32,6 +32,7 @@ app.controller('apiDetailCtrl', ['$scope', '$http', '$state', '$location', 'isLo
                     $scope.description = res.data.description;
                     $scope.strictMode = (+res.data.strictMode) ? true : false;
                     $scope.jwtEnable = res.data.jwtEnable;
+                    $scope.smsCaptchaRequired = res.data.smsCaptchaRequired;
                 }
                 if (res.data.cacheKey) {
                     $scope.cacheBtn = true;
@@ -69,7 +70,11 @@ app.controller('apiDetailCtrl', ['$scope', '$http', '$state', '$location', 'isLo
                 data.captchaRequired = $scope.apidetail.captchaRequired;
             }
 
-            console.log($scope.apidetail)
+            if ($scope.smsCaptchaRequired != $scope.apidetail.smsCaptchaRequired) {
+                data.smsCaptchaRequired = $scope.apidetail.smsCaptchaRequired;
+            }
+
+
             if ($scope.jwtEnable != $scope.apidetail.jwtEnable) {
                 data.jwtEnable = $scope.apidetail.jwtEnable;
             }
@@ -163,6 +168,14 @@ app.controller('apiDetailCtrl', ['$scope', '$http', '$state', '$location', 'isLo
             }
         };
 
+        var openSmsCaptcha = function() {
+            if ($scope.apidetail.smsCaptchaRequired) {
+                $scope.apidetail.smsCaptchaRequired = 0;
+            } else {
+                $scope.apidetail.smsCaptchaRequired = 1;
+            }
+        }
+
         //检测缓存
         var checkCache = function() {
             if ($scope.apidetail.cacheKey) {
@@ -237,7 +250,8 @@ app.controller('apiDetailCtrl', ['$scope', '$http', '$state', '$location', 'isLo
             noDelete: noDelete,
             closePopup: closePopup,
             setStrictMode: setStrictMode,
-            toggleJwt: toggleJwt
+            toggleJwt: toggleJwt,
+            openSmsCaptcha: openSmsCaptcha
         })
     }
 ]);
