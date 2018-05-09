@@ -33,6 +33,7 @@ app.controller('apiDetailCtrl', ['$scope', '$http', '$state', '$location', 'isLo
                     $scope.strictMode = (+res.data.strictMode) ? true : false;
                     $scope.jwtEnable = res.data.jwtEnable;
                     $scope.smsCaptchaRequired = res.data.smsCaptchaRequired;
+                    $scope.jwtRoles = res.data.jwtRoles
                 }
                 if (res.data.cacheKey) {
                     $scope.cacheBtn = true;
@@ -103,6 +104,9 @@ app.controller('apiDetailCtrl', ['$scope', '$http', '$state', '$location', 'isLo
             }
             if ($scope.timeout != $scope.apidetail.timeout) {
                 data.timeout = $scope.apidetail.timeout;
+            }
+            if ($scope.jwtRoles != $scope.apidetail.jwtRoles) {
+                data.jwtRoles = $scope.apidetail.jwtRoles;
             }
             api.apiUpdate(data).then(function(res) {
                 if (res.success) {

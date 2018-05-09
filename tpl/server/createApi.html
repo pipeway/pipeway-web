@@ -57,6 +57,7 @@
                                 </label>
                             </div>
                         </div>
+                        <textarea ng-if="params.jwtEnable == 1" class="form-control" placeholder="role1,role2,rolse3,eg..." rows="3" ng-model="params.jwtRoles"></textarea>
                         <div class="form-group">
                             <label class="col-sm-5">是否为内置方法</label>
                             <div class="col-sm-7">
