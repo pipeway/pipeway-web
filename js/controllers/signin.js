@@ -13,7 +13,6 @@ app.controller('SigninFormController', ['$scope', '$http', '$state', '$cookies',
                 if (res) {
                     window.location.href = res.loginUrl;
                 }
-                console.log(res);
                 /*if (res.success) {
                     $cookies['token'] = res.data.token;
                     $state.go('client.list');
@@ -35,15 +34,21 @@ app.controller('SigninFormController', ['$scope', '$http', '$state', '$cookies',
             return true;
         }
 
-        var {
-            token
-        } = window.location.search;
-        if (token) {
+        function getQueryObject(str) {
+            var obj = {}
+            str.replace('?', '').split('&').map((item) => {
+                item = item.split('=')
+                obj[item[0]] = item[1]
+            })
+            return obj
+        }
+
+        var search =  getQueryObject(window.location.search);
+        if (search.token) {
             $scope.Login = '登录中……';
-            sessionStorage.setItem('token', token.slice(7));
+            sessionStorage.setItem('token', token);
             setTimeout(function () {
                 $state.go('dashboard.home');
-                //window.location.href = window.location.origin + '/table';
             }, 2000);
         } else {
             $scope.Login = '登录失败';
