@@ -213,14 +213,21 @@ app.controller('DashboardCtrl', ['$scope', '$http', '$state', 'isLogin', 'user',
                 });
             }
         };
-        setInterval(function() {
-            apiCount(7);
-        }, 5000);
-
+        // setInterval(function() {
+        //     apiCount(7);
+        // }, 5000);
+        
         //调试
-        var token = window.location.search;
-        console.log(token);
-        if (token) {
-            sessionStorage.setItem('token', token.slice(7));
+        function getQueryObject(str) {
+            var obj = {}
+            str.replace('?', '').split('&').map((item) => {
+                item = item.split('=')
+                obj[item[0]] = item[1]
+            })
+            return obj
+        }
+        var search = getQueryObject(window.location.search);
+        if (search.token) {
+            sessionStorage.setItem('token', search.token);
         }
     }]);
