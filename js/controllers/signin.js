@@ -46,7 +46,7 @@ app.controller('SigninFormController', ['$scope', '$http', '$state', '$cookies',
         var search =  getQueryObject(window.location.search);
         if (search.token) {
             $scope.Login = '登录中……';
-            sessionStorage.setItem('token', token);
+            sessionStorage.setItem('token', search.token);
             setTimeout(function () {
                 $state.go('dashboard.home');
             }, 2000);
